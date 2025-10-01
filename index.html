@@ -2,12 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>coffee-house</title>
+    <title>Coffee House "Resource"</title>
+    <meta
+      name="description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:title" content="Coffee House" />
+    <meta
+      property="og:description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://coffee-house-rs-school.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
+    />
+    <script type="module" src="/src/main.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <div id="app">
+      <div class="container">
+        <header id="header"></header>
+        <main>
+          <section id="enjoy"></section>
+          <section id="favorites"></section>
+          <section id="about"></section>
+          <section id="mobile"></section>
+        </main>
+        <footer id="footer"></footer>
+      </div>
+    </div>
   </body>
 </html>
