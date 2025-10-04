@@ -1,17 +1,17 @@
 @use "./variables" as *;
+@use "./fonts" as *;
 
 * {
   box-sizing: border-box;
   margin: 0;
   scroll-behavior: smooth;
-  background-color: $background-body;
   font-family: $font-family;
   font-style: normal;
 }
 
 body {
-  width: 100%;
   overflow-x: hidden;
+  background-color: $background-body;
 }
 
 .container {
@@ -20,15 +20,8 @@ body {
   padding: 0 40px;
 }
 
-section {
-  margin-top: 100px;
-}
-
-h2 {
+.title {
   color: $text-dark;
-  font-feature-settings:
-    "clig" off,
-    "liga" off;
   font-size: 60px;
   font-weight: 600;
   line-height: 125%;
@@ -39,82 +32,70 @@ h2 {
   }
 }
 
-.app-button {
-  text-decoration: none;
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $text-dark;
+}
+
+.btn {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
   width: 200px;
   height: 64px;
-  padding: 12px 20px;
-  align-items: center;
-  gap: 8px;
+  padding: 20px 78px;
+  border: none;
   border-radius: 100px;
-  border: 1px solid $border-dark;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
   color: $text-dark;
-  transition:
-    color 0.5s ease,
-    background-color 0.5s ease;
+  background-color: $text-light;
 
-  * {
-    transition:
-      color 0.5s ease,
-      background-color 0.5s ease;
-  }
+  img {
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
 
-  &_descr {
-    font-feature-settings:
-      "clig" off,
-      "liga" off;
-    font-weight: 600;
-  }
-
-  &_available {
-    font-size: 10px;
-    line-height: 140%;
-  }
-
-  &_platform {
-    font-size: 16px;
-    line-height: 150%;
-  }
-
-  &:hover {
-    color: $text-light;
-    background-color: $background-container;
-
-    * {
-      color: $text-light;
-      background-color: $background-container;
+    svg {
+      path {
+        transition: all 0.5s ease-out;
+        stroke: $text-light;
+      }
     }
   }
 
-  svg path {
-    transition: 0.5s all;
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
   }
 
-  &:hover svg path {
-    fill: $text-light;
-  }
-}
+  @media (hover: hover) {
+    cursor: pointer;
 
-.social {
-  display: flex;
-  width: 60px;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100px;
-  border: 1px solid $border-light;
-  transition: 0.5s all;
+    span {
+      transition: all 1s ease;
+    }
 
-  & svg path {
-    transition: 0.5s all;
-  }
+    &:hover:not(:disabled) {
+      span {
+        transform: translateX(-15%);
+      }
 
-  &:hover {
-    background: $background-body;
-  }
+      img {
+        overflow: visible;
 
-  &:hover svg path {
-    stroke: #403f3d;
+        svg {
+          path {
+            transition: all 0.5s ease-out;
+            stroke: $text-dark;
+          }
+        }
+      }
+    }
   }
 }

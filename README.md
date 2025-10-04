@@ -4,6 +4,6 @@
 
 - Code: [GitHub](https://github.com/dzichonka/coffee-house)
 
-- Deployment: [GitPages](https://github.com/dzichonka/coffee-house)
+- Deployment: [GitPages](https://dzichonka.github.io/coffee-house)
 
 - Deployment: [Netlify](https://coffee-house-rs-school.netlify.app/)
