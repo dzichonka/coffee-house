@@ -6,7 +6,10 @@
   margin: 0;
   scroll-behavior: smooth;
   font-family: $font-family;
-  font-style: normal;
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+  font-weight: 600;
 }
 
 body {
@@ -56,17 +59,15 @@ body {
   color: $text-dark;
   background-color: $text-light;
 
+  span {
+    transform: translateX(30%);
+  }
+
   img {
     width: 20px;
     height: 20px;
-    overflow: hidden;
-
-    svg {
-      path {
-        transition: all 0.5s ease-out;
-        stroke: $text-light;
-      }
-    }
+    opacity: 0;
+    transition: all 0.5s ease-out;
   }
 
   &:disabled {
@@ -78,24 +79,54 @@ body {
     cursor: pointer;
 
     span {
-      transition: all 1s ease;
+      transition: all 0.5s ease-out;
     }
 
     &:hover:not(:disabled) {
       span {
-        transform: translateX(-15%);
+        transform: translateX(-10%);
       }
 
       img {
-        overflow: visible;
-
-        svg {
-          path {
-            transition: all 0.5s ease-out;
-            stroke: $text-dark;
-          }
-        }
+        opacity: 1;
       }
+    }
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 4px;
+  border-bottom: 2px solid transparent;
+  width: fit-content;
+  color: $text-dark;
+  background-color: transparent;
+  outline: none;
+  text-decoration: none;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover:not(:disabled) {
+      border-bottom: 2px solid $text-dark;
     }
   }
 }

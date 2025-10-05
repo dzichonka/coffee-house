@@ -3,66 +3,107 @@
 .header {
   height: 60px;
   margin: 20px 0;
+  position: relative;
 
-  &_wrapper {
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-    min-height: 60px;
-    align-items: center;
-  }
-
-  &_logo-hamburger-wrapper {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    .hamburger {
-      display: none;
-    }
-  }
-
-  &_list {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    column-gap: 40px;
-  }
-
-  &_item {
-    border-bottom: 1px solid transparent;
-    transition: 0.5s all;
-
-    &:hover {
-      @media (hover: hover) {
-        border-bottom: 1px solid $text-dark;
+  .logo {
+    @media (width <= 768px) {
+      &__nav {
+        display: none;
       }
     }
   }
 
-  .menu-link {
-    &_link {
+  &-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    &-list {
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid transparent;
+      justify-content: center;
+      flex-direction: row;
+      gap: 40px;
+    }
+
+    @media (width <= 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      gap: 100px;
+      padding-top: 60px;
+      z-index: 9;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      right: -100%;
+      font-size: 32px;
+      line-height: 125%;
+      background: $text-light;
       transition: 0.5s all;
 
-      &:hover {
-        border-bottom: 1px solid $text-dark;
+      &-list {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 60px;
+      }
+
+      &__open {
+        top: 100px;
+        right: 0;
+        visibility: visible;
+        opacity: 1;
       }
     }
   }
-}
 
-.link-text {
-  color: $text-dark;
-  font-feature-settings:
-    "clig" off,
-    "liga" off;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%;
-  text-decoration: none;
+  .header-burger {
+    display: none;
+
+    @media (width <= 768px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .burger {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    border-radius: 100px;
+    border: 1px solid $border-dark;
+
+    span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: $text-dark;
+      transition: 0.5s all;
+    }
+
+    &.open {
+      z-index: 10;
+
+      span {
+        &:nth-child(1) {
+          transform: translateY(5px) rotate(-45deg);
+        }
+
+        &:nth-child(2) {
+          transform: translateY(-5px) rotate(45deg);
+        }
+      }
+    }
+  }
 }
