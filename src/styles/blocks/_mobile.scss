@@ -1,3 +1,70 @@
+@use "../base/variables" as *;
+
 .mobile {
   margin-top: 100px;
+
+  &_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+  }
+
+  &_main {
+    max-width: 600px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  &_apps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .app-button {
+    text-decoration: none;
+    display: flex;
+    width: 200px;
+    height: 64px;
+    padding: 12px 20px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 100px;
+    border: 1px solid $border-dark;
+    color: $text-dark;
+    transition: all 0.5s ease;
+
+    &_available {
+      font-size: 10px;
+      line-height: 140%;
+    }
+
+    &_platform {
+      font-size: 16px;
+      line-height: 150%;
+    }
+
+    @media (hover: hover) {
+      cursor: pointer;
+
+      &:hover {
+        color: $text-light;
+        background-color: $background-container;
+
+        svg > path {
+          fill: $text-light;
+        }
+      }
+    }
+  }
 }
