@@ -24,15 +24,29 @@ body {
 }
 
 .title {
+  margin-top: 100px;
   color: $text-dark;
   font-size: 60px;
   font-weight: 600;
   line-height: 125%;
+  text-align: center;
 
   span {
     color: $text-accent;
     font-style: italic;
   }
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 125%;
+}
+
+p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
 }
 
 .description {

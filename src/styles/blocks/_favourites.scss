@@ -1,0 +1,92 @@
+@use "../base/variables" as *;
+
+.favourites {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+
+  .slider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .slide {
+    display: none;
+    width: 480px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 17px;
+    transition: all 0.5s ease;
+
+    &.active {
+      display: flex;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .prev,
+  .next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border: 1px solid $background-container;
+    background-color: transparent;
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    transition: all 0.5s ease;
+
+    @media (hover: hover) {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $background-container;
+
+        svg > path {
+          stroke: $text-light;
+        }
+      }
+    }
+  }
+
+  .dots {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 12px;
+
+    .dot {
+      width: 40px;
+      height: 4px;
+      background-color: $border-light;
+      border-radius: 100px;
+
+      span {
+        display: block;
+        width: 0;
+        height: 4px;
+        border-radius: 100px;
+        background-color: $background-container;
+        transition: none;
+      }
+
+      &.active > span {
+        width: 40px;
+        transition: width 5s linear;
+      }
+    }
+  }
+}

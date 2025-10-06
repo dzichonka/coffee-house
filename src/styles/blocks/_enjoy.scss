@@ -21,7 +21,7 @@
   .offer {
     color: $text-light;
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 100px;
     z-index: 2;
     max-width: 530px;
@@ -35,6 +35,7 @@
       font-size: 72px;
       line-height: 105%;
       color: $text-light;
+      text-align: left;
     }
 
     .description {

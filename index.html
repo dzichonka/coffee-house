@@ -66,7 +66,7 @@
               muted
               loop
               playsinline
-              poster="assets/img/hero.jpg"
+              poster="images/enjoy/hero.jpg"
             >
               <source src="/video/hero.mp4" type="video/mp4" />
               <img src="images/enjoy/hero.jpg" alt="Hero image" />
@@ -87,7 +87,45 @@
               </button>
             </div>
           </section>
-          <section id="favorites"></section>
+          <section id="favourites" class="favourites">
+            <h2 class="title">Choose your <span>favorite</span> coffee</h2>
+            <div class="slider">
+              <button class="prev">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.5 7H1M1 7L7 1M1 7L7 13"
+                    stroke="#403F3D"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div class="slider-wrapper"></div>
+              <button class="next">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 7H13.5M13.5 7L7.5 1M13.5 7L7.5 13"
+                    stroke="#403F3D"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="dots"></div>
+          </section>
           <section id="about"></section>
           <section id="mobile"></section>
         </main>
