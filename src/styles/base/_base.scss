@@ -111,6 +111,7 @@ li {
   gap: 4px;
   border-bottom: 2px solid transparent;
   width: fit-content;
+  line-height: 125%;
   color: $text-dark;
   background-color: transparent;
   outline: none;
@@ -127,6 +128,15 @@ li {
 
     &:hover:not(:disabled) {
       border-bottom: 2px solid $text-dark;
+    }
+  }
+
+  @media (width <= 768px) {
+    gap: 16px;
+
+    img {
+      width: 40px;
+      height: 40px;
     }
   }
 }
