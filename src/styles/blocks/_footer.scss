@@ -3,4 +3,90 @@
 .footer {
   margin-top: 100px;
   margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 100px;
+  border-radius: 40px;
+  padding: 100px;
+  color: $text-light;
+  background: $background-container;
+
+  @media (width <= 1300px) {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  @media (width <= 768px) {
+    padding: 100px 60px;
+  }
+
+  .column {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  .socials {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border: 1px solid $border-light;
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    transition: all 0.5s ease;
+
+    @media (hover: hover) {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $text-light;
+
+        svg > path {
+          stroke: $text-dark;
+        }
+      }
+    }
+  }
+
+  .list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+
+    a,
+    li {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: row;
+      gap: 8px;
+      line-height: 150%;
+      color: $text-light;
+
+      &:hover {
+        border-color: $text-light;
+      }
+    }
+  }
 }

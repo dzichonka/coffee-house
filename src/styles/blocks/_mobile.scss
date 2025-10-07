@@ -8,6 +8,11 @@
     align-items: center;
     justify-content: space-between;
     flex-flow: row nowrap;
+
+    @media (width <= 1200px) {
+      flex-direction: column;
+      gap: 100px;
+    }
   }
 
   &_main {
@@ -17,6 +22,10 @@
     justify-content: flex-start;
     flex-direction: column;
     gap: 40px;
+
+    @media (width <= 1200px) {
+      max-width: 100%;
+    }
   }
 
   h2 {

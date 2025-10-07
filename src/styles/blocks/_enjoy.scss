@@ -7,6 +7,10 @@
   height: 644px;
   overflow: hidden;
 
+  @media (width <= 380px) {
+    height: 552px;
+  }
+
   .video {
     position: absolute;
     top: 0;
@@ -31,10 +35,27 @@
     flex-direction: column;
     gap: 40px;
 
+    @media (width <= 7680px) {
+      left: 60px;
+    }
+
+    @media (width <= 380px) {
+      left: 0;
+      top: 0;
+      max-width: 100%;
+      padding: 60px 16px;
+    }
+
     h2 {
       font-size: 72px;
       line-height: 105%;
       color: $text-light;
+
+      @media (width <= 380px) {
+        font-size: 42px;
+        line-height: 115%;
+        margin: 0;
+      }
     }
 
     .description {

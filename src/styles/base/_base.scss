@@ -18,6 +18,10 @@ body {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 40px;
+
+  @media (width <= 380px) {
+    padding: 0 16px;
+  }
 }
 
 h2 {
@@ -27,6 +31,10 @@ h2 {
   font-weight: 600;
   line-height: 125%;
   text-align: left;
+
+  @media (width <= 380px) {
+    font-size: 32px;
+  }
 
   span {
     color: $text-accent;
