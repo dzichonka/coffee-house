@@ -22,6 +22,11 @@
     padding: 100px 60px;
   }
 
+  @media (width <= 380px) {
+    padding: 60px 16px;
+    gap: 40px;
+  }
+
   .column {
     flex: 1;
     display: flex;

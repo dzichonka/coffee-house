@@ -13,6 +13,10 @@
       flex-direction: column;
       gap: 100px;
     }
+
+    @media (width <=380px) {
+      gap: 40px;
+    }
   }
 
   &_main {
@@ -22,10 +26,10 @@
     justify-content: flex-start;
     flex-direction: column;
     gap: 40px;
+  }
 
-    @media (width <= 1200px) {
-      max-width: 100%;
-    }
+  &_img {
+    width: 100%;
   }
 
   h2 {
@@ -38,6 +42,10 @@
     justify-content: flex-start;
     flex-direction: row;
     gap: 20px;
+
+    @media (width <= 3800px) {
+      flex-direction: column;
+    }
   }
 
   .app-button {
