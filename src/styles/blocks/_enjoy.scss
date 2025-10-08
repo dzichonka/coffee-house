@@ -35,14 +35,15 @@
     flex-direction: column;
     gap: 40px;
 
-    @media (width <= 7680px) {
+    @media (width <= 1200px) {
       left: 60px;
     }
 
-    @media (width <= 380px) {
+    @media (width <= 767px) {
       left: 0;
       top: 0;
       max-width: 100%;
+      min-height: 100%;
       padding: 60px 16px;
     }
 
@@ -51,7 +52,7 @@
       line-height: 105%;
       color: $text-light;
 
-      @media (width <= 380px) {
+      @media (width <= 767px) {
         font-size: 42px;
         line-height: 115%;
         margin: 0;

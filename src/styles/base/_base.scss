@@ -39,7 +39,7 @@ h2 {
   span {
     color: $text-accent;
     font-weight: 600;
-    font-style: italic;
+    font-style: oblique 8deg;
   }
 }
 
@@ -137,16 +137,17 @@ li {
   outline: none;
   text-decoration: none;
 
-  &:disabled {
+  &.disabled {
+    pointer-events: none;
     cursor: default;
-    opacity: 0.5;
+    border-bottom: 2px solid $text-dark;
   }
 
   @media (hover: hover) {
     cursor: pointer;
     transition: all 0.5s ease;
 
-    &:hover:not(:disabled) {
+    &:hover:not(.disabled) {
       border-bottom: 2px solid $text-dark;
     }
   }

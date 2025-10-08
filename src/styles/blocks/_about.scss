@@ -1,14 +1,6 @@
 @use "../base/variables" as *;
 
 .about {
-  h2 {
-    font-size: 59.6px;
-
-    @media (width <= 380px) {
-      font-size: 32px;
-    }
-  }
-
   .gallery {
     margin-top: 40px;
     display: flex;
@@ -44,8 +36,13 @@
         transition: all 0.5s ease;
         object-fit: cover;
 
+        @media (width <= 768px) {
+          transform: scale(1.05);
+        }
+
         @media (width <= 380px) {
           height: 120%;
+          transform: scale(1.03);
         }
       }
 

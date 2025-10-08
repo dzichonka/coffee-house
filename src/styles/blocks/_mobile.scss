@@ -26,6 +26,10 @@
     justify-content: flex-start;
     flex-direction: column;
     gap: 40px;
+
+    @media (width <= 768px) {
+      max-width: 100%;
+    }
   }
 
   &_img {
@@ -43,7 +47,7 @@
     flex-direction: row;
     gap: 20px;
 
-    @media (width <= 3800px) {
+    @media (width <= 500px) {
       flex-direction: column;
     }
   }
