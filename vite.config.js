@@ -8,6 +8,12 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   base: "./",
   build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        menu: path.resolve(__dirname, "menu.html"),
+      },
+    },
     sourcemap: true,
     minify: true,
     outDir: "dist",

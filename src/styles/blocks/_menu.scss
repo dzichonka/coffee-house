@@ -137,4 +137,10 @@
       }
     }
   }
+
+  .refresh {
+    &.hidden {
+      display: none;
+    }
+  }
 }

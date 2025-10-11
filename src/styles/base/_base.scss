@@ -161,3 +161,27 @@ li {
     }
   }
 }
+
+.btn-circle {
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 1px solid $background-container;
+  background-color: transparent;
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+  transition: all 0.5s ease;
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $background-container;
+
+      svg > path {
+        stroke: $text-light;
+      }
+    }
+  }
+}

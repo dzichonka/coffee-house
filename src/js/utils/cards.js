@@ -1,18 +1,24 @@
 const wrapper = document.querySelector(".cards");
 const tabs = document.querySelectorAll(".tab");
+const refresh = document.querySelector("#refresh");
+
+let currentCategory = "coffee";
+
+const isMobile = () => window.innerWidth <= 768;
 
 async function fetchCards() {
-  const response = await fetch("/assets/products.json");
-  const products = await response.json();
-  return products;
+  const response = await fetch("assets/products.json");
+  return await response.json();
 }
 
 const products = await fetchCards();
 
-const displayCards = (category) => {
+function displayCards(category, visibleCount = isMobile() ? 4 : 8) {
   wrapper.innerHTML = "";
   const cards = products.filter((product) => product.category === category);
-  cards.forEach((card, index) => {
+  const visibleCards = cards.slice(0, visibleCount);
+
+  visibleCards.forEach((card, index) => {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.innerHTML = `
@@ -32,14 +38,35 @@ const displayCards = (category) => {
     `;
     wrapper.appendChild(cardElement);
   });
-};
+
+  if (isMobile() && cards.length > visibleCards.length) {
+    refresh.classList.remove("hidden");
+  } else {
+    refresh.classList.add("hidden");
+  }
+}
 
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     tabs.forEach((t) => t.classList.remove("active"));
     tab.classList.add("active");
-    displayCards(tab.getAttribute("data-tab"));
+    currentCategory = tab.getAttribute("data-tab");
+    displayCards(currentCategory);
   });
 });
 
-displayCards("coffee");
+refresh.addEventListener("click", () => {
+  displayCards(currentCategory, 8);
+  refresh.classList.add("hidden");
+});
+
+let lastIsMobile = isMobile();
+window.addEventListener("resize", () => {
+  const nowIsMobile = isMobile();
+  if (nowIsMobile !== lastIsMobile) {
+    displayCards(currentCategory);
+    lastIsMobile = nowIsMobile;
+  }
+});
+
+displayCards(currentCategory);
