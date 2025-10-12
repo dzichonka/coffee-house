@@ -1,5 +1,6 @@
+import { displayModal } from "./modal.js";
 const wrapper = document.querySelector(".cards");
-const tabs = document.querySelectorAll(".tab");
+const tabs = document.querySelectorAll(".tab-category");
 const refresh = document.querySelector("#refresh");
 
 let currentCategory = "coffee";
@@ -37,6 +38,10 @@ function displayCards(category, visibleCount = isMobile() ? 4 : 8) {
       </div>
     `;
     wrapper.appendChild(cardElement);
+
+    cardElement.addEventListener("click", () => {
+      displayModal(card, index);
+    });
   });
 
   if (isMobile() && cards.length > visibleCards.length) {
