@@ -37,7 +37,7 @@ export function displayModal(item, index) {
   if (!sizeListenersAdded) {
     sizeKeys.forEach((key, i) => {
       const sizeData = item.sizes[key];
-      const span = tabsSize[i].querySelector("span");
+      const span = tabsSize[i].querySelector(".text");
       tabsSize[i].setAttribute("data-size", sizeData["add-price"]);
       if (span) span.textContent = sizeData.size;
 
@@ -56,7 +56,7 @@ export function displayModal(item, index) {
 
   if (!addListenersAdded) {
     item.additives.forEach((additive, i) => {
-      const span = tabsAdditives[i].querySelector("span");
+      const span = tabsAdditives[i].querySelector(".text");
       tabsAdditives[i].setAttribute("data-add", additive["add-price"]);
       if (span) span.textContent = additive.name;
 
