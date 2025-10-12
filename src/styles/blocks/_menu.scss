@@ -20,6 +20,10 @@
     justify-content: center;
     flex-direction: row;
     gap: 16px;
+
+    @media (width <= 420px) {
+      gap: 8px;
+    }
   }
 
   .cards {

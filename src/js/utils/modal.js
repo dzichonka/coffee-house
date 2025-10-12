@@ -2,6 +2,8 @@ const modal = document.querySelector("#modal");
 const closeBtn = document.querySelector("#close");
 const price = document.querySelector("#modal-price");
 const img = document.querySelector("#modal-img");
+const title = document.querySelector("#modal-title");
+const description = document.querySelector("#modal-description");
 
 const tabsSize = document.querySelectorAll(".tab-size");
 const tabsAdditives = document.querySelectorAll(".tab-add");
@@ -31,6 +33,9 @@ export function displayModal(item, index) {
 
   img.src = `images/menu/${item.category}/${index}.png`;
   img.alt = item.name;
+
+  title.textContent = item.name;
+  description.textContent = item.description;
 
   const sizeKeys = Object.keys(item.sizes);
 
