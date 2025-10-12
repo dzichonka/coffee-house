@@ -27,6 +27,123 @@
   </head>
   <body>
     <div id="app">
+      <div id="modal" class="modal">
+        <div class="window">
+          <div class="wrapper">
+            <img
+              src="images/menu/dessert/0.png"
+              alt="Marble cheesecake"
+            />
+            <div class="content">
+
+              <div class="header">
+                <h3>Marble cheesecake</h3>
+                <p>
+                  Philadelphia cheese with lemon zest on a light sponge cake and
+                  red currant jam
+                </p>
+              </div>
+
+                              <div class="size tab-block">
+                <p>Size</p>
+                <div class="tabs">
+
+                  <button class="tab active" data-size="0">
+                    <div class="sign">S</div>
+                    <span>50 g</span>
+                  </button>
+
+                                    <button class="tab" data-size="1">
+                    <div class="sign">M</div>
+                    <span>100 g</span>
+                  </button>
+
+                                    <button class="tab" data-size="2">
+                    <div class="sign">L</div>
+                    <span>200 g</span>
+                  </button>
+
+                </div>
+              </div>
+
+              <div class="add tab-block">
+                <p>Additives</p>
+                <div class="tabs">
+
+                  <button class="tab" data-add="0">
+                    <div class="sign">1</div>
+                    <span>Berries</span>
+                  </button>
+
+                                    <button class="tab active" data-add="1">
+                    <div class="sign">2</div>
+                    <span>Nuts</span>
+                  </button>
+
+                                    <button class="tab" data-add="2">
+                    <div class="sign">3</div>
+                    <span>Jam</span>
+                  </button>
+
+                </div>
+              </div>
+
+                            <div class="price">
+                <h3>Total:</h3>
+                <h3 class="modal_price_sum">$3.50</h3>
+              </div>
+
+              <div class="alert">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewbox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_268_11729)">
+                      <path
+                        d="M8 7.66663V11"
+                        stroke="#403F3D"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M8 5.00667L8.00667 4.99926"
+                        stroke="#403F3D"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M8.00016 14.6667C11.6821 14.6667 14.6668 11.6819 14.6668 8.00004C14.6668 4.31814 11.6821 1.33337 8.00016 1.33337C4.31826 1.33337 1.3335 4.31814 1.3335 8.00004C1.3335 11.6819 4.31826 14.6667 8.00016 14.6667Z"
+                        stroke="#403F3D"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </g>
+                    <defs>
+                      <clippath id="clip0_268_11729">
+                        <rect width="16" height="16" fill="white" />
+                      </clippath>
+                    </defs>
+                  </svg>
+
+                <p>
+                  The cost is not final. Download our mobile app to see the
+                  final price and place your order. Earn loyalty points and
+                  enjoy your favorite coffee with up to 20% discount.
+                </p>
+              </div>
+
+              <button class="btn-circle close">Close</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="container">
         <header id="header" class="header">
           <div class="header-burger">
@@ -65,15 +182,15 @@
             </h2>
             <div class="tabs">
               <button class="tab active" data-tab="coffee">
-                <img src="icons/tabs/coffee-tab.png" alt="coffee icon" />
+                <img class="sign" src="icons/tabs/coffee-tab.png" alt="coffee icon" />
                 <span>Coffee</span>
               </button>
               <button class="tab" data-tab="tea">
-                <img src="icons/tabs/tea-tab.png" alt="tea icon" />
+                <img class="sign" src="icons/tabs/tea-tab.png" alt="tea icon" />
                 <span>Tea</span>
               </button>
               <button class="tab" data-tab="dessert">
-                <img src="icons/tabs/dessert-tab.png" alt="dessert icon" />
+                <img class="sign" src="icons/tabs/dessert-tab.png" alt="dessert icon" />
                 <span>Dessert</span>
               </button>
             </div>

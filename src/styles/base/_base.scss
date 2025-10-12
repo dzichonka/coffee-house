@@ -168,6 +168,7 @@ li {
   flex-direction: row;
   border: 1px solid $background-container;
   background-color: transparent;
+  color: $text-dark;
   border-radius: 100px;
   width: 60px;
   height: 60px;
@@ -178,9 +179,68 @@ li {
 
     &:hover {
       background-color: $background-container;
+      color: $text-light;
 
       svg > path {
         stroke: $text-light;
+      }
+    }
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  border: 1px solid $border-light;
+  background: transparent;
+  color: $text-dark;
+  border-radius: 100px;
+  padding: 8px 16px 8px 8px;
+
+  .sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background: $border-light;
+    color: $text-dark;
+    padding: 3px 7px;
+  }
+
+  span {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  &.active {
+    background: $background-container;
+    border: 1px solid $background-container;
+    color: $text-light;
+
+    .sign {
+      background: $text-light;
+    }
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover {
+      transition: all 0.5s ease;
+      background: $background-container;
+      border: 1px solid $background-container;
+      color: $text-light;
+
+      .sign {
+        background: $text-light;
       }
     }
   }
