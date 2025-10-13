@@ -1,4 +1,5 @@
 const modal = document.querySelector("#modal");
+const content = document.querySelector(".window");
 const closeBtn = document.querySelector("#close");
 const price = document.querySelector("#modal-price");
 const img = document.querySelector("#modal-img");
@@ -10,13 +11,22 @@ const tabsAdditives = document.querySelectorAll(".tab-add");
 
 let sizeListenersAdded = false;
 let addListenersAdded = false;
-
-closeBtn.addEventListener("click", () => {
+function closeModal() {
   modal.classList.add("closed");
   document.body.style.overflow = "";
   tabsSize.forEach((tab) => tab.classList.remove("active"));
   tabsSize[0].classList.add("active");
   tabsAdditives.forEach((tab) => tab.classList.remove("active"));
+}
+
+closeBtn.addEventListener("click", () => {
+  closeModal();
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal && e.target !== content) {
+    closeModal();
+  }
 });
 
 export function displayModal(item, index) {
