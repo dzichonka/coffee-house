@@ -22,9 +22,16 @@ burgerBtn.addEventListener("click", (e) => {
 });
 
 burgerMenu.addEventListener("click", (e) => {
-  if (e.target && e.target.tagName === "link") {
+  const target = e.target.closest("a");
+  if (!target) return;
+
+  if (target.classList.contains("disabled")) {
+    e.preventDefault();
     closeBurgerMenu();
+    return;
   }
+
+  closeBurgerMenu();
 });
 
 window.onscroll = () => {

@@ -37,40 +37,115 @@ slidesData.forEach((slide, index) => {
   dot.classList.add("dot");
   dot.appendChild(document.createElement("span"));
   if (index === 0) dot.classList.add("active");
-  dot.dataset.index = index;
   dotsContainer.appendChild(dot);
 });
 
-let currentIndex = 0;
 const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
 const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
-const showSlide = (index) => {
-  slides.forEach((s, i) => {
-    s.classList[index === i ? "add" : "remove"]("active");
-  });
 
-  dots.forEach((d, i) => {
-    d.classList.toggle("active", i === index);
-  });
-};
+let currentIndex = 0;
+let autoScrollDelay = 5000;
+let autoScrollTimer = null;
+
+let progressRAF = null;
+let progressStartTime = null;
+let progressElapsed = 0;
+
+function updateProgress(dot) {
+  cancelAnimationFrame(progressRAF);
+  const bar = dot.querySelector("span");
+
+  function step(timestamp) {
+    if (!progressStartTime) progressStartTime = timestamp;
+    const delta = timestamp - progressStartTime + progressElapsed;
+    const percent = Math.min((delta / autoScrollDelay) * 100, 100);
+    bar.style.width = percent + "%";
+
+    if (percent < 100) {
+      progressRAF = requestAnimationFrame(step);
+    }
+  }
+
+  progressRAF = requestAnimationFrame(step);
+}
+
+function stopProgress() {
+  cancelAnimationFrame(progressRAF);
+  if (progressStartTime) {
+    progressElapsed += performance.now() - progressStartTime;
+  }
+  progressStartTime = null;
+}
+
+function resetProgress() {
+  cancelAnimationFrame(progressRAF);
+  dots.forEach((d) => (d.querySelector("span").style.width = "0%"));
+  progressElapsed = 0;
+  progressStartTime = null;
+}
+
+function showSlide(index) {
+  slides.forEach((s, i) => s.classList.toggle("active", i === index));
+  dots.forEach((d, i) => d.classList.toggle("active", i === index));
+
+  resetProgress();
+  updateProgress(dots[index]);
+}
+
+function startAutoScroll() {
+  stopAutoScroll();
+  autoScrollTimer = setTimeout(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+    startAutoScroll();
+  }, autoScrollDelay - progressElapsed);
+}
+
+function stopAutoScroll() {
+  clearTimeout(autoScrollTimer);
+}
 
 prev.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + slides.length) % slides.length;
   showSlide(currentIndex);
+  startAutoScroll();
 });
 
 next.addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % slides.length;
   showSlide(currentIndex);
+  startAutoScroll();
 });
 
-const scrollDeffault = () => {
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
-  }, 5000);
-};
+wrapper.addEventListener("mouseenter", () => {
+  stopAutoScroll();
+  stopProgress();
+});
+wrapper.addEventListener("mouseleave", () => {
+  startAutoScroll();
+  updateProgress(dots[currentIndex]);
+});
 
-scrollDeffault();
+let startX = 0;
+wrapper.addEventListener("touchstart", (e) => {
+  stopAutoScroll();
+  stopProgress();
+  startX = e.touches[0].clientX;
+});
+wrapper.addEventListener("touchend", (e) => {
+  const endX = e.changedTouches[0].clientX;
+  const diff = endX - startX;
+
+  if (diff > 50)
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  else if (diff < -50) currentIndex = (currentIndex + 1) % slides.length;
+
+  showSlide(currentIndex);
+  resetProgress();
+  startAutoScroll();
+});
+
+showSlide(currentIndex);
+startAutoScroll();

@@ -142,7 +142,6 @@ li {
   text-decoration: none;
 
   &.disabled {
-    pointer-events: none;
     cursor: default;
     border-bottom: 2px solid $text-dark;
   }

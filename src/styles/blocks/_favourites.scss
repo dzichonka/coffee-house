@@ -71,12 +71,6 @@
         height: 4px;
         border-radius: 100px;
         background-color: $background-container;
-        transition: none;
-      }
-
-      &.active > span {
-        width: 40px;
-        transition: width 5s linear;
       }
     }
   }

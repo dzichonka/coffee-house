@@ -21,6 +21,10 @@
     flex-direction: row;
     gap: 16px;
 
+    .tab.active {
+      cursor: default;
+    }
+
     @media (width <= 420px) {
       gap: 8px;
     }
