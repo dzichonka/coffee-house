@@ -215,10 +215,14 @@ li {
     background: $border-light;
     color: $text-dark;
     padding: 3px 7px;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   span {
-    font-family: $font-family;
     font-weight: 600;
     font-size: 16px;
     line-height: 150%;
