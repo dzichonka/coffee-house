@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist",
+    "deploy": "tsc --noEmit && npm run build && gh-pages -d dist",
     "prepare": "husky",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -44,6 +44,8 @@
     "stylelint-config-standard": "^38.0.0",
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-scss": "^6.12.1",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.25.0",
     "vite": "^7.1.7"
   },
   "dependencies": {
