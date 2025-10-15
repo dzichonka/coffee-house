@@ -19,10 +19,10 @@ const slidesData = [
   },
 ];
 
-const wrapper = document.querySelector(".slider-wrapper");
-const dotsContainer = document.querySelector(".dots");
+const wrapper = document.querySelector<HTMLDivElement>(".slider-wrapper");
+const dotsContainer = document.querySelector<HTMLDivElement>(".dots");
 
-slidesData.forEach((slide, index) => {
+slidesData.forEach((slide: SliderDataType, index: number): void => {
   const div = document.createElement("div");
   div.classList.add("slide");
   div.innerHTML = `
@@ -32,61 +32,65 @@ slidesData.forEach((slide, index) => {
     <h3>${slide.price}</h3>
   `;
   if (index === 0) div.classList.add("active");
-  wrapper.appendChild(div);
+  wrapper?.appendChild(div);
   const dot = document.createElement("div");
   dot.classList.add("dot");
   dot.appendChild(document.createElement("span"));
   if (index === 0) dot.classList.add("active");
-  dotsContainer.appendChild(dot);
+  dotsContainer?.appendChild(dot);
 });
 
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
+const slides = Array.from(document.querySelectorAll<HTMLDivElement>(".slide"));
+const dots = Array.from(document.querySelectorAll<HTMLDivElement>(".dot"));
 const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
 
 let currentIndex = 0;
 let autoScrollDelay = 5000;
-let autoScrollTimer = null;
+let autoScrollTimer: null | ReturnType<typeof setTimeout> = null;
 
-let progressRAF = null;
-let progressStartTime = null;
+let progressRAF: number | null = null;
+let progressStartTime: number | null = null;
 let progressElapsed = 0;
 
-function updateProgress(dot) {
-  cancelAnimationFrame(progressRAF);
+function updateProgress(dot: Element): void {
+  if (!dot) return;
+  if (progressRAF) cancelAnimationFrame(progressRAF);
+
   const bar = dot.querySelector("span");
 
-  function step(timestamp) {
+  function step(timestamp: number): void {
     if (!progressStartTime) progressStartTime = timestamp;
     const delta = timestamp - progressStartTime + progressElapsed;
     const percent = Math.min((delta / autoScrollDelay) * 100, 100);
-    bar.style.width = percent + "%";
+    if (bar) bar.style.width = percent + "%";
 
     if (percent < 100) {
       progressRAF = requestAnimationFrame(step);
     }
   }
-
   progressRAF = requestAnimationFrame(step);
 }
 
-function stopProgress() {
-  cancelAnimationFrame(progressRAF);
+function stopProgress(): void {
+  if (progressRAF) cancelAnimationFrame(progressRAF);
   if (progressStartTime) {
     progressElapsed += performance.now() - progressStartTime;
   }
   progressStartTime = null;
 }
 
-function resetProgress() {
-  cancelAnimationFrame(progressRAF);
-  dots.forEach((d) => (d.querySelector("span").style.width = "0%"));
+function resetProgress(): void {
+  if (progressRAF) cancelAnimationFrame(progressRAF);
+  dots.forEach((d) => {
+    const span = d.querySelector("span");
+    if (span) span.style.width = "0%";
+  });
   progressElapsed = 0;
   progressStartTime = null;
 }
 
-function showSlide(index) {
+function showSlide(index: number): void {
   slides.forEach((s, i) => s.classList.toggle("active", i === index));
   dots.forEach((d, i) => d.classList.toggle("active", i === index));
 
@@ -103,38 +107,44 @@ function startAutoScroll() {
   }, autoScrollDelay - progressElapsed);
 }
 
-function stopAutoScroll() {
-  clearTimeout(autoScrollTimer);
+function stopAutoScroll(): void {
+  if (autoScrollTimer) clearTimeout(autoScrollTimer);
 }
 
-prev.addEventListener("click", () => {
+prev?.addEventListener("click", (): void => {
   currentIndex = (currentIndex - 1 + slides.length) % slides.length;
   showSlide(currentIndex);
   startAutoScroll();
 });
 
-next.addEventListener("click", () => {
+next?.addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % slides.length;
   showSlide(currentIndex);
   startAutoScroll();
 });
 
-wrapper.addEventListener("mouseenter", () => {
+wrapper?.addEventListener("mouseenter", () => {
   stopAutoScroll();
   stopProgress();
 });
-wrapper.addEventListener("mouseleave", () => {
+wrapper?.addEventListener("mouseleave", () => {
   startAutoScroll();
   updateProgress(dots[currentIndex]);
 });
 
 let startX = 0;
-wrapper.addEventListener("touchstart", (e) => {
+
+wrapper?.addEventListener("touchstart", (e: Event): void => {
   stopAutoScroll();
   stopProgress();
-  startX = e.touches[0].clientX;
+
+  if (!(e instanceof TouchEvent)) return;
+  const touch = e.touches[0];
+  startX = touch.clientX;
 });
-wrapper.addEventListener("touchend", (e) => {
+
+wrapper?.addEventListener("touchend", (e: Event) => {
+  if (!(e instanceof TouchEvent)) return;
   const endX = e.changedTouches[0].clientX;
   const diff = endX - startX;
 

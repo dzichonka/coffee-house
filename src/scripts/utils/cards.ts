@@ -1,25 +1,33 @@
-import { displayModal } from "./modal.js";
-const wrapper = document.querySelector(".cards");
-const tabs = document.querySelectorAll(".tab-category");
-const refresh = document.querySelector("#refresh");
+import { displayModal } from "./modal";
+import { isCategoryType } from "@/types/typeGuards";
 
-let currentCategory = "coffee";
+const wrapper = document.querySelector<HTMLDivElement>(".cards");
+const tabs = Array.from(
+  document.querySelectorAll<HTMLButtonElement>(".tab-category")
+);
+const refresh = document.querySelector<HTMLButtonElement>("#refresh");
+
+let currentCategory: CategoryType = "coffee";
 
 const isMobile = () => window.innerWidth <= 768;
 
-async function fetchCards() {
+async function fetchCards(): Promise<ProductsType> {
   const response = await fetch("assets/products.json");
   return await response.json();
 }
 
 const products = await fetchCards();
 
-function displayCards(category, visibleCount = isMobile() ? 4 : 8) {
+function displayCards(
+  category: CategoryType,
+  visibleCount: VisibleCountType = isMobile() ? 4 : 8
+) {
+  if (!wrapper) return;
   wrapper.innerHTML = "";
   const cards = products.filter((product) => product.category === category);
   const visibleCards = cards.slice(0, visibleCount);
 
-  visibleCards.forEach((card, index) => {
+  visibleCards.forEach((card: ProductType, index: number): void => {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.innerHTML = `
@@ -39,34 +47,37 @@ function displayCards(category, visibleCount = isMobile() ? 4 : 8) {
     `;
     wrapper.appendChild(cardElement);
 
-    cardElement.addEventListener("click", () => {
+    cardElement.addEventListener("click", (): void => {
       displayModal(card, index);
     });
   });
 
   if (isMobile() && cards.length > visibleCards.length) {
-    refresh.classList.remove("hidden");
+    refresh?.classList.remove("hidden");
   } else {
-    refresh.classList.add("hidden");
+    refresh?.classList.add("hidden");
   }
 }
 
 tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
+  tab.addEventListener("click", (): void => {
     tabs.forEach((t) => t.classList.remove("active"));
     tab.classList.add("active");
-    currentCategory = tab.getAttribute("data-tab");
+
+    const tabValue = tab.dataset.tab;
+    if (!tabValue || !isCategoryType(tabValue)) return;
+    currentCategory = tabValue;
     displayCards(currentCategory);
   });
 });
 
-refresh.addEventListener("click", () => {
+refresh?.addEventListener("click", () => {
   displayCards(currentCategory, 8);
   refresh.classList.add("hidden");
 });
 
 let lastIsMobile = isMobile();
-window.addEventListener("resize", () => {
+window.addEventListener("resize", (): void => {
   const nowIsMobile = isMobile();
   if (nowIsMobile !== lastIsMobile) {
     displayCards(currentCategory);
