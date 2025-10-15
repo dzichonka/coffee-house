@@ -1,8 +1,29 @@
+interface ApiResponse<T> {
+  data?: T;
+  message?: string;
+  error?: string;
+}
+
 type SizesType = "s" | "m" | "l";
 
 type VisibleCountType = 4 | 8;
 
 type CategoryType = "coffee" | "tea" | "dessert";
+
+interface FavoriteProduct {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  discountPrice?: string;
+  category: string;
+}
+
+interface FavoritesResponse {
+  data?: FavoriteProduct[];
+  message?: string;
+  error?: string;
+}
 
 interface AdditiveType {
   name: string;
@@ -24,9 +45,9 @@ interface ProductType {
 
 type ProductsType = ProductType[];
 
-interface SliderDataType {
-  img: string;
-  title: string;
-  text: string;
-  price: string;
-}
+// interface SliderDataType {
+//   img: string;
+//   title: string;
+//   text: string;
+//   price: string;
+// }
