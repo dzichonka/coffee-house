@@ -1,58 +1,40 @@
-// const slidesData = [
-//   {
-//     img: "images/favourites/coffee-slider-1.png",
-//     title: "S’mores Frappuccino",
-//     text: "This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.",
-//     price: "$5.50",
-//   },
-//   {
-//     img: "images/favourites/coffee-slider-2.png",
-//     title: "Caramel Macchiato",
-//     text: "Fragrant and unique classic espresso with rich caramel-peanut syrup, with cream under whipped thick foam.",
-//     price: "$5.00",
-//   },
-//   {
-//     img: "images/favourites/coffee-slider-3.png",
-//     title: "Caramel Ice coffee",
-//     text: "A popular summer drink that tones and invigorates. Prepared from coffee, milk and ice.",
-//     price: "$4.50",
-//   },
-// ];
+import { fetcher } from "./fetcher";
 
-async function fetchFavorites(): Promise<FavoritesResponse> {
-  try {
-    const result = await fetch(
-      "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/products/favorites"
-    );
+const slideWrapper = document.querySelector<HTMLDivElement>(".slider-wrapper");
+const wrapper = document.querySelector<HTMLDivElement>(".wrapper");
+const sliderDiv = document.querySelector<HTMLDivElement>(".slider");
+const dotsContainer = document.querySelector<HTMLDivElement>(".dots");
 
-    if (!result.ok) {
-      return { error: `HTTP error: ${result.status}` };
-    }
+const prev = document.querySelector<HTMLButtonElement>(".prev");
+const next = document.querySelector<HTMLButtonElement>(".next");
 
-    const json: FavoritesResponse = await result.json();
+const errorDiv = document.querySelector<HTMLDivElement>("#error");
+const refreshButton = document.querySelector<HTMLButtonElement>("#refresh");
 
-    if (json.error) {
-      console.error("Server error:", json.error);
-      return { error: json.error };
-    }
-    console.log("Fetched favorites:", json);
-    return json;
-  } catch (err) {
-    console.error("Fetch error:", err);
-    return { error: "Failed to fetch favorites" };
+export async function initSlider(): Promise<void> {
+  if (!slideWrapper || !dotsContainer) return;
+
+  slideWrapper!.innerHTML = "";
+  dotsContainer!.innerHTML = "";
+
+  const { data: res, error } = await fetcher<{
+    data: FavoriteProduct[];
+    message?: string;
+    error?: string;
+  }>(
+    "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/products/favorites",
+    "#loader"
+  );
+
+  if (error) {
+    if (sliderDiv) sliderDiv.style.display = "none";
+    if (dotsContainer) dotsContainer.style.display = "none";
+    if (errorDiv) errorDiv.style.display = "flex";
+
+    return;
   }
-}
 
-async function initFavoritesSlider(): Promise<void> {
-  const wrapper = document.querySelector<HTMLDivElement>(".slider-wrapper");
-  const dotsContainer = document.querySelector<HTMLDivElement>(".dots");
-
-  if (!wrapper || !dotsContainer) return;
-
-  const res = await fetchFavorites();
-  const slides: FavoriteProduct[] = res.data ?? [];
-  const prev = document.querySelector<HTMLButtonElement>(".prev");
-  const next = document.querySelector<HTMLButtonElement>(".next");
+  const slides = res?.data ?? [];
 
   slides.forEach((slide, index) => {
     const div = document.createElement("div");
@@ -63,14 +45,13 @@ async function initFavoritesSlider(): Promise<void> {
       <img src="images/favourites/${slide.id}.png" alt="${slide.name}">
       <h3>${slide.name}</h3>
       <p>${slide.description}</p>
-      <h3>${slide.price}</h3>
+      <h3>$${slide.price}</h3>
     `;
 
-    wrapper.appendChild(div);
+    slideWrapper.appendChild(div);
 
     const dot = document.createElement("div");
     dot.classList.add("dot");
-    if (index === 0) dot.classList.add("active");
     dot.appendChild(document.createElement("span"));
     dotsContainer.appendChild(dot);
   });
@@ -78,8 +59,9 @@ async function initFavoritesSlider(): Promise<void> {
   const slidesArray = Array.from(
     document.querySelectorAll<HTMLDivElement>(".slide")
   );
-
-  const dots = Array.from(document.querySelectorAll<HTMLDivElement>(".dot"));
+  const dots = Array.from(
+    dotsContainer.querySelectorAll<HTMLDivElement>(".dot")
+  );
 
   let currentIndex = 0;
   let autoScrollDelay = 5000;
@@ -90,12 +72,14 @@ async function initFavoritesSlider(): Promise<void> {
   let progressElapsed = 0;
 
   function updateProgress(dot: Element): void {
+    const bar = dot.querySelector<HTMLSpanElement>("span");
     if (!dot) return;
     if (progressRAF) cancelAnimationFrame(progressRAF);
 
-    const bar = dot.querySelector("span");
-
     function step(timestamp: number): void {
+      if (!bar) {
+        return;
+      }
       if (!progressStartTime) progressStartTime = timestamp;
       const delta = timestamp - progressStartTime + progressElapsed;
       const percent = Math.min((delta / autoScrollDelay) * 100, 100);
@@ -103,6 +87,10 @@ async function initFavoritesSlider(): Promise<void> {
 
       if (percent < 100) {
         progressRAF = requestAnimationFrame(step);
+      } else {
+        progressStartTime = null;
+        progressElapsed = 0;
+        progressStartTime = null;
       }
     }
     progressRAF = requestAnimationFrame(step);
@@ -128,7 +116,6 @@ async function initFavoritesSlider(): Promise<void> {
 
   function showSlide(index: number): void {
     slidesArray.forEach((s, i) => s.classList.toggle("active", i === index));
-    dots.forEach((d, i) => d.classList.toggle("active", i === index));
 
     resetProgress();
     updateProgress(dots[index]);
@@ -187,7 +174,6 @@ async function initFavoritesSlider(): Promise<void> {
     if (diff > 50)
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     else if (diff < -50) currentIndex = (currentIndex + 1) % slides.length;
-
     showSlide(currentIndex);
     resetProgress();
     startAutoScroll();
@@ -197,4 +183,11 @@ async function initFavoritesSlider(): Promise<void> {
   startAutoScroll();
 }
 
-initFavoritesSlider().catch((err) => console.error("Slider init error:", err));
+initSlider();
+
+refreshButton?.addEventListener("click", () => {
+  initSlider();
+  if (sliderDiv) sliderDiv.style.display = "flex";
+  if (dotsContainer) dotsContainer.style.display = "flex";
+  if (errorDiv) errorDiv.style.display = "none";
+});

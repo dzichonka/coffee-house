@@ -22,6 +22,7 @@
   }
 
   .slider {
+    min-height: 684px;
     display: flex;
     width: 100%;
     align-items: center;
@@ -43,12 +44,12 @@
     gap: 17px;
     transition: all 0.5s ease;
 
-    &.active {
-      display: flex;
-    }
-
     img {
       max-width: 100%;
+    }
+
+    &.active {
+      display: flex;
     }
   }
 
@@ -81,6 +82,18 @@
         border-radius: 100px;
         background-color: $background-container;
       }
+    }
+  }
+
+  .error {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+
+    .refresh {
+      width: 150px;
     }
   }
 }

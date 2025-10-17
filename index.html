@@ -87,8 +87,20 @@
           </section>
           <section id="favourites" class="favourites">
             <h2>Choose your <span>favorite</span> coffee</h2>
-            <div id="loader" class="loader">Loading...</div>
+
             <div class="wrapper">
+              <div id="loader" class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div id="error" class="error">
+                <h3>Something went wrong</h3>
+                <h3>Please, refresh the page</h3>
+                <button id="refresh" class="btn-circle refresh">
+                  Refresh Data
+                </button>
+              </div>
               <div class="slider">
                 <button class="prev btn-circle">
                   <svg
