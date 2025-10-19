@@ -33,7 +33,7 @@ window.addEventListener("click", (e: Event): void => {
   }
 });
 
-export function displayModal(item: ProductType, index: number): void {
+export function displayModal(item: ProductType): void {
   let basePrice = Number(item.price);
   let additivesPrice = 0;
 
@@ -47,7 +47,7 @@ export function displayModal(item: ProductType, index: number): void {
   document.body.style.overflow = "hidden";
 
   if (img) {
-    img.src = `images/menu/${item.category}/${index}.png`;
+    img.src = `images/menu/${item.category}/${item.id}.png`;
     img.alt = item.name;
   }
   if (title) title.textContent = item.name;
@@ -57,10 +57,10 @@ export function displayModal(item: ProductType, index: number): void {
 
   if (!sizeListenersAdded) {
     sizeKeys.forEach((key: SizesType, i: number): void => {
-      const sizeData: SizeType = item.sizes[key];
-      const span = tabsSize[i].querySelector<HTMLSpanElement>(".text");
-      tabsSize[i].setAttribute("data-size", sizeData["add-price"]);
-      if (span) span.textContent = sizeData.size;
+      //const sizeData: SizeType = item.sizes[key];
+      //const span = tabsSize[i].querySelector<HTMLSpanElement>(".text");
+      // tabsSize[i].setAttribute("data-size", sizeData["add-price"]);
+      // if (span) span.textContent = sizeData.size;
 
       tabsSize[i].addEventListener("click", () => {
         tabsSize.forEach((tab) => {
@@ -76,21 +76,21 @@ export function displayModal(item: ProductType, index: number): void {
   }
 
   if (!addListenersAdded) {
-    item.additives.forEach((additive, i) => {
-      const span = tabsAdditives[i].querySelector(".text");
-      tabsAdditives[i].setAttribute("data-add", additive["add-price"]);
-      if (span) span.textContent = additive.name;
+    // item.additives.forEach((additive, i) => {
+    //   const span = tabsAdditives[i].querySelector(".text");
+    //   tabsAdditives[i].setAttribute("data-add", additive["add-price"]);
+    //   if (span) span.textContent = additive.name;
 
-      tabsAdditives[i].addEventListener("click", () => {
-        tabsAdditives[i].classList.toggle("active");
-        if (tabsAdditives[i].classList.contains("active")) {
-          additivesPrice += Number(tabsAdditives[i].getAttribute("data-add"));
-        } else {
-          additivesPrice -= Number(tabsAdditives[i].getAttribute("data-add"));
-        }
-        updatePrice();
-      });
-    });
+    //   tabsAdditives[i].addEventListener("click", () => {
+    //     tabsAdditives[i].classList.toggle("active");
+    //     if (tabsAdditives[i].classList.contains("active")) {
+    //       additivesPrice += Number(tabsAdditives[i].getAttribute("data-add"));
+    //     } else {
+    //       additivesPrice -= Number(tabsAdditives[i].getAttribute("data-add"));
+    //     }
+    //     updatePrice();
+    //   });
+    // });
     addListenersAdded = true;
   }
 

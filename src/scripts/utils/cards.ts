@@ -1,39 +1,54 @@
 import { displayModal } from "./modal";
 import { isCategoryType } from "@/types/typeGuards";
+import { fetcher } from "./fetcher";
 
-const wrapper = document.querySelector<HTMLDivElement>(".cards");
-const tabs = Array.from(
-  document.querySelectorAll<HTMLButtonElement>(".tab-category")
+const wrapper: HTMLDivElement | null = document.querySelector(".cards");
+const tabs: HTMLDivElement[] = Array.from(
+  document.querySelectorAll(".tab-category")
 );
-const refresh = document.querySelector<HTMLButtonElement>("#refresh");
+const refresh: HTMLButtonElement | null = document.querySelector("#refresh");
 
 let currentCategory: CategoryType = "coffee";
 
 const isMobile = () => window.innerWidth <= 768;
 
-async function fetchCards(): Promise<ProductsType> {
-  const response = await fetch("assets/products.json");
-  return await response.json();
+// async function fetchCards(): Promise<ProductsType> {
+//   const response = await fetch("assets/products.json");
+//   return await response.json();
+// }
+
+const { data: res, error } = await fetcher<{
+  data: FavoriteProduct[];
+  message?: string;
+  error?: string;
+}>(
+  "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products",
+  "#loader"
+);
+
+if (error) {
+  if (wrapper) wrapper.innerHTML = "<p>Failed to load products.</p>";
 }
 
-const products = await fetchCards();
+const products = res?.data ?? [];
 
-function displayCards(
-  category: CategoryType,
-  visibleCount: VisibleCountType = isMobile() ? 4 : 8
-) {
+console.log("Products loaded:", products);
+
+let visibleCount: VisibleCountType = isMobile() ? 4 : 8;
+
+function displayCards(category: CategoryType) {
   if (!wrapper) return;
   wrapper.innerHTML = "";
   const cards = products.filter((product) => product.category === category);
   const visibleCards = cards.slice(0, visibleCount);
 
-  visibleCards.forEach((card: ProductType, index: number): void => {
-    const cardElement = document.createElement("div");
+  visibleCards.forEach((card: ProductType): void => {
+    const cardElement: HTMLDivElement = document.createElement("div");
     cardElement.classList.add("card");
     cardElement.innerHTML = `
       <div class="image-container">
         <img
-          src="images/menu/${category}/${index}.png"
+          src="images/menu/${card.id}.png"
           alt="${card.name}"
         />
       </div>
@@ -42,17 +57,20 @@ function displayCards(
           <h3>${card.name}</h3>
           <p>${card.description}</p>
         </div>
-        <h3>$${card.price}</h3>
+      </div>
+        <div class="price-container">
+          <h3>$${card.price}</h3>
+        </div>
       </div>
     `;
     wrapper.appendChild(cardElement);
 
     cardElement.addEventListener("click", (): void => {
-      displayModal(card, index);
+      displayModal(card);
     });
   });
 
-  if (isMobile() && cards.length > visibleCards.length) {
+  if (cards.length > visibleCards.length) {
     refresh?.classList.remove("hidden");
   } else {
     refresh?.classList.add("hidden");
@@ -72,7 +90,8 @@ tabs.forEach((tab) => {
 });
 
 refresh?.addEventListener("click", () => {
-  displayCards(currentCategory, 8);
+  visibleCount += 4;
+  displayCards(currentCategory);
   refresh.classList.add("hidden");
 });
 

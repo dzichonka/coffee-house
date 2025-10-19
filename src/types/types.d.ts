@@ -6,7 +6,7 @@ interface ApiResponse<T> {
 
 type SizesType = "s" | "m" | "l";
 
-type VisibleCountType = 4 | 8;
+type VisibleCountType = 4 | 8 | 12;
 
 type CategoryType = "coffee" | "tea" | "dessert";
 
@@ -35,19 +35,14 @@ interface SizeType {
 }
 
 interface ProductType {
+  id: number;
   name: string;
   description: string;
   price: string;
+  discountPrice?: string;
   category: string;
-  sizes: Record<SizesType, SizeType>;
-  additives: AdditiveType[];
+  // sizes: Record<SizesType, SizeType>;
+  // additives: AdditiveType[];
 }
 
 type ProductsType = ProductType[];
-
-// interface SliderDataType {
-//   img: string;
-//   title: string;
-//   text: string;
-//   price: string;
-// }

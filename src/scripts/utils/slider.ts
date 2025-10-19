@@ -1,15 +1,17 @@
 import { fetcher } from "./fetcher";
 
-const slideWrapper = document.querySelector<HTMLDivElement>(".slider-wrapper");
-const wrapper = document.querySelector<HTMLDivElement>(".wrapper");
-const sliderDiv = document.querySelector<HTMLDivElement>(".slider");
-const dotsContainer = document.querySelector<HTMLDivElement>(".dots");
+const slideWrapper: HTMLDivElement | null =
+  document.querySelector(".slider-wrapper");
+const wrapper: HTMLDivElement | null = document.querySelector(".wrapper");
+const sliderDiv: HTMLDivElement | null = document.querySelector(".slider");
+const dotsContainer: HTMLDivElement | null = document.querySelector(".dots");
 
-const prev = document.querySelector<HTMLButtonElement>(".prev");
-const next = document.querySelector<HTMLButtonElement>(".next");
+const prev: HTMLButtonElement | null = document.querySelector(".prev");
+const next: HTMLButtonElement | null = document.querySelector(".next");
 
-const errorDiv = document.querySelector<HTMLDivElement>("#error");
-const refreshButton = document.querySelector<HTMLButtonElement>("#refresh");
+const errorDiv: HTMLDivElement | null = document.querySelector("#error");
+const refreshButton: HTMLButtonElement | null =
+  document.querySelector("#refresh");
 
 export async function initSlider(): Promise<void> {
   if (!slideWrapper || !dotsContainer) return;
@@ -22,7 +24,7 @@ export async function initSlider(): Promise<void> {
     message?: string;
     error?: string;
   }>(
-    "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/products/favorites",
+    "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/favorites",
     "#loader"
   );
 
@@ -37,7 +39,7 @@ export async function initSlider(): Promise<void> {
   const slides = res?.data ?? [];
 
   slides.forEach((slide, index) => {
-    const div = document.createElement("div");
+    const div: HTMLDivElement = document.createElement("div");
     div.classList.add("slide");
     if (index === 0) div.classList.add("active");
 
@@ -50,17 +52,17 @@ export async function initSlider(): Promise<void> {
 
     slideWrapper.appendChild(div);
 
-    const dot = document.createElement("div");
+    const dot: HTMLDivElement = document.createElement("div");
     dot.classList.add("dot");
     dot.appendChild(document.createElement("span"));
     dotsContainer.appendChild(dot);
   });
 
-  const slidesArray = Array.from(
-    document.querySelectorAll<HTMLDivElement>(".slide")
+  const slidesArray: HTMLDivElement[] = Array.from(
+    document.querySelectorAll(".slide")
   );
-  const dots = Array.from(
-    dotsContainer.querySelectorAll<HTMLDivElement>(".dot")
+  const dots: HTMLDivElement[] = Array.from(
+    dotsContainer.querySelectorAll(".dot")
   );
 
   let currentIndex = 0;
@@ -72,7 +74,7 @@ export async function initSlider(): Promise<void> {
   let progressElapsed = 0;
 
   function updateProgress(dot: Element): void {
-    const bar = dot.querySelector<HTMLSpanElement>("span");
+    const bar: HTMLSpanElement | null = dot.querySelector("span");
     if (!dot) return;
     if (progressRAF) cancelAnimationFrame(progressRAF);
 
