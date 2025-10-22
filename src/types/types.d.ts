@@ -6,7 +6,7 @@ interface ApiResponse<T> {
 
 type SizesType = "s" | "m" | "l";
 
-type VisibleCountType = 4 | 8 | 12;
+//type VisibleCountType = 4 | 8 | 12;
 
 type CategoryType = "coffee" | "tea" | "dessert";
 

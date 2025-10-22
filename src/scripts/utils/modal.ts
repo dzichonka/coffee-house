@@ -1,3 +1,5 @@
+import { fetcher } from "./fetcher";
+
 const modal = document.querySelector<HTMLDivElement>("#modal");
 const content = document.querySelector<HTMLDivElement>(".window");
 const closeBtn = document.querySelector<HTMLButtonElement>("#close");
@@ -33,7 +35,22 @@ window.addEventListener("click", (e: Event): void => {
   }
 });
 
-export function displayModal(item: ProductType): void {
+export async function displayModal(id: number): Promise<void> {
+  const { data: res, error } = await fetcher<{
+    data: FavoriteProduct[];
+    message?: string;
+    error?: string;
+  }>(
+    `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${id}`,
+    "#loader"
+  );
+
+  if (error || !res?.data || res.data.length === 0) {
+    return;
+  }
+
+  const item = res.data[0];
+
   let basePrice = Number(item.price);
   let additivesPrice = 0;
 
@@ -53,25 +70,25 @@ export function displayModal(item: ProductType): void {
   if (title) title.textContent = item.name;
   if (description) description.textContent = item.description;
 
-  const sizeKeys: SizesType[] = ["s", "m", "l"];
+  // const sizeKeys: SizesType[] = ["s", "m", "l"];
 
   if (!sizeListenersAdded) {
-    sizeKeys.forEach((key: SizesType, i: number): void => {
-      //const sizeData: SizeType = item.sizes[key];
-      //const span = tabsSize[i].querySelector<HTMLSpanElement>(".text");
-      // tabsSize[i].setAttribute("data-size", sizeData["add-price"]);
-      // if (span) span.textContent = sizeData.size;
+    // sizeKeys.forEach((key: SizesType, i: number): void => {
+    //   //const sizeData: SizeType = item.sizes[key];
+    //   //const span = tabsSize[i].querySelector<HTMLSpanElement>(".text");
+    //   // tabsSize[i].setAttribute("data-size", sizeData["add-price"]);
+    //   // if (span) span.textContent = sizeData.size;
 
-      tabsSize[i].addEventListener("click", () => {
-        tabsSize.forEach((tab) => {
-          tab.classList.remove("active");
-          basePrice = Number(item.price);
-        });
-        tabsSize[i].classList.add("active");
-        basePrice += Number(tabsSize[i].getAttribute("data-size"));
-        updatePrice();
-      });
-    });
+    //   tabsSize[i].addEventListener("click", () => {
+    //     tabsSize.forEach((tab) => {
+    //       tab.classList.remove("active");
+    //       basePrice = Number(item.price);
+    //     });
+    //     tabsSize[i].classList.add("active");
+    //     basePrice += Number(tabsSize[i].getAttribute("data-size"));
+    //     updatePrice();
+    //   });
+    // });
     sizeListenersAdded = true;
   }
 

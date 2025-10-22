@@ -50,7 +50,7 @@ export async function initSlider(): Promise<void> {
       <h3>$${slide.price}</h3>
     `;
 
-    slideWrapper.appendChild(div);
+    slideWrapper.append(div);
 
     const dot: HTMLDivElement = document.createElement("div");
     dot.classList.add("dot");

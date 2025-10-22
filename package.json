@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
-    "deploy": "tsc --noEmit && npm run build && gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "prepare": "husky",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

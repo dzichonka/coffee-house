@@ -34,7 +34,7 @@ const products = res?.data ?? [];
 
 console.log("Products loaded:", products);
 
-let visibleCount: VisibleCountType = isMobile() ? 4 : 8;
+let visibleCount: number = isMobile() ? 4 : 8;
 
 function displayCards(category: CategoryType) {
   if (!wrapper) return;
@@ -63,24 +63,29 @@ function displayCards(category: CategoryType) {
         </div>
       </div>
     `;
-    wrapper.appendChild(cardElement);
+    wrapper.append(cardElement);
 
     cardElement.addEventListener("click", (): void => {
-      displayModal(card);
+      displayModal(card.id);
     });
   });
 
-  if (cards.length > visibleCards.length) {
-    refresh?.classList.remove("hidden");
-  } else {
-    refresh?.classList.add("hidden");
+  function checkRefreshVisibility() {
+    if (!refresh) return;
+    if (cards.length > visibleCards.length) {
+      refresh.classList.remove("hidden");
+    } else {
+      refresh.classList.add("hidden");
+    }
   }
+  checkRefreshVisibility();
 }
 
 tabs.forEach((tab) => {
   tab.addEventListener("click", (): void => {
     tabs.forEach((t) => t.classList.remove("active"));
     tab.classList.add("active");
+    visibleCount = isMobile() ? 4 : 8;
 
     const tabValue = tab.dataset.tab;
     if (!tabValue || !isCategoryType(tabValue)) return;
@@ -92,7 +97,6 @@ tabs.forEach((tab) => {
 refresh?.addEventListener("click", () => {
   visibleCount += 4;
   displayCards(currentCategory);
-  refresh.classList.add("hidden");
 });
 
 let lastIsMobile = isMobile();
