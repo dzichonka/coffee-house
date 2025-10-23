@@ -6,6 +6,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadHeader();
   await loadFooter();
   await import("./utils/burger.ts");
-  await import("./utils/cards.ts");
-  await import("./utils/modal.ts");
+  await import("./utils/login.ts");
 });

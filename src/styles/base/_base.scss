@@ -72,6 +72,38 @@ p {
   justify-content: center;
   flex-direction: row;
   gap: 8px;
+  border: 1px solid $background-container;
+  padding: 10px 76px;
+  width: fit-content;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: $text-dark;
+  background-color: $text-light;
+  transition: all 0.5s ease;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: $background-container;
+      color: $text-light;
+    }
+  }
+}
+
+.btn-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
   width: 200px;
   height: 64px;
   padding: 20px 78px;

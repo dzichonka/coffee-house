@@ -1,3 +1,8 @@
 import "@/styles/style.scss";
-import "./utils/burger.ts";
-import "./utils/slider.ts";
+import { loadFooter } from "./partials/loadFooter.ts";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadFooter();
+  await import("./utils/burger.ts");
+  await import("./utils/slider.ts");
+});
