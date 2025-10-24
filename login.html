@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee House "Resource"</title>
+    <meta
+      name="description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:title" content="Coffee House" />
+    <meta
+      property="og:description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://coffee-house-rs-school.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
+    />
+    <script type="module" crossorigin src="./assets/login-CAsfSNq9.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/loadFooter-BhmSGT28.js">
+    <link rel="modulepreload" crossorigin href="./assets/loadHeader-CDibMbT3.js">
+    <link rel="stylesheet" crossorigin href="./assets/loadFooter-i0T4MW2d.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <header id="header" class="header"></header>
+        <main>
+          <section id="signin" class="signin">
+            <h2>Sign in</h2>
+            <div id="loader" class="loader">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <form class="form" id="login-form">
+              <div class="form-items">
+                <label class="label" for="login">
+                  <span class="label-text">Login</span>
+                  <input
+                    class="input"
+                    type="text"
+                    name="login"
+                    id="login"
+                    placeholder="Enter your login"
+                  />
+                  <span class="error-message"></span>
+                </label>
+                <label class="label" for="password">
+                  <span class="label-text">Password</span>
+                  <input
+                    class="input"
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Enter your password"
+                  />
+                  <span class="error-message"></span>
+                </label>
+              </div>
+              <button id="login-btn" type="submit" class="btn" disabled>
+                Sign in
+              </button>
+            </form>
+          </section>
+        </main>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+  </body>
+</html>
