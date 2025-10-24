@@ -73,6 +73,10 @@ function getTotalPriceNew(): number {
   return state.totalPriceNew;
 }
 
+function getTotalCount(): number {
+  return state.items.reduce((sum, item) => sum + item.quantity, 0);
+}
+
 export function useCartState() {
   return {
     addItem,
@@ -80,5 +84,6 @@ export function useCartState() {
     getItems,
     getTotalPriceOld,
     getTotalPriceNew,
+    getTotalCount,
   };
 }

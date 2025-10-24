@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await import("./modules/burger.ts");
   await import("./utils/headerLinks.ts");
   await import("./utils/disableMenuBtn.ts");
+  await import("./utils/addCartIcon.ts");
   await import("./modules/cards.ts");
   await import("./modules/modal.ts");
 });
