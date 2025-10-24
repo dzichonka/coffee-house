@@ -5,6 +5,18 @@
   margin: 20px 0;
   position: relative;
 
+  .nav__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 32px;
+
+    @media (width <= 768px) {
+      flex-direction: column;
+    }
+  }
+
   .logo {
     @media (width <= 768px) {
       &__nav {

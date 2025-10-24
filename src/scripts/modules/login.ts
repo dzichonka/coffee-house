@@ -1,8 +1,8 @@
 import { fetcher } from "../utils/fetcher";
-import { useAppState } from "../state/appState";
+import { useUserState } from "../state/userState";
 import { validateLogin, validatePassword } from "../utils/validation";
 
-const { setToken } = useAppState();
+const { setToken } = useUserState();
 
 const form: HTMLFormElement | null = document.querySelector("#login-form");
 const loginInput: HTMLInputElement | null | undefined =
@@ -25,7 +25,7 @@ loginButton.disabled = true;
 
 function handleValidation(
   input: HTMLInputElement,
-  validateFn: (value: string) => string | null,
+  validateFn: (value: string) => string | null
 ) {
   const errorSpan = input.nextElementSibling;
 
@@ -89,7 +89,7 @@ loginButton.addEventListener("click", async (e) => {
     {
       method: "POST",
       body: payload,
-    },
+    }
   );
 
   if (error) {

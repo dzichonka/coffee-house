@@ -1,12 +1,12 @@
-type AppState = {
+type UserState = {
   token: string | null;
 };
 
-const state: AppState = {
+const state: UserState = {
   token: null,
 };
 
-export function useAppState() {
+export function useUserState() {
   function setToken(value: string | null) {
     state.token = value;
     if (value) sessionStorage.setItem("token", value);
