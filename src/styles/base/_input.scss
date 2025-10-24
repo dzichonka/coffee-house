@@ -50,6 +50,10 @@
   background-color: transparent;
   color: $text-dark;
 
+  &__small {
+    width: 260px;
+  }
+
   &::placeholder {
     opacity: none;
     color: $color-placeholder;
@@ -87,4 +91,46 @@
   &.active {
     display: block;
   }
+}
+
+.pay-option {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  position: relative;
+
+  input[type="radio"] {
+    appearance: none;
+    position: absolute;
+  }
+
+  .custom-radio {
+    width: 16px;
+    height: 16px;
+    border: 1px solid $background-container;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: inline-block;
+    position: relative;
+  }
+
+  input[type="radio"]:checked + .custom-radio {
+    background-color: $background-container;
+  }
+
+  input[type="radio"]:checked + .custom-radio::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color: $text-light;
+    border-radius: 50%;
+  }
+}
+
+select {
+  appearance: none;
 }

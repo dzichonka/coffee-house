@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee House "Resource"</title>
+    <meta
+      name="description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:title" content="Coffee House" />
+    <meta
+      property="og:description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://coffee-house-rs-school.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
+    />
+    <script type="module" src="/src/scripts/registrationPage.ts"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <header id="header" class="header"></header>
+        <main>
+          <section id="registration" class="registration">
+            <h2>Registration</h2>
+            <div id="loader" class="loader">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <form class="form" id="registration-form">
+              <div class="form-items">
+                <div class="form-items__main">
+                  <label class="label" for="login">
+                    <span class="label-text">Login</span>
+                    <input
+                      class="input"
+                      type="text"
+                      name="login"
+                      id="login"
+                      placeholder="Enter your login"
+                    />
+                    <span class="error-message"></span>
+                  </label>
+                  <label class="label" for="password">
+                    <span class="label-text">Password</span>
+                    <input
+                      class="input"
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="Enter your password"
+                    />
+                    <span class="error-message"></span>
+                  </label>
+                  <label class="label" for="confirm-password">
+                    <span class="label-text">Confirm password</span>
+                    <input
+                      class="input"
+                      type="password"
+                      name="confirmPassword"
+                      id="confirm-password"
+                      placeholder="Confirm your password"
+                    />
+                    <span class="error-message"></span>
+                  </label>
+                </div>
+                <div class="form-items__additional">
+                  <label class="label" for="city">
+                    <span class="label-text">City</span>
+                    <select class="input input__small" name="city" id="city">
+                      <option value="">Select city</option>
+                    </select>
+                    <span class="error-message"></span>
+                  </label>
+                  <label class="label" for="street">
+                    <span class="label-text">Street</span>
+                    <select
+                      class="input input__small"
+                      name="street"
+                      id="street"
+                    >
+                      <option value="">Select street</option>
+                    </select>
+                    <span class="error-message"></span>
+                  </label>
+                  <label class="label" for="houseNumber">
+                    <span class="label-text">House number</span>
+                    <input
+                      class="input input__small"
+                      type="number"
+                      min="1"
+                      name="houseNumber"
+                      id="houseNumber"
+                      placeholder="Enter your house number"
+                    />
+                    <span class="error-message"></span>
+                  </label>
+                  <label class="label">
+                    <span class="label-text">Pay by</span>
+                    <div class="pay-methods-container">
+                      <label class="pay-option label-text">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="cash"
+                          checked
+                        />
+                        <span class="custom-radio"></span>
+                        Cash
+                      </label>
+
+                      <label class="pay-option label-text">
+                        <input type="radio" name="paymentMethod" value="card" />
+                        <span class="custom-radio"></span>
+                        Card
+                      </label>
+                    </div>
+                    <span class="error-message"></span>
+                  </label>
+                </div>
+              </div>
+              <button id="login-btn" type="submit" class="btn">
+                Registration
+              </button>
+            </form>
+          </section>
+        </main>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+  </body>
+</html>

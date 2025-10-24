@@ -1,38 +1,27 @@
-import { validateEnglishLetters } from "../utils/validateEnglishLetters";
 import { fetcher } from "../utils/fetcher";
 import { useAppState } from "../state/appState";
+import { validateLogin, validatePassword } from "../utils/validation";
 
 const { setToken } = useAppState();
 
 const form: HTMLFormElement | null = document.querySelector("#login-form");
-const loginInput: HTMLInputElement | null = document.querySelector("#login");
-const passwordInput: HTMLInputElement | null =
-  document.querySelector("#password");
-const loginButton: HTMLButtonElement | null =
-  document.querySelector("#login-btn");
+const loginInput: HTMLInputElement | null | undefined =
+  form?.querySelector("#login");
+const passwordInput: HTMLInputElement | null | undefined =
+  form?.querySelector("#password");
+const loginButton: HTMLButtonElement | null | undefined =
+  form?.querySelector("#login-btn");
 
-if (!form || !loginInput || !passwordInput || !loginButton) {
+if (
+  !(form instanceof HTMLFormElement) ||
+  !(loginInput instanceof HTMLInputElement) ||
+  !(passwordInput instanceof HTMLInputElement) ||
+  !(loginButton instanceof HTMLButtonElement)
+) {
   throw new Error("Login form elements not found");
 }
 
 loginButton.disabled = true;
-
-function validateLogin(value: string): string | null {
-  if (value.length < 3) return "Login must be at least 3 characters";
-  if (!validateEnglishLetters(value)) {
-    return "Only English letters allowed";
-  }
-  if (!/^[A-Za-z]/.test(value)) return "Login must start with a letter";
-  return null;
-}
-
-function validatePassword(value: string): string | null {
-  if (value.length < 6) return "Password must be at least 6 characters";
-  // if (!/[!@#$%^&*(),.?":{}|<>]/.test(value))
-  //   return "Password must contain a special character";
-  if (!/\d/.test(value)) return "Password must contain a number";
-  return null;
-}
 
 function handleValidation(
   input: HTMLInputElement,

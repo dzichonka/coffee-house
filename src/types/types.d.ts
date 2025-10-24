@@ -29,6 +29,16 @@ interface LoginResponse {
   user: User;
 }
 
+interface RegistrationResponse {
+  login: string;
+  password: string;
+  confirmPassword: string;
+  city: string;
+  street: string;
+  houseNumber: number;
+  paymentMethod: string;
+}
+
 type SizesType = "s" | "m" | "l";
 
 type CategoryType = "coffee" | "tea" | "dessert";
@@ -64,8 +74,6 @@ interface ProductType {
   price: string;
   discountPrice?: string;
   category: string;
-  // sizes: Record<SizesType, SizeType>;
-  // additives: AdditiveType[];
 }
 
 type ProductsType = ProductType[];
