@@ -1,5 +1,8 @@
-import { validateEnglishLetters } from "./validateEnglishLetters";
-import { fetcher } from "./fetcher";
+import { validateEnglishLetters } from "../utils/validateEnglishLetters";
+import { fetcher } from "../utils/fetcher";
+import { useAppState } from "../state/appState";
+
+const { setToken } = useAppState();
 
 const form: HTMLFormElement | null = document.querySelector("#login-form");
 const loginInput: HTMLInputElement | null = document.querySelector("#login");
@@ -33,7 +36,7 @@ function validatePassword(value: string): string | null {
 
 function handleValidation(
   input: HTMLInputElement,
-  validateFn: (value: string) => string | null,
+  validateFn: (value: string) => string | null
 ) {
   const errorSpan = input.nextElementSibling;
 
@@ -97,7 +100,7 @@ loginButton.addEventListener("click", async (e) => {
     {
       method: "POST",
       body: payload,
-    },
+    }
   );
 
   if (error) {
@@ -107,6 +110,7 @@ loginButton.addEventListener("click", async (e) => {
     form.append(alert);
   }
   if (res && res.data) {
+    setToken(res.data.access_token);
     window.location.href = "index";
   }
 });

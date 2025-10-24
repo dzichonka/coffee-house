@@ -26,7 +26,7 @@ interface LoginPayload {
 
 interface LoginResponse {
   access_token: string;
-  userId: User;
+  user: User;
 }
 
 type SizesType = "s" | "m" | "l";
