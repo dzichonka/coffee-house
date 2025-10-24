@@ -25,7 +25,7 @@ export async function initSlider(): Promise<void> {
     error?: string;
   }>(
     "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/favorites",
-    "#loader"
+    "#loader",
   );
 
   if (error) {
@@ -59,10 +59,10 @@ export async function initSlider(): Promise<void> {
   });
 
   const slidesArray: HTMLDivElement[] = Array.from(
-    document.querySelectorAll(".slide")
+    document.querySelectorAll(".slide"),
   );
   const dots: HTMLDivElement[] = Array.from(
-    dotsContainer.querySelectorAll(".dot")
+    dotsContainer.querySelectorAll(".dot"),
   );
 
   let currentIndex = 0;

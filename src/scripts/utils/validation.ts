@@ -19,7 +19,7 @@ export function validatePassword(value: string): string | null {
 
 export function validateConfirmPassword(
   password: string,
-  confirmPassword: string
+  confirmPassword: string,
 ): string | null {
   if (confirmPassword.length === 0) return "Please confirm your password";
   if (confirmPassword !== password) return "Passwords do not match";

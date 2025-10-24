@@ -1,0 +1,14 @@
+@use "../base/variables" as *;
+@use "../base/fonts" as *;
+
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+
+  h2 {
+    margin: 0;
+  }
+}

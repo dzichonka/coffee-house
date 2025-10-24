@@ -9,10 +9,10 @@ const title = document.querySelector<HTMLHeadingElement>("#modal-title");
 const description = document.querySelector<HTMLElement>("#modal-description");
 
 const tabsSize = Array.from(
-  document.querySelectorAll<HTMLDivElement>(".tab-size")
+  document.querySelectorAll<HTMLDivElement>(".tab-size"),
 );
 const tabsAdditives = Array.from(
-  document.querySelectorAll<HTMLElement>(".tab-add")
+  document.querySelectorAll<HTMLElement>(".tab-add"),
 );
 
 let sizeListenersAdded = false;
@@ -42,7 +42,7 @@ export async function displayModal(id: number): Promise<void> {
     error?: string;
   }>(
     `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${id}`,
-    "#loader"
+    "#loader",
   );
 
   if (error || !res?.data || res.data.length === 0) {

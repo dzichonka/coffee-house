@@ -13,6 +13,8 @@ export default defineConfig({
         main: path.resolve(__dirname, "index.html"),
         menu: path.resolve(__dirname, "menu.html"),
         login: path.resolve(__dirname, "login.html"),
+        registration: path.resolve(__dirname, "registration.html"),
+        cart: path.resolve(__dirname, "cart.html"),
       },
     },
     sourcemap: true,
