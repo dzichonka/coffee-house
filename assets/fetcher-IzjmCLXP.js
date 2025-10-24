@@ -1,0 +1,2 @@
+async function d(a,n,s={}){const r=document.querySelector(n);r&&r.classList.add("active");try{const{method:e="GET",body:o,headers:c={}}=s,t=await fetch(a,{method:e,headers:{"Content-Type":"application/json",...c},body:o?JSON.stringify(o):void 0});return t.ok?{data:await t.json(),error:null}:{data:null,error:`HTTP error: ${t.status}`}}catch(e){return console.error("Fetch error:",e),{data:null,error:"Failed to fetch data"}}finally{r&&r.classList.remove("active")}}export{d as f};
+//# sourceMappingURL=fetcher-IzjmCLXP.js.map
