@@ -1,0 +1,2 @@
+document.addEventListener("click",e=>{if(e.target instanceof HTMLAnchorElement){const a=e.target.closest("a[href]");if(!a)return;const t=new URL(a.href,window.location.origin),n=new URL(window.location.href);if(t.pathname===n.pathname&&!t.hash){e.preventDefault();return}if(t.pathname===n.pathname&&t.hash&&t.hash!==n.hash){e.preventDefault();const o=t.hash.slice(1),h=document.getElementById(o);h&&(h.scrollIntoView({behavior:"smooth"}),history.pushState(null,"",t.hash))}}});
+//# sourceMappingURL=headerLinks-0Xs8zR4D.js.map

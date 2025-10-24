@@ -1,0 +1,3 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./addCartIcon-DIpckBZX.js","./userState-BenL3nAi.js","./login-DJ-jDlUN.js","./fetcher-IzjmCLXP.js","./validation-C_nO4Zpk.js"])))=>i.map(i=>d[i]);
+import{l as a,a as o,_ as t}from"./loadHeader-CVOoaTWb.js";document.addEventListener("DOMContentLoaded",async()=>{await a(),await o(),await t(()=>import("./burger-DiFZWrdu.js"),[],import.meta.url),await t(()=>import("./addCartIcon-DIpckBZX.js"),__vite__mapDeps([0,1]),import.meta.url),await t(()=>import("./login-DJ-jDlUN.js"),__vite__mapDeps([2,3,1,4]),import.meta.url)});
+//# sourceMappingURL=login-xsgCQoHi.js.map
