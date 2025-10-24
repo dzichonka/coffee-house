@@ -33,7 +33,7 @@ function validatePassword(value: string): string | null {
 
 function handleValidation(
   input: HTMLInputElement,
-  validateFn: (value: string) => string | null
+  validateFn: (value: string) => string | null,
 ) {
   const errorSpan = input.nextElementSibling;
 
@@ -97,7 +97,7 @@ loginButton.addEventListener("click", async (e) => {
     {
       method: "POST",
       body: payload,
-    }
+    },
   );
 
   if (error) {

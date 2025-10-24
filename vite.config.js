@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, "index.html"),
         menu: path.resolve(__dirname, "menu.html"),
+        login: path.resolve(__dirname, "login.html"),
       },
     },
     sourcemap: true,
