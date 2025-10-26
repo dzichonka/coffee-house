@@ -1,7 +1,7 @@
 export async function fetcher<T, B = undefined>(
   url: string,
   loaderId: string,
-  options: FetchOptions<B> = {},
+  options: FetchOptions<B> = {}
 ): Promise<ApiResponse<T>> {
   const loader = document.querySelector<HTMLDivElement>(loaderId);
   if (loader) loader.classList.add("active");

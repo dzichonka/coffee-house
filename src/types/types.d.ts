@@ -32,6 +32,23 @@ interface Product {
   additives: Additive[];
 }
 
+interface Item {
+  productId: number;
+  size: string;
+  additives: string[];
+  quantity: number;
+}
+
+interface Order {
+  items: Item[];
+  totalPrice: number;
+}
+
+interface OrderResponse {
+  message: string;
+  orderID: string;
+}
+
 interface User {
   id: number;
   login: string;
