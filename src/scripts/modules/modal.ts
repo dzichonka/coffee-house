@@ -1,14 +1,18 @@
 import { fetcher } from "../utils/fetcher";
-import { useUserState } from "../state/userState";
 import { renderSizeButtons } from "../components/SizeButtons/renderSizeButtons";
 import { renderAdditivesButtons } from "../components/AdditivesButtons/renderAdditivesButtons";
 import { initSizeButtonsListeners } from "../components/SizeButtons/initSizeButtonsListeners";
 import { initAdditivesButtonsListeners } from "../components/AdditivesButtons/initAdditivesButtonsListeners";
+import { useUserState } from "../state/userState";
 import { useModalState } from "../state/modalState";
+import { useCartState } from "../state/cartState";
+import { addCartIcon } from "../utils/addCartIcon";
 
 const { isLoggedIn } = useUserState();
 
-const { getItem, setSize } = useModalState();
+const { getItem, setSize, setItem } = useModalState();
+
+const { addItem } = useCartState();
 
 const modal: HTMLDivElement | null = document.querySelector("#modal");
 const content: HTMLDivElement | null = document.querySelector(".window");
@@ -37,6 +41,16 @@ closeBtn?.addEventListener("click", () => {
 });
 
 addBtn?.addEventListener("click", () => {
+  const itemToAdd = {
+    productId: getItem().productId,
+    size: getItem().sizeKey,
+    additives: getItem().addKeys,
+    quantity: 1,
+    priceOld: getItem().totalPrice,
+    priceNew: getItem().totalPrice - getItem().totalDiscount,
+  };
+  addItem(itemToAdd);
+  addCartIcon();
   closeModal();
 });
 
@@ -95,6 +109,9 @@ export async function displayModal(id: number): Promise<void> {
   if (error || !res?.data) {
     return;
   }
+  setItem({
+    productId: id,
+  });
 
   const item = res.data;
 

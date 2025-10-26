@@ -21,11 +21,11 @@ let state: CartState = loadFromLocalStorage();
 function recalcTotals() {
   state.totalPriceOld = state.items.reduce(
     (sum, item) => sum + item.priceOld * item.quantity,
-    0,
+    0
   );
   state.totalPriceNew = state.items.reduce(
     (sum, item) => sum + item.priceNew * item.quantity,
-    0,
+    0
   );
 }
 
@@ -34,7 +34,7 @@ function addItem(newItem: CartItem) {
     (item) =>
       item.productId === newItem.productId &&
       item.size === newItem.size &&
-      JSON.stringify(item.additives) === JSON.stringify(newItem.additives),
+      JSON.stringify(item.additives) === JSON.stringify(newItem.additives)
   );
 
   if (existing) {
@@ -52,8 +52,13 @@ function clear() {
   saveToLocalStorage(state);
 }
 
-function getItems(): CartItem[] {
+function getCart(): CartItem[] {
   return state.items;
+}
+function setCart(updates: Partial<CartItem>): void {
+  state = { ...state, ...updates };
+  recalcTotals();
+  saveToLocalStorage(state);
 }
 
 function getTotalPriceOld(): number {
@@ -72,7 +77,8 @@ export function useCartState() {
   return {
     addItem,
     clear,
-    getItems,
+    getCart,
+    setCart,
     getTotalPriceOld,
     getTotalPriceNew,
     getTotalCount,
