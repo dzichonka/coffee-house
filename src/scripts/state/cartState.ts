@@ -21,11 +21,11 @@ let state: CartState = loadFromLocalStorage();
 function recalcTotals() {
   state.totalPriceOld = state.items.reduce(
     (sum, item) => sum + item.priceOld * item.quantity,
-    0
+    0,
   );
   state.totalPriceNew = state.items.reduce(
     (sum, item) => sum + item.priceNew * item.quantity,
-    0
+    0,
   );
 }
 
@@ -34,7 +34,7 @@ function addItem(newItem: CartItem) {
     (item) =>
       item.productId === newItem.productId &&
       item.size === newItem.size &&
-      JSON.stringify(item.additives) === JSON.stringify(newItem.additives)
+      JSON.stringify(item.additives) === JSON.stringify(newItem.additives),
   );
 
   if (existing) {

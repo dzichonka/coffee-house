@@ -11,13 +11,13 @@ export function addCartIcon() {
   const count = getTotalCount();
   const cartLink = wrapper.querySelector<HTMLAnchorElement>(".link-cart");
   const oldCount = Number(
-    cartLink?.querySelector<HTMLSpanElement>("span")?.textContent || 0
+    cartLink?.querySelector<HTMLSpanElement>("span")?.textContent || 0,
   );
 
   if (isLoggedIn() || count > 0) {
     if (!cartLink) {
       const newLink = document.createElement("a");
-      newLink.classList.add("link", "link-cart");
+      newLink.classList.add("btn-icon", "link-cart");
       newLink.href = "cart";
       newLink.innerHTML = `
         <img src="icons/shopping-bag.svg" alt="Shopping cart icon" />

@@ -3,7 +3,7 @@ import { useModalState } from "@/scripts/state/modalState";
 const { addAdditive } = useModalState();
 
 export function initAdditivesButtonsListeners(
-  updatePriceFn: () => void
+  updatePriceFn: () => void,
 ): () => void {
   const additivesDiv: HTMLDivElement | null =
     document.querySelector("#modal-additives");

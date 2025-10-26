@@ -62,8 +62,6 @@ interface RegistrationResponse {
   paymentMethod: string;
 }
 
-//type SizesType = "s" | "m" | "l";
-
 type CategoryType = "coffee" | "tea" | "dessert";
 
 interface FavoriteProduct {
@@ -82,6 +80,7 @@ interface FavoritesResponse {
 }
 type CartItem = {
   productId: number;
+  name: string;
   size: string;
   additives: string[];
   quantity: number;
@@ -91,6 +90,7 @@ type CartItem = {
 
 interface ModalItem {
   productId: number;
+  name: string;
   sizeKey: string;
   sizePrice: string;
   sizeDiscount: string;

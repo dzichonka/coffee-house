@@ -43,6 +43,7 @@ closeBtn?.addEventListener("click", () => {
 addBtn?.addEventListener("click", () => {
   const itemToAdd = {
     productId: getItem().productId,
+    name: getItem().name,
     size: getItem().sizeKey,
     additives: getItem().addKeys,
     quantity: 1,
@@ -103,7 +104,7 @@ export async function displayModal(id: number): Promise<void> {
     error?: string;
   }>(
     `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${id}`,
-    "#loader"
+    "#loader",
   );
 
   if (error || !res?.data) {
@@ -111,6 +112,7 @@ export async function displayModal(id: number): Promise<void> {
   }
   setItem({
     productId: id,
+    name: res.data.name,
   });
 
   const item = res.data;
@@ -142,7 +144,7 @@ export async function displayModal(id: number): Promise<void> {
   cleanupAddListeners = initAdditivesButtonsListeners(updatePrice);
 
   setSize({
-    size: Object.keys(item.sizes)[0],
+    size: item.sizes[Object.keys(item.sizes)[0]].size,
     price: item.sizes[Object.keys(item.sizes)[0]].price,
     discountPrice:
       item.sizes[Object.keys(item.sizes)[0]].discountPrice ||

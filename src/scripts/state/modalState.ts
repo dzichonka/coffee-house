@@ -1,5 +1,6 @@
 let state: ModalItem = {
   productId: 0,
+  name: "",
   sizeKey: "",
   sizePrice: "0",
   sizeDiscount: "0",
@@ -66,7 +67,7 @@ function addAdditive(addObj: {
 function removeAdditive(
   name: string,
   price: string,
-  discountPrice?: string
+  discountPrice?: string,
 ): void {
   if (!state.addKeys.includes(name)) return;
   state.addKeys = state.addKeys.filter((n) => n !== name);
@@ -80,6 +81,7 @@ function removeAdditive(
 function clear(): void {
   state = {
     productId: 0,
+    name: "",
     sizeKey: "",
     sizePrice: "0",
     sizeDiscount: "0",

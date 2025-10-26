@@ -61,6 +61,10 @@ p {
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+
+  span {
+    font-weight: 400;
+  }
 }
 
 .description {
@@ -98,6 +102,36 @@ p {
     &:hover:not(:disabled) {
       background-color: $background-container;
       color: $text-light;
+    }
+  }
+}
+
+.btn-icon {
+  width: fit-content;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  padding: 5px;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: $text-dark;
+  background-color: transparent;
+  transition: all 0.5s ease;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      scale: 1.2;
     }
   }
 }

@@ -6,6 +6,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("footer");
   await import("./modules/burger.ts");
   await import("./utils/headerLinks.ts");
-  await import("./utils/addCartIcon.ts");
+  (await import("./utils/addCartIcon.ts")).addCartIcon();
   await import("./modules/slider.ts");
 });
