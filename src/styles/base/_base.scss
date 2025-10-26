@@ -1,6 +1,10 @@
 @use "./variables" as *;
 @use "./fonts" as *;
 
+.hidden {
+  display: none;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -247,6 +251,7 @@ li {
     background: $border-light;
     color: $text-dark;
     padding: 3px 7px;
+    overflow: hidden;
 
     img {
       width: 16px;

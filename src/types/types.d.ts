@@ -9,6 +9,29 @@ interface FetchOptions<B = undefined> {
   headers?: Record<string, string>;
 }
 
+interface Size {
+  size: string;
+  price: string;
+  discountPrice?: string;
+}
+
+interface Additive {
+  name: string;
+  price: string;
+  discountPrice?: string;
+}
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  discountPrice?: string;
+  category: string;
+  sizes: Record<string, Size>;
+  additives: Additive[];
+}
+
 interface User {
   id: number;
   login: string;
@@ -39,7 +62,7 @@ interface RegistrationResponse {
   paymentMethod: string;
 }
 
-type SizesType = "s" | "m" | "l";
+//type SizesType = "s" | "m" | "l";
 
 type CategoryType = "coffee" | "tea" | "dessert";
 
@@ -57,15 +80,14 @@ interface FavoritesResponse {
   message?: string;
   error?: string;
 }
-
-interface AdditiveType {
-  name: string;
-  "add-price": string;
-}
-interface SizeType {
+type CartItem = {
+  productId: number;
   size: string;
-  "add-price": string;
-}
+  additives: string[];
+  quantity: number;
+  priceOld: number;
+  priceNew: number;
+};
 
 interface ProductType {
   id: number;
@@ -75,5 +97,3 @@ interface ProductType {
   discountPrice?: string;
   category: string;
 }
-
-type ProductsType = ProductType[];

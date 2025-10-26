@@ -7,7 +7,7 @@ const { isLoggedIn } = useUserState();
 
 const wrapper: HTMLDivElement | null = document.querySelector(".cards");
 const tabs: HTMLDivElement[] = Array.from(
-  document.querySelectorAll(".tab-category")
+  document.querySelectorAll(".tab-category"),
 );
 const refresh: HTMLButtonElement | null = document.querySelector("#refresh");
 
@@ -21,7 +21,7 @@ const { data: res, error } = await fetcher<{
   error?: string;
 }>(
   "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products",
-  "#loader"
+  "#loader",
 );
 
 if (error) {
@@ -29,8 +29,6 @@ if (error) {
 }
 
 const products = res?.data ?? [];
-
-console.log("Products loaded:", products);
 
 let visibleCount: number = isMobile() ? 4 : 8;
 

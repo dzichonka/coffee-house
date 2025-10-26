@@ -25,7 +25,7 @@
     padding: 0 16px;
   }
 
-  &.closed {
+  &.hidden {
     display: none;
   }
 
@@ -119,10 +119,27 @@
     }
   }
 
-  .close {
+  .btn {
     width: 100%;
+  }
+
+  .btn-close {
+    width: 44px;
     height: 44px;
-    font-weight: 600;
-    font-size: 16px;
+    position: absolute;
+    top: -60px;
+    right: -16px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.5s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $text-dark;
+      }
+    }
   }
 }

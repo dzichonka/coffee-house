@@ -1,10 +1,9 @@
 import "@/styles/style.scss";
-import { loadFooter } from "./components/loadFooter.ts";
-import { loadHeader } from "./components/loadHeader.ts";
+import { loadComponent } from "./utils/loadComponent.ts";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await loadHeader();
-  await loadFooter();
+  await loadComponent("header");
+  await loadComponent("footer");
   await import("./modules/burger.ts");
   await import("./utils/addCartIcon.ts");
   await import("./modules/registration.ts");

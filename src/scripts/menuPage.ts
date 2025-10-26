@@ -1,10 +1,10 @@
 import "@/styles/style.scss";
-import { loadFooter } from "./components/loadFooter.ts";
-import { loadHeader } from "./components/loadHeader.ts";
+import { loadComponent } from "./utils/loadComponent.ts";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await loadHeader();
-  await loadFooter();
+  await loadComponent("header");
+  await loadComponent("footer");
+  await loadComponent("modal");
   await import("./modules/burger.ts");
   await import("./utils/headerLinks.ts");
   await import("./utils/disableMenuBtn.ts");
