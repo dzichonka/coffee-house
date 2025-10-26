@@ -14,9 +14,12 @@ export function renderSizeButtons(product: Product): void {
     button.classList.add("tab", "tab-size");
     if (index === 0) button.classList.add("active");
 
-    button.setAttribute("data-price", sizeData.price ?? "");
-    button.setAttribute("data-discount", sizeData.discountPrice ?? "");
-    button.setAttribute("data-size-key", key);
+    button.setAttribute("data-price", sizeData.price ?? "0");
+    button.setAttribute(
+      "data-discount",
+      sizeData.discountPrice || sizeData.price || "0"
+    );
+    button.setAttribute("data-size-key", sizeData.size);
 
     const spanSign = document.createElement("span");
     spanSign.classList.add("sign");
@@ -28,6 +31,5 @@ export function renderSizeButtons(product: Product): void {
 
     button.append(spanSign, spanText);
     sizesContainer.append(button);
-    console.log(button);
   });
 }

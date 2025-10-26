@@ -1,11 +1,16 @@
+import { useModalState } from "../../state/modalState";
+
+const { setSize } = useModalState();
+
 export function initSizeButtonsListeners(
-  updatePriceFn: (price: string, discount?: string) => void,
-): void {
+  updatePriceFn: () => void
+): () => void {
   const sizesDiv: HTMLDivElement | null =
     document.querySelector("#modal-sizes");
-  if (!(sizesDiv instanceof HTMLDivElement)) return;
+  if (!(sizesDiv instanceof HTMLDivElement))
+    throw new Error("can not find sizes div");
 
-  sizesDiv.addEventListener("click", (e) => {
+  const onClick = (e: Event) => {
     const target: EventTarget | null = e.target;
     if (!(target instanceof Element)) return;
     const button: HTMLButtonElement | null = target.closest("button.tab-size");
@@ -17,8 +22,23 @@ export function initSizeButtonsListeners(
     button.classList.add("active");
 
     const price = button.getAttribute("data-price") ?? "";
-    const discount = button.getAttribute("data-discount") ?? "0";
+    const discount = button.getAttribute("data-discount") || price || "0";
+    const sizeKey = button.getAttribute("data-size-key") ?? "";
 
-    updatePriceFn(price, discount);
-  });
+    setSize({
+      size: sizeKey,
+      price,
+      discountPrice: discount,
+    });
+
+    console.log(price, discount, sizeKey);
+
+    updatePriceFn();
+  };
+
+  sizesDiv.addEventListener("click", onClick);
+
+  return () => {
+    sizesDiv.removeEventListener("click", onClick);
+  };
 }

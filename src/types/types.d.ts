@@ -89,6 +89,18 @@ type CartItem = {
   priceNew: number;
 };
 
+interface ModalItem {
+  productId: number;
+  sizeKey: string;
+  sizePrice: string;
+  sizeDiscount: string;
+  addKeys: string[];
+  addPrice: string;
+  addDiscounts: string;
+  totalPrice: number;
+  totalDiscount: number;
+}
+
 interface ProductType {
   id: number;
   name: string;

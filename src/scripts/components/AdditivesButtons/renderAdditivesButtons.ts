@@ -11,8 +11,11 @@ export function renderAdditivesButtons(product: Product): void {
     const button = document.createElement("button");
     button.classList.add("tab", "tab-add");
 
-    button.setAttribute("data-add-price", item.price ?? "");
-    button.setAttribute("data-add-discount", item.discountPrice ?? "");
+    button.setAttribute("data-add-price", item.price ?? "0");
+    button.setAttribute(
+      "data-add-discount",
+      item.discountPrice || item.price || "0"
+    );
     button.setAttribute("data-add-key", item.name);
 
     const spanSign = document.createElement("span");

@@ -3,8 +3,12 @@ import { useUserState } from "../state/userState";
 import { renderSizeButtons } from "../components/SizeButtons/renderSizeButtons";
 import { renderAdditivesButtons } from "../components/AdditivesButtons/renderAdditivesButtons";
 import { initSizeButtonsListeners } from "../components/SizeButtons/initSizeButtonsListeners";
+import { initAdditivesButtonsListeners } from "../components/AdditivesButtons/initAdditivesButtonsListeners";
+import { useModalState } from "../state/modalState";
 
 const { isLoggedIn } = useUserState();
+
+const { getItem, setSize } = useModalState();
 
 const modal: HTMLDivElement | null = document.querySelector("#modal");
 const content: HTMLDivElement | null = document.querySelector(".window");
@@ -17,9 +21,15 @@ const descriptionDiv: HTMLParagraphElement | null =
   document.querySelector("#modal-description");
 const addBtn: HTMLButtonElement | null = document.querySelector("#add-to-cart");
 
+let cleanupAddListeners: (() => void) | null = null;
+let cleanupSizeListeners: (() => void) | null = null;
+
 function closeModal() {
   modal?.classList.add("hidden");
   document.body.style.overflow = "auto";
+
+  if (cleanupAddListeners) cleanupAddListeners();
+  if (cleanupSizeListeners) cleanupSizeListeners();
 }
 
 closeBtn?.addEventListener("click", () => {
@@ -42,7 +52,10 @@ window.addEventListener("keydown", (e: KeyboardEvent): void => {
   }
 });
 
-function updatePrice(price: string, discount?: string) {
+function updatePrice() {
+  const price = getItem().totalPrice;
+  const discount = getItem().totalDiscount;
+
   const priceDiv: HTMLHeadingElement | null =
     document.querySelector("#modal-price");
   const discountDiv: HTMLHeadingElement | null =
@@ -54,13 +67,18 @@ function updatePrice(price: string, discount?: string) {
   )
     return;
 
-  if (!discount || !isLoggedIn()) {
+  if (isLoggedIn()) {
+    if (discount === price) {
+      priceDiv.classList.add("hidden");
+      discountDiv.textContent = `$${Number(price).toFixed(2)}`;
+    } else {
+      priceDiv.classList.remove("hidden");
+      priceDiv.textContent = `$${Number(price).toFixed(2)}`;
+      discountDiv.textContent = `$${Number(discount).toFixed(2)}`;
+    }
+  } else {
     priceDiv.classList.add("hidden");
     discountDiv.textContent = `$${Number(price).toFixed(2)}`;
-  } else {
-    priceDiv.classList.remove("hidden");
-    priceDiv.textContent = `$${Number(price).toFixed(2)}`;
-    discountDiv.textContent = `$${Number(discount).toFixed(2)}`;
   }
 }
 
@@ -71,7 +89,7 @@ export async function displayModal(id: number): Promise<void> {
     error?: string;
   }>(
     `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${id}`,
-    "#loader",
+    "#loader"
   );
 
   if (error || !res?.data) {
@@ -103,51 +121,17 @@ export async function displayModal(id: number): Promise<void> {
 
   renderSizeButtons(item);
   renderAdditivesButtons(item);
-  initSizeButtonsListeners(updatePrice);
+  cleanupSizeListeners = initSizeButtonsListeners(updatePrice);
+  cleanupAddListeners = initAdditivesButtonsListeners(updatePrice);
 
-  updatePrice(
-    item.sizes[Object.keys(item.sizes)[0]].price,
-    item.sizes[Object.keys(item.sizes)[0]].discountPrice,
-  );
+  setSize({
+    size: Object.keys(item.sizes)[0],
+    price: item.sizes[Object.keys(item.sizes)[0]].price,
+    discountPrice:
+      item.sizes[Object.keys(item.sizes)[0]].discountPrice ||
+      item.sizes[Object.keys(item.sizes)[0]].price ||
+      "0",
+  });
 
-  // if (!sizeListenersAdded) {
-  // sizeKeys.forEach((key: SizesType, i: number): void => {
-  //   //const sizeData: SizeType = item.sizes[key];
-  //   //const span = tabsSize[i].querySelector<HTMLSpanElement>(".text");
-  //   // tabsSize[i].setAttribute("data-size", sizeData["add-price"]);
-  //   // if (span) span.textContent = sizeData.size;
-
-  //   tabsSize[i].addEventListener("click", () => {
-  //     tabsSize.forEach((tab) => {
-  //       tab.classList.remove("active");
-  //       basePrice = Number(item.price);
-  //     });
-  //     tabsSize[i].classList.add("active");
-  //     basePrice += Number(tabsSize[i].getAttribute("data-size"));
-  //     updatePrice();
-  //   });
-  // });
-  // sizeListenersAdded = true;
+  updatePrice();
 }
-
-// if (!addListenersAdded) {
-// item.additives.forEach((additive, i) => {
-//   const span = tabsAdditives[i].querySelector(".text");
-//   tabsAdditives[i].setAttribute("data-add", additive["add-price"]);
-//   if (span) span.textContent = additive.name;
-
-//   tabsAdditives[i].addEventListener("click", () => {
-//     tabsAdditives[i].classList.toggle("active");
-//     if (tabsAdditives[i].classList.contains("active")) {
-//       additivesPrice += Number(tabsAdditives[i].getAttribute("data-add"));
-//     } else {
-//       additivesPrice -= Number(tabsAdditives[i].getAttribute("data-add"));
-//     }
-//     updatePrice();
-//   });
-// });
-//   addListenersAdded = true;
-// }
-
-// updatePrice();
-// }

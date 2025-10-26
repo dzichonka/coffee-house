@@ -1,14 +1,3 @@
-interface ModalItem {
-  productId: number;
-  sizeKey: string;
-  sizePrice: string;
-  sizeDiscount: string;
-  addKeys: string[];
-  addPrice: string;
-  addDiscounts: string;
-  totalPrice: number;
-  totalDiscount: number;
-}
 let state: ModalItem = {
   productId: 0,
   sizeKey: "",
@@ -77,7 +66,7 @@ function addAdditive(addObj: {
 function removeAdditive(
   name: string,
   price: string,
-  discountPrice?: string,
+  discountPrice?: string
 ): void {
   if (!state.addKeys.includes(name)) return;
   state.addKeys = state.addKeys.filter((n) => n !== name);
