@@ -26,8 +26,6 @@ export const removeItem = (e: Event) => {
     newCart.splice(idx, 1);
   }
 
-  console.log(newCart);
-
   setCart(newCart);
   renderCart(removeItem);
 };

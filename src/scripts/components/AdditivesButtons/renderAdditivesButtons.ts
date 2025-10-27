@@ -1,3 +1,6 @@
+import { useUserState } from "@/scripts/state/userState";
+
+const { isLoggedIn } = useUserState();
 export function renderAdditivesButtons(product: Product): void {
   const additivesContainer: HTMLDivElement | null =
     document.querySelector("#modal-additives");
@@ -9,12 +12,12 @@ export function renderAdditivesButtons(product: Product): void {
 
   additives.map((item, index) => {
     const button = document.createElement("button");
-    button.classList.add("tab", "tab-add");
+    button.classList.add("tab", "tab-add", "tooltip");
 
     button.setAttribute("data-add-price", item.price ?? "0");
     button.setAttribute(
       "data-add-discount",
-      item.discountPrice || item.price || "0",
+      item.discountPrice || item.price || "0"
     );
     button.setAttribute("data-add-key", item.name);
 
@@ -26,8 +29,25 @@ export function renderAdditivesButtons(product: Product): void {
     spanText.classList.add("text");
     spanText.textContent = item.name;
 
-    button.append(spanSign, spanText);
+    const tooltip = document.createElement("span");
+    tooltip.classList.add("tooltip-text");
+
+    if (isLoggedIn()) {
+      if (!item.discountPrice) {
+        tooltip.innerHTML = `
+          <span class="new-price">$${item.price}</span>
+        `;
+      } else {
+        tooltip.innerHTML = `
+        <span class="old-price">$${item.price}</span>
+        <span class="new-price">$${item.discountPrice ?? item.price}</span>
+      `;
+      }
+    } else {
+      tooltip.textContent = `$${item.price}`;
+    }
+
+    button.append(spanSign, spanText, tooltip);
     additivesContainer.append(button);
-    console.log(button);
   });
 }

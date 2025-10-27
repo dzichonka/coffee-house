@@ -20,11 +20,9 @@ const oder: Order = {
 };
 
 const errorDiv: HTMLHeadingElement | null = document.querySelector("#error");
-//const message: HTMLHeadingElement | null = document.querySelector("#message");
 const cartList: HTMLUListElement | null = document.querySelector("#cart-list");
 if (
   !(errorDiv instanceof HTMLHeadingElement) ||
-  // !(message instanceof HTMLHeadingElement) ||
   !(cartList instanceof HTMLUListElement)
 ) {
   throw new Error("Elements not found");
@@ -32,7 +30,6 @@ if (
 
 export const handleConfim = async () => {
   errorDiv.classList.add("hidden");
-  // message.classList.add("hidden");
   const { data: res, error } = await fetcher<
     {
       data: OrderResponse;

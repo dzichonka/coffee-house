@@ -3,7 +3,7 @@ import { useModalState } from "@/scripts/state/modalState";
 const { addAdditive } = useModalState();
 
 export function initAdditivesButtonsListeners(
-  updatePriceFn: () => void,
+  updatePriceFn: () => void
 ): () => void {
   const additivesDiv: HTMLDivElement | null =
     document.querySelector("#modal-additives");
@@ -21,8 +21,6 @@ export function initAdditivesButtonsListeners(
     const price = button.getAttribute("data-add-price") ?? "0";
     const discount = button.getAttribute("data-add-discount") || price || "0";
     const sizeKey = button.getAttribute("data-add-key") ?? "";
-
-    console.log(price, discount, sizeKey);
 
     addAdditive({
       name: sizeKey,

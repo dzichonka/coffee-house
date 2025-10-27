@@ -1,0 +1,40 @@
+@use "../base/variables" as *;
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  z-index: 100;
+  opacity: 0;
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $border-dark;
+  color: $text-light;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: $border-light;
+  margin-right: 4px;
+}
+
+.new-price {
+  color: $background-body;
+  font-weight: 600;
+}

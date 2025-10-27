@@ -3,7 +3,7 @@ import { useModalState } from "../../state/modalState";
 const { setSize } = useModalState();
 
 export function initSizeButtonsListeners(
-  updatePriceFn: () => void,
+  updatePriceFn: () => void
 ): () => void {
   const sizesDiv: HTMLDivElement | null =
     document.querySelector("#modal-sizes");
@@ -30,8 +30,6 @@ export function initSizeButtonsListeners(
       price,
       discountPrice: discount,
     });
-
-    console.log(price, discount, sizeKey);
 
     updatePriceFn();
   };

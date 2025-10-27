@@ -11,15 +11,15 @@ export function validateLogin(value: string): string | null {
 
 export function validatePassword(value: string): string | null {
   if (value.length < 6) return "Password must be at least 6 characters";
-  // if (!/[!@#$%^&*(),.?":{}|<>]/.test(value))
-  //   return "Password must contain a special character";
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(value))
+    return "Password must contain a special character";
   if (!/\d/.test(value)) return "Password must contain a number";
   return null;
 }
 
 export function validateConfirmPassword(
   password: string,
-  confirmPassword: string,
+  confirmPassword: string
 ): string | null {
   if (confirmPassword.length === 0) return "Please confirm your password";
   if (confirmPassword !== password) return "Passwords do not match";
