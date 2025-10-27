@@ -23,123 +23,13 @@
       property="og:image"
       content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
     />
-    <script type="module" crossorigin src="./assets/menu-CCqXoIyE.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/loadHeader-CVOoaTWb.js">
-    <link rel="stylesheet" crossorigin href="./assets/loadHeader-CjtiUMXj.css">
+    <script type="module" crossorigin src="./assets/menu-DMmUIbcA.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/loadComponent-Dp69E7ZJ.js">
+    <link rel="stylesheet" crossorigin href="./assets/loadComponent-DbxCFqlI.css">
   </head>
   <body>
     <div id="app">
-      <div id="modal" class="modal closed">
-        <div class="window">
-          <div class="wrapper">
-            <div class="img">
-              <img
-                id="modal-img"
-                src="images/menu/dessert/0.png"
-                alt="Marble cheesecake"
-              />
-            </div>
-            <div class="content">
-              <div class="modal-header">
-                <h3 id="modal-title">Marble cheesecake</h3>
-                <p id="modal-description">
-                  Philadelphia cheese with lemon zest on a light sponge cake and
-                  red currant jam
-                </p>
-              </div>
-
-              <div class="tab-block">
-                <p>Size</p>
-                <div class="sizes tabs">
-                  <button class="tab tab-size active" data-size="0">
-                    <span class="sign">S</span>
-                    <span class="text">50 g</span>
-                  </button>
-
-                  <button class="tab tab-size" data-size="1">
-                    <span class="sign">M</span>
-                    <span class="text">100 g</span>
-                  </button>
-
-                  <button class="tab tab-size" data-size="2">
-                    <span class="sign">L</span>
-                    <span class="text">200 g</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="tab-block">
-                <p>Additives</p>
-                <div class="additives tabs">
-                  <button class="tab tab-add" data-add="0">
-                    <span class="sign">1</span>
-                    <span class="text">Berries</span>
-                  </button>
-
-                  <button class="tab tab-add" data-add="1">
-                    <span class="sign">2</span>
-                    <span class="text">Nuts</span>
-                  </button>
-
-                  <button class="tab tab-add" data-add="2">
-                    <span class="sign">3</span>
-                    <span class="text">Jam</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="price">
-                <h3>Total:</h3>
-                <h3 id="modal-price" class="modal_price_sum">$3.50</h3>
-              </div>
-
-              <div class="alert">
-                <svg
-                  width="16"
-                  height="16"
-                  viewbox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_268_11729)">
-                    <path
-                      d="M8 7.66663V11"
-                      stroke="#403F3D"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M8 5.00667L8.00667 4.99926"
-                      stroke="#403F3D"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M8.00016 14.6667C11.6821 14.6667 14.6668 11.6819 14.6668 8.00004C14.6668 4.31814 11.6821 1.33337 8.00016 1.33337C4.31826 1.33337 1.3335 4.31814 1.3335 8.00004C1.3335 11.6819 4.31826 14.6667 8.00016 14.6667Z"
-                      stroke="#403F3D"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </g>
-                  <defs>
-                    <clippath id="clip0_268_11729">
-                      <rect width="16" height="16" fill="white" />
-                    </clippath>
-                  </defs>
-                </svg>
-
-                <p>
-                  The cost is not final. Download our mobile app to see the
-                  final price and place your order. Earn loyalty points and
-                  enjoy your favorite coffee with up to 20% discount.
-                </p>
-              </div>
-
-              <button id="close" class="btn-circle close">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="modal" class="modal hidden"></div>
 
       <div class="container">
         <header id="header" class="header"></header>
@@ -168,6 +58,10 @@
                 <span>Dessert</span>
               </button>
             </div>
+            <div id="error" class="error">
+              <h3>Something went wrong</h3>
+              <h3>Please, try again</h3>
+            </div>
             <div class="cards wrapper">
               <div id="loader" class="loader">
                 <div class="dot"></div>
@@ -175,28 +69,6 @@
                 <div class="dot"></div>
               </div>
             </div>
-            <button id="refresh" class="btn-circle refresh hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewbox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M21.8883 13.5C21.1645 18.3113 17.013 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C16.1006 2 19.6248 4.46819 21.1679 8"
-                  stroke="#403F3D"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3"
-                  stroke="#403F3D"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
           </section>
         </main>
         <footer id="footer" class="footer"></footer>
