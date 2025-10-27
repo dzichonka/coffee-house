@@ -84,16 +84,17 @@
       }
     }
   }
+}
 
-  .error {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 40px;
+.error {
+  display: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
 
-    .refresh {
-      width: 150px;
-    }
+  .refresh {
+    width: 150px;
   }
 }

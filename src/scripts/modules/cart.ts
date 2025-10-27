@@ -58,6 +58,7 @@ if (isLoggedIn()) {
 
   const confirmBtn = document.createElement("button");
   confirmBtn.classList.add("btn");
+  confirmBtn.type = "button";
   confirmBtn.innerHTML = "Confirm";
   buttonsDiv.appendChild(confirmBtn);
 

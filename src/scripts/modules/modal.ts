@@ -24,6 +24,7 @@ const titleDiv: HTMLHeadingElement | null =
 const descriptionDiv: HTMLParagraphElement | null =
   document.querySelector("#modal-description");
 const addBtn: HTMLButtonElement | null = document.querySelector("#add-to-cart");
+const errorDiv: HTMLDivElement | null = document.querySelector("#error");
 
 let cleanupAddListeners: (() => void) | null = null;
 let cleanupSizeListeners: (() => void) | null = null;
@@ -98,17 +99,22 @@ function updatePrice() {
 }
 
 export async function displayModal(id: number): Promise<void> {
+  if (errorDiv) errorDiv.style.display = "none";
   const { data: res, error } = await fetcher<{
     data: Product;
     message?: string;
     error?: string;
   }>(
     `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${id}`,
-    "#loader",
+    "#loader"
   );
 
-  if (error || !res?.data) {
+  if (error) {
+    if (errorDiv) errorDiv.style.display = "block";
     return;
+  }
+  if (!res?.data) {
+    throw new Error("Product not found");
   }
   setItem({
     productId: id,
