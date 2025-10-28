@@ -1,5 +1,7 @@
 import { fetcher } from "../../utils/fetcher";
 import { useCartState } from "../../state/cartState";
+import { refreshTotal } from "./refreshTotal";
+import { disabledConfirm } from "./disabledConfirm";
 
 const { getCart, getTotalPriceNew, getTotalPriceOld, clear } = useCartState();
 
@@ -54,9 +56,11 @@ export const handleConfim = async () => {
   if (res) {
     clear();
     if (cartList)
-      cartList.innerHTML = `            <h3 id="message" class="message">
+      cartList.innerHTML = `<h3 id="message" class="message">
               Thank you for your order! Our manager will contact you shortly.
             </h3>`;
     if (errorDiv) errorDiv.classList.add("hidden");
+    refreshTotal();
+    disabledConfirm();
   }
 };

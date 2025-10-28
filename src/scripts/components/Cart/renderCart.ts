@@ -1,6 +1,7 @@
 import { useCartState } from "../../state/cartState";
 import { useUserState } from "../../state/userState";
 import { addCartIcon } from "../../utils/addCartIcon";
+import { refreshTotal } from "./refreshTotal";
 
 const { isLoggedIn } = useUserState();
 
@@ -9,15 +10,15 @@ const { getCart, getTotalPriceNew, getTotalPriceOld } = useCartState();
 export function renderCart(removeFn: (e: Event) => void) {
   const cartList: HTMLUListElement | null =
     document.querySelector("#cart-list");
-  const totalPriceOldDiv: HTMLHeadingElement | null =
-    document.querySelector("#total-price-old");
-  const totalPriceNewDiv: HTMLHeadingElement | null =
-    document.querySelector("#total-price-new");
+  // const totalPriceOldDiv: HTMLHeadingElement | null =
+  //   document.querySelector("#total-price-old");
+  // const totalPriceNewDiv: HTMLHeadingElement | null =
+  //   document.querySelector("#total-price-new");
 
   if (
-    !(cartList instanceof HTMLUListElement) ||
-    !(totalPriceOldDiv instanceof HTMLHeadingElement) ||
-    !(totalPriceNewDiv instanceof HTMLHeadingElement)
+    !(cartList instanceof HTMLUListElement)
+    // !(totalPriceOldDiv instanceof HTMLHeadingElement) ||
+    // !(totalPriceNewDiv instanceof HTMLHeadingElement)
   ) {
     throw new Error("Cart elements not found");
   }
@@ -73,8 +74,8 @@ export function renderCart(removeFn: (e: Event) => void) {
         const priceNew = document.createElement("h3");
         priceNew.textContent = `$${(item.priceOld - item.priceNew).toFixed(2)}`;
 
-        totalPriceOldDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
-        totalPriceNewDiv.textContent = `$${(getTotalPriceOld() - getTotalPriceNew()).toFixed(2)}`;
+        // totalPriceOldDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
+        // totalPriceNewDiv.textContent = `$${(getTotalPriceOld() - getTotalPriceNew()).toFixed(2)}`;
 
         priceDiv.append(priceOld, priceNew);
       } else {
@@ -82,7 +83,7 @@ export function renderCart(removeFn: (e: Event) => void) {
         priceNew.classList.add("price__new");
         priceNew.textContent = `$${item.priceOld.toFixed(2)}`;
 
-        totalPriceNewDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
+        //totalPriceNewDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
 
         priceDiv.append(priceNew);
       }
@@ -91,7 +92,14 @@ export function renderCart(removeFn: (e: Event) => void) {
 
       cartList?.append(li);
     }
-  });
 
+    // if (isLoggedIn()) {
+    //   totalPriceOldDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
+    //   totalPriceNewDiv.textContent = `$${(getTotalPriceOld() - getTotalPriceNew()).toFixed(2)}`;
+    // } else {
+    //   totalPriceNewDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
+    // }
+  });
+  refreshTotal();
   addCartIcon();
 }

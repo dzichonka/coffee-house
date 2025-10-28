@@ -3,6 +3,7 @@ import { useUserState } from "../state/userState";
 import { fetcher } from "../utils/fetcher";
 import { renderCart } from "../components/Cart/renderCart";
 import { handleConfim } from "../components/Cart/hendleConfirm";
+import { disabledConfirm } from "../components/Cart/disabledConfirm";
 
 const { isLoggedIn, getToken } = useUserState();
 
@@ -58,9 +59,11 @@ if (isLoggedIn()) {
 
   const confirmBtn = document.createElement("button");
   confirmBtn.classList.add("btn");
+  confirmBtn.id = "confirm";
   confirmBtn.type = "button";
   confirmBtn.innerHTML = "Confirm";
   buttonsDiv.appendChild(confirmBtn);
+  disabledConfirm();
 
   confirmBtn.addEventListener("click", handleConfim);
 }

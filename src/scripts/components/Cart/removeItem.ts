@@ -1,5 +1,7 @@
 import { useCartState } from "../../state/cartState";
 import { renderCart } from "../../components/Cart/renderCart";
+import { refreshTotal } from "./refreshTotal";
+import { disabledConfirm } from "./disabledConfirm";
 
 const { getCart, setCart } = useCartState();
 
@@ -25,7 +27,7 @@ export const removeItem = (e: Event) => {
   } else {
     newCart.splice(idx, 1);
   }
-
   setCart(newCart);
+  disabledConfirm();
   renderCart(removeItem);
 };

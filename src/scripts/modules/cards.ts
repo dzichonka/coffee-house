@@ -5,32 +5,50 @@ import { useUserState } from "../state/userState";
 
 const { isLoggedIn } = useUserState();
 
-const wrapper: HTMLDivElement | null = document.querySelector(".cards");
+const wrapper: HTMLDivElement | null = document.querySelector("#cards");
 const tabs: HTMLDivElement[] = Array.from(
-  document.querySelectorAll(".tab-category"),
+  document.querySelectorAll(".tab-category")
 );
 const refresh: HTMLButtonElement | null = document.querySelector("#refresh");
+
+if (
+  !(wrapper instanceof HTMLDivElement) ||
+  !(refresh instanceof HTMLButtonElement) ||
+  tabs.length === 0
+) {
+  throw new Error("No cards elements found");
+}
+
+let products: FavoriteProduct[] = [];
 
 let currentCategory: CategoryType = "coffee";
 
 const isMobile = () => window.innerWidth <= 768;
 
-const { data: res, error } = await fetcher<{
-  data: FavoriteProduct[];
-  message?: string;
-  error?: string;
-}>(
-  "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products",
-  "#loader",
-);
-
-if (error) {
-  if (wrapper) wrapper.innerHTML = "<p>Failed to load products.</p>";
-}
-
-const products = res?.data ?? [];
-
 let visibleCount: number = isMobile() ? 4 : 8;
+
+async function fetchProducts() {
+  const { data: res, error } = await fetcher<{
+    data: FavoriteProduct[];
+    message?: string;
+    error?: string;
+  }>(
+    "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products",
+    "#loader"
+  );
+
+  if (error || !res) {
+    if (wrapper) {
+      wrapper.innerHTML = `<div class="error"></div> <h3>Something went wrong</h3>`;
+    }
+    refresh?.classList.add("hidden");
+    return;
+  }
+
+  products = res?.data ?? [];
+
+  displayCards(currentCategory);
+}
 
 function displayCards(category: CategoryType) {
   if (!wrapper) return;
@@ -113,4 +131,4 @@ window.addEventListener("resize", (): void => {
   }
 });
 
-displayCards(currentCategory);
+fetchProducts();
