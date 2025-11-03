@@ -1,0 +1,3 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./addCartIcon-y838yzLs.js","./userState-BenL3nAi.js","./cart-BNtv4Gc4.js","./fetcher-IzjmCLXP.js"])))=>i.map(i=>d[i]);
+import{l as a,_ as t}from"./loadComponent-Dp69E7ZJ.js";document.addEventListener("DOMContentLoaded",async()=>{await a("header"),await a("footer"),await t(()=>import("./burger-DiFZWrdu.js"),[],import.meta.url),(await t(async()=>{const{addCartIcon:o}=await import("./addCartIcon-y838yzLs.js").then(r=>r.b);return{addCartIcon:o}},__vite__mapDeps([0,1]),import.meta.url)).addCartIcon(),await t(()=>import("./cart-BNtv4Gc4.js"),__vite__mapDeps([2,0,1,3]),import.meta.url)});
+//# sourceMappingURL=cartPage-CSx9UuwB.js.map
