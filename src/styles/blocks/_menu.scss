@@ -99,3 +99,16 @@
     }
   }
 }
+
+.price-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.price__old {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
