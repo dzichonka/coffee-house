@@ -30,7 +30,7 @@ if (isLoggedIn()) {
         Accept: "application/json",
         Authorization: `Bearer ${getToken()}`,
       },
-    }
+    },
   );
 
   if (error) {

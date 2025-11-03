@@ -106,7 +106,7 @@ export async function displayModal(id: number): Promise<void> {
     error?: string;
   }>(
     `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${id}`,
-    "#loader"
+    "#loader",
   );
 
   if (error) {

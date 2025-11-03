@@ -45,7 +45,7 @@ export const handleConfim = async () => {
     {
       method: "POST",
       body: oder,
-    }
+    },
   );
 
   if (error) {

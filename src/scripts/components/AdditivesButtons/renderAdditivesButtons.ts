@@ -17,7 +17,7 @@ export function renderAdditivesButtons(product: Product): void {
     button.setAttribute("data-add-price", item.price ?? "0");
     button.setAttribute(
       "data-add-discount",
-      item.discountPrice || item.price || "0"
+      item.discountPrice || item.price || "0",
     );
     button.setAttribute("data-add-key", item.name);
 

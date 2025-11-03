@@ -15,6 +15,7 @@ export default defineConfig({
         login: path.resolve(__dirname, "login.html"),
         registration: path.resolve(__dirname, "registration.html"),
         cart: path.resolve(__dirname, "cart.html"),
+        orders: path.resolve(__dirname, "orders.html"),
       },
     },
     sourcemap: true,

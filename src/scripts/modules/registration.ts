@@ -22,7 +22,7 @@ const streetSelect: HTMLSelectElement | null | undefined =
 const houseNumberInput: HTMLInputElement | null | undefined =
   form?.querySelector("#houseNumber");
 const paymentMethodRadios = document.querySelectorAll<HTMLInputElement>(
-  'input[name="paymentMethod"]'
+  'input[name="paymentMethod"]',
 );
 const registrationButton: HTMLButtonElement | null | undefined =
   form?.querySelector("#login-btn");
@@ -83,7 +83,7 @@ registrationButton.disabled = true;
 
 function handleValidation(
   input: HTMLInputElement | HTMLSelectElement,
-  validateFn: (value: string) => string | null
+  validateFn: (value: string) => string | null,
 ) {
   const errorSpan = input.nextElementSibling;
 
@@ -126,7 +126,7 @@ function updateButtonState() {
   const passwordError = validatePassword(passwordInput.value);
   const confirmPasswordError = validateConfirmPassword(
     passwordInput.value,
-    confirmPasswordInput.value
+    confirmPasswordInput.value,
   );
   const cityError = validateSelect(citySelect.value);
   const streetError = validateSelect(streetSelect.value);
@@ -143,7 +143,7 @@ function updateButtonState() {
 handleValidation(loginInput, validateLogin);
 handleValidation(passwordInput, validatePassword);
 handleValidation(confirmPasswordInput, () =>
-  validateConfirmPassword(passwordInput.value, confirmPasswordInput.value)
+  validateConfirmPassword(passwordInput.value, confirmPasswordInput.value),
 );
 handleValidation(streetSelect, validateSelect);
 handleValidation(citySelect, validateSelect);
@@ -164,7 +164,7 @@ registrationButton.addEventListener("click", async (e) => {
     houseNumber: Number(houseNumberInput.value),
     paymentMethod:
       String(
-        Array.from(paymentMethodRadios).find((radio) => radio.checked)?.value
+        Array.from(paymentMethodRadios).find((radio) => radio.checked)?.value,
       ) || "",
   };
 
@@ -181,7 +181,7 @@ registrationButton.addEventListener("click", async (e) => {
     {
       method: "POST",
       body: payload,
-    }
+    },
   );
   const alert = document.createElement("div");
   alert.className = "alert-error";
