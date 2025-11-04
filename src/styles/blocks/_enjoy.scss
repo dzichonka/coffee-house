@@ -1,5 +1,3 @@
-@use "../base/variables" as *;
-
 .enjoy {
   border-radius: 40px;
   position: relative;
@@ -23,7 +21,7 @@
   }
 
   .offer {
-    color: $text-light;
+    color: var(--text-light);
     position: absolute;
     top: 0;
     left: 100px;
@@ -50,7 +48,7 @@
     h2 {
       font-size: 72px;
       line-height: 105%;
-      color: $text-light;
+      color: var(--text-light);
 
       @media (width <= 767px) {
         font-size: 42px;
@@ -60,7 +58,7 @@
     }
 
     .description {
-      color: $text-light;
+      color: var(--text-light);
     }
   }
 }

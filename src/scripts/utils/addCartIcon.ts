@@ -11,7 +11,7 @@ export function addCartIcon() {
   const count = getTotalCount();
   const cartLink = wrapper.querySelector<HTMLAnchorElement>(".link-cart");
   const oldCount = Number(
-    cartLink?.querySelector<HTMLSpanElement>("span")?.textContent || 0,
+    cartLink?.querySelector<HTMLSpanElement>("span")?.textContent || 0
   );
 
   if (isLoggedIn() || count > 0) {
@@ -20,7 +20,7 @@ export function addCartIcon() {
       newLink.classList.add("btn-icon", "link-cart");
       newLink.href = "cart";
       newLink.innerHTML = `
-        <img src="icons/shopping-bag.svg" alt="Shopping cart icon" />
+        <i class="fa-solid fa-bag-shopping"></i>
         <span>${count > 0 ? count : ""}</span>
       `;
       wrapper.prepend(newLink);
