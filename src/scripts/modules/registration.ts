@@ -1,11 +1,17 @@
 import {
-  validateLogin,
+  validateEmail,
   validatePassword,
   validateConfirmPassword,
   validateSelect,
   validateHouseNumber,
 } from "../utils/validation";
-import { fetcher } from "../utils/fetcher";
+//import { fetcher } from "../utils/fetcher";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { auth } from "@/firebase";
+
+const db = getFirestore();
 
 const form: HTMLFormElement | null =
   document.querySelector("#registration-form");
@@ -22,7 +28,7 @@ const streetSelect: HTMLSelectElement | null | undefined =
 const houseNumberInput: HTMLInputElement | null | undefined =
   form?.querySelector("#houseNumber");
 const paymentMethodRadios = document.querySelectorAll<HTMLInputElement>(
-  'input[name="paymentMethod"]',
+  'input[name="paymentMethod"]'
 );
 const registrationButton: HTMLButtonElement | null | undefined =
   form?.querySelector("#login-btn");
@@ -83,7 +89,7 @@ registrationButton.disabled = true;
 
 function handleValidation(
   input: HTMLInputElement | HTMLSelectElement,
-  validateFn: (value: string) => string | null,
+  validateFn: (value: string) => string | null
 ) {
   const errorSpan = input.nextElementSibling;
 
@@ -122,11 +128,11 @@ function updateButtonState() {
     !registrationButton
   )
     return;
-  const loginError = validateLogin(loginInput.value);
+  const loginError = validateEmail(loginInput.value);
   const passwordError = validatePassword(passwordInput.value);
   const confirmPasswordError = validateConfirmPassword(
     passwordInput.value,
-    confirmPasswordInput.value,
+    confirmPasswordInput.value
   );
   const cityError = validateSelect(citySelect.value);
   const streetError = validateSelect(streetSelect.value);
@@ -140,10 +146,10 @@ function updateButtonState() {
     !!houseNumberError;
 }
 
-handleValidation(loginInput, validateLogin);
+handleValidation(loginInput, validateEmail);
 handleValidation(passwordInput, validatePassword);
 handleValidation(confirmPasswordInput, () =>
-  validateConfirmPassword(passwordInput.value, confirmPasswordInput.value),
+  validateConfirmPassword(passwordInput.value, confirmPasswordInput.value)
 );
 handleValidation(streetSelect, validateSelect);
 handleValidation(citySelect, validateSelect);
@@ -155,46 +161,92 @@ registrationButton.addEventListener("click", async (e) => {
     form.querySelector(".alert-error")?.remove();
   }
 
-  const payload: RegistrationResponse = {
-    login: loginInput.value,
-    password: passwordInput.value,
-    confirmPassword: confirmPasswordInput.value,
-    city: citySelect.value,
-    street: streetSelect.value,
-    houseNumber: Number(houseNumberInput.value),
-    paymentMethod:
-      String(
-        Array.from(paymentMethodRadios).find((radio) => radio.checked)?.value,
-      ) || "",
-  };
+  // const payload: RegistrationResponse = {
+  //   login: loginInput.value,
+  //   password: passwordInput.value,
+  //   confirmPassword: confirmPasswordInput.value,
+  //   city: citySelect.value,
+  //   street: streetSelect.value,
+  //   houseNumber: Number(houseNumberInput.value),
+  //   paymentMethod:
+  //     String(
+  //       Array.from(paymentMethodRadios).find((radio) => radio.checked)?.value,
+  //     ) || "",
+  // };
 
-  const { data: res, error } = await fetcher<
-    {
-      data: RegistrationResponse;
-      message?: string;
-      error?: string;
-    },
-    LoginPayload
-  >(
-    "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/auth/register",
-    "#loader",
-    {
-      method: "POST",
-      body: payload,
-    },
-  );
-  const alert = document.createElement("div");
-  alert.className = "alert-error";
-  if (error) {
-    alert.textContent = `Incorrect login or password`;
-    form.append(alert);
-  }
-  if (res) {
-    alert.textContent = `Registration successful! You can now sign in.`;
+  // const { data: res, error } = await fetcher<
+  //   {
+  //     data: RegistrationResponse;
+  //     message?: string;
+  //     error?: string;
+  //   },
+  //   LoginPayload
+  // >(
+  //   "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/auth/register",
+  //   "#loader",
+  //   {
+  //     method: "POST",
+  //     body: payload,
+  //   },
+  // );
+  // const alert = document.createElement("div");
+  // alert.className = "alert-error";
+  // if (error) {
+  //   alert.textContent = `Incorrect login or password`;
+  //   form.append(alert);
+  // }
+  // if (res) {
+  //   alert.textContent = `Registration successful! You can now sign in.`;
+  //   form.append(alert);
+
+  //   setTimeout(() => {
+  //     window.location.href = "/login";
+  //   }, 3000);
+  // }
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      loginInput.value, // email
+      passwordInput.value
+    );
+
+    const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+      login: loginInput.value,
+      city: citySelect.value,
+      street: streetSelect.value,
+      houseNumber: Number(houseNumberInput.value),
+      paymentMethod:
+        Array.from(paymentMethodRadios).find((radio) => radio.checked)?.value ||
+        "",
+      createdAt: new Date().toISOString(),
+    });
+
+    const alert = document.createElement("div");
+    alert.className = "alert-success";
+    alert.textContent = "Registration successful! You can now sign in.";
     form.append(alert);
 
     setTimeout(() => {
       window.location.href = "/login";
     }, 3000);
+  } catch (error: any) {
+    console.error(error);
+
+    const alert = document.createElement("div");
+    alert.className = "alert-error";
+
+    if (error.code === "auth/email-already-in-use") {
+      alert.textContent = "This email is already registered.";
+    } else if (error.code === "auth/invalid-email") {
+      alert.textContent = "Invalid email format.";
+    } else if (error.code === "auth/weak-password") {
+      alert.textContent = "Password should be at least 6 characters.";
+    } else {
+      alert.textContent = "Registration failed. Try again later.";
+    }
+
+    form.append(alert);
   }
 });
