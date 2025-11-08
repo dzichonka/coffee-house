@@ -23,16 +23,16 @@
       property="og:image"
       content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
     />
-    <script type="module" crossorigin src="./assets/loadComponent-Dp69E7ZJ.js"></script>
-    <script type="module" crossorigin src="./assets/cartPage-CSx9UuwB.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/loadComponent-DbxCFqlI.css">
+    <script type="module" crossorigin src="./assets/orders-H6T2omdL.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/loadComponent-kpja28Tm.js">
+    <link rel="stylesheet" crossorigin href="./assets/loadComponent-BBoR0ppW.css">
   </head>
   <body>
     <div id="app">
       <div class="container">
         <header id="header" class="header"></header>
         <main>
-          <section id="cart" class="cart wrapper">
+          <section id="orders" class="orders">
             <h2>Orders</h2>
             <div id="loader" class="loader">
               <div class="dot"></div>
@@ -42,13 +42,21 @@
             <h3 id="error" class="hidden">
               Something went wrong. Please, try again
             </h3>
-            <div class="buttons wrapper">
+            <div class="wrapper">
               <div id="loader" class="loader">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
               </div>
+              <div id="error" class="error">
+                <h3>Something went wrong</h3>
+                <h3>Please, refresh the page</h3>
+                <button id="refresh" class="btn-circle refresh">
+                  Refresh Data
+                </button>
+              </div>
             </div>
+            <div id="orders-list" class="orders-list"></div>
           </section>
         </main>
         <footer id="footer" class="footer"></footer>
