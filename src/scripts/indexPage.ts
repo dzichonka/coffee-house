@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await import("./utils/headerLinks.ts");
   (await import("./utils/addCartIcon.ts")).addCartIcon();
   (await import("./utils/addSignOutIcon.ts")).addSignOutIcon();
+  (await import("./utils/addOrdersIcon.ts")).addOrdersIcon();
   await import("./utils/toggleTheme.ts");
   await import("./modules/slider.ts");
 });

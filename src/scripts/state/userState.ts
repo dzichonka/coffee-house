@@ -21,9 +21,15 @@ export function useUserState() {
     return !!getToken();
   }
 
+  function clearToken() {
+    state.token = null;
+    sessionStorage.removeItem("token");
+  }
+
   return {
     getToken,
     setToken,
     isLoggedIn,
+    clearToken,
   };
 }

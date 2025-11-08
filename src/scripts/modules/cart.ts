@@ -9,6 +9,9 @@ import { disabledConfirm } from "../components/Cart/disabledConfirm";
 import { loadUserData } from "../api/user";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
+import { useCartState } from "@/scripts/state/cartState";
+
+const { getTotalPriceOld, getTotalPriceNew, getCart } = useCartState();
 
 //const { isLoggedIn, getToken } = useUserState();
 
@@ -22,27 +25,22 @@ if (
 )
   throw new Error("Cart list not found");
 
-//if (isLoggedIn()) {
-//   const { data: res, error } = await fetcher<{
-//     data: User;
-//     message?: string;
-//     error?: string;
-//   }>(
-//     "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/auth/profile",
-//     "#loader",
-//     {
-//       headers: {
-//         Accept: "application/json",
-//         Authorization: `Bearer ${getToken()}`,
-//       },
-//     },
-//   );
+const price = getTotalPriceOld() - getTotalPriceNew();
 
-//   if (error) {
-//     if (buttonsDiv) {
-//       buttonsDiv.innerHTML = "error";
-//     }
-//   }
+const cart: CartItem[] = getCart();
+
+const items: Item[] = cart.map(({ productId, size, additives, quantity }) => ({
+  productId,
+  size,
+  additives,
+  quantity,
+}));
+
+const order: Order = {
+  items,
+  totalPrice: price,
+};
+
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     const userData = await loadUserData();
@@ -72,7 +70,9 @@ onAuthStateChanged(auth, async (user) => {
     buttonsDiv.appendChild(confirmBtn);
     disabledConfirm();
 
-    confirmBtn.addEventListener("click", handleConfim);
+    confirmBtn.addEventListener("click", () => {
+      handleConfim(order);
+    });
   } else {
     const loginBtn = document.createElement("a");
     loginBtn.classList.add("btn");

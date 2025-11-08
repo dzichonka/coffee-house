@@ -1,0 +1,50 @@
+.orders {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+
+  h2 {
+    margin: 0;
+  }
+
+  .orders {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+
+    h2 {
+      margin: 0;
+    }
+
+    &-list {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .order {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 12px;
+    }
+  }
+
+  .order {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 12px;
+  }
+}

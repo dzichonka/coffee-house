@@ -5,21 +5,13 @@ import { refreshTotal } from "./refreshTotal";
 
 const { isLoggedIn } = useUserState();
 
-const { getCart, getTotalPriceNew, getTotalPriceOld } = useCartState();
+const { getCart } = useCartState();
 
 export function renderCart(removeFn: (e: Event) => void) {
   const cartList: HTMLUListElement | null =
     document.querySelector("#cart-list");
-  // const totalPriceOldDiv: HTMLHeadingElement | null =
-  //   document.querySelector("#total-price-old");
-  // const totalPriceNewDiv: HTMLHeadingElement | null =
-  //   document.querySelector("#total-price-new");
 
-  if (
-    !(cartList instanceof HTMLUListElement)
-    // !(totalPriceOldDiv instanceof HTMLHeadingElement) ||
-    // !(totalPriceNewDiv instanceof HTMLHeadingElement)
-  ) {
+  if (!(cartList instanceof HTMLUListElement)) {
     throw new Error("Cart elements not found");
   }
 
@@ -35,7 +27,7 @@ export function renderCart(removeFn: (e: Event) => void) {
       removeBtn.setAttribute("data-id", item.productId.toString());
       removeBtn.classList.add("btn-icon");
       removeBtn.type = "button";
-      removeBtn.innerHTML = `<img src="icons/trash.svg" alt="trash icon" />`;
+      removeBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
       removeBtn.addEventListener("click", removeFn);
 
       const img = document.createElement("img");
@@ -58,7 +50,9 @@ export function renderCart(removeFn: (e: Event) => void) {
 
       const additives = document.createElement("span");
       additives.classList.add("cart-item_additives");
-      additives.textContent = item.additives.join(", ");
+      additives.textContent = item.additives.length
+        ? item.additives.map((a) => `, ${a}`).join("")
+        : "";
 
       description.append(size, additives);
       infoDiv.append(title, description);
@@ -92,13 +86,6 @@ export function renderCart(removeFn: (e: Event) => void) {
 
       cartList?.append(li);
     }
-
-    // if (isLoggedIn()) {
-    //   totalPriceOldDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
-    //   totalPriceNewDiv.textContent = `$${(getTotalPriceOld() - getTotalPriceNew()).toFixed(2)}`;
-    // } else {
-    //   totalPriceNewDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
-    // }
   });
   refreshTotal();
   addCartIcon();

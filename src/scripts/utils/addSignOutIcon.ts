@@ -1,6 +1,9 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
 import { logoutUser } from "../api/auth";
+import { useUserState } from "../state/userState";
+
+const { clearToken } = useUserState();
 
 export function addSignOutIcon() {
   const wrapper = document.querySelector<HTMLDivElement>("#nav-right");
@@ -17,6 +20,7 @@ export function addSignOutIcon() {
       `;
       singOutBtn.addEventListener("click", () => {
         logoutUser();
+        clearToken();
         window.location.href = "index";
       });
       wrapper.append(singOutBtn);

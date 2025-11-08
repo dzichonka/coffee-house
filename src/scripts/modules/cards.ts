@@ -6,7 +6,7 @@ const { isLoggedIn } = useUserState();
 
 const wrapper: HTMLDivElement | null = document.querySelector("#cards");
 const tabs: HTMLDivElement[] = Array.from(
-  document.querySelectorAll(".tab-category"),
+  document.querySelectorAll(".tab-category")
 );
 const refresh: HTMLButtonElement | null = document.querySelector("#refresh");
 
@@ -33,7 +33,7 @@ async function fetchProducts() {
     error?: string;
   }>(
     "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products",
-    "#loader",
+    "#loader"
   );
 
   if (error || !res) {

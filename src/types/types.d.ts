@@ -42,6 +42,7 @@ interface Item {
 interface Order {
   items: Item[];
   totalPrice: number;
+  createdAt?: string;
 }
 
 interface OrderResponse {
