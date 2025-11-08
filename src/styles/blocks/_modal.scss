@@ -120,6 +120,9 @@
   }
 
   .btn-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 44px;
     height: 44px;
     position: absolute;
@@ -127,14 +130,22 @@
     right: -16px;
     cursor: pointer;
     padding: 0;
-    border: none;
+    border: 1px solid var(--text-light);
     border-radius: 50%;
-    background: transparent;
+    background-color: transparent;
     transition: all 0.5s ease;
+
+    svg > path {
+      stroke: var(--text-light);
+    }
 
     @media (hover: hover) {
       &:hover {
-        background-color: var(--text-dark);
+        background-color: var(--text-light);
+
+        svg > path {
+          stroke: var(--text-dark);
+        }
       }
     }
   }

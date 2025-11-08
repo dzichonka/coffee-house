@@ -16,6 +16,10 @@
   }
 
   .logo {
+    svg path:not(:first-of-type) {
+      fill: var(--text-dark);
+    }
+
     @media (width <= 768px) {
       &__nav {
         display: none;

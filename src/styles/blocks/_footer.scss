@@ -9,7 +9,7 @@
   border-radius: 40px;
   padding: 100px;
   color: var(--text-light);
-  background: var(--background-container);
+  background: var(--background-backdrop);
 
   @media (width <= 1300px) {
     flex-direction: column;
@@ -54,6 +54,10 @@
     width: 60px;
     height: 60px;
     transition: all 0.5s ease;
+    
+    svg > path {
+      stroke: var(--text-light);
+    }
 
     @media (hover: hover) {
       cursor: pointer;
@@ -88,6 +92,10 @@
       &:hover {
         border-color: var(--text-light);
       }
+    }
+
+    li svg path {
+      stroke: var(--text-light);
     }
   }
 }

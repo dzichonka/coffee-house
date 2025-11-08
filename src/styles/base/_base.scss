@@ -15,14 +15,14 @@
 }
 
 body.dark {
-  --text-dark: #7bd7e9;
-  --text-light: #5c909c;
+  --text-dark: #90d7e5;
+  --text-light: #2a5761;
   --text-accent: #b0907a;
-  --background-body: #16292d;
-  --background-container: #1013133c;
-  --background-backdrop: rgb(61 63 64 / 80%);
-  --border-light: #c1b6ad;
-  --border-dark: #7da8b2;
+  --background-body: #1b3338;
+  --background-container: rgb(213 247 255);
+  --background-backdrop: rgb(191 240 248 / 75%);
+  --border-light: #233c41;
+  --border-dark: #83adb6;
   --color-success: #0dbb42;
   --color-error: #f44336;
   --color-placeholder: #a1a8b3;
@@ -169,7 +169,7 @@ p {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  gap: 8px;
+  gap: 0;
   width: 200px;
   height: 64px;
   padding: 20px 78px;
@@ -181,23 +181,18 @@ p {
   color: var(--text-dark);
   background-color: var(--text-light);
 
-  span {
-    transform: translateX(30%);
-  }
-
-  img {
+  svg {
     width: 20px;
     height: 20px;
-    opacity: 0;
     transition: all 0.5s ease-out;
-  }
 
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
+    path {
+      stroke: var(--text-dark);
+    }
   }
 
   @media (hover: hover) {
+    gap: 8px;
     cursor: pointer;
 
     span {
@@ -205,12 +200,8 @@ p {
     }
 
     &:hover:not(:disabled) {
-      span {
-        transform: translateX(-10%);
-      }
-
-      img {
-        opacity: 1;
+      svg {
+        flex-shrink: 0;
       }
     }
   }
@@ -269,11 +260,15 @@ li {
   flex-direction: row;
   border: 1px solid var(--background-container);
   background-color: transparent;
-  color: var(--text-dark);
+  color: var(--background-container);
   border-radius: 100px;
   width: 60px;
   height: 60px;
   transition: all 0.5s ease;
+
+  svg > path {
+    stroke: var(--background-container);
+  }
 
   @media (hover: hover) {
     cursor: pointer;

@@ -63,6 +63,10 @@
     color: var(--text-dark);
     transition: all 0.5s ease;
 
+    svg path {
+      fill: var(--text-dark);
+    }
+
     &_available {
       font-size: 10px;
       line-height: 140%;
@@ -80,7 +84,7 @@
         color: var(--text-light);
         background-color: var(--background-container);
 
-        svg > path {
+        svg path {
           fill: var(--text-light);
         }
       }
