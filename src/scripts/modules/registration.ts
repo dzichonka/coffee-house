@@ -7,11 +7,10 @@ import {
 } from "../utils/validation";
 //import { fetcher } from "../utils/fetcher";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { auth } from "@/firebase";
-
-const db = getFirestore();
+//import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase";
+import { registerUser } from "../api/auth";
 
 const form: HTMLFormElement | null =
   document.querySelector("#registration-form");
@@ -204,13 +203,13 @@ registrationButton.addEventListener("click", async (e) => {
   //   }, 3000);
   // }
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      loginInput.value, // email
-      passwordInput.value
-    );
+    // const userCredential = await createUserWithEmailAndPassword(
+    //   auth,
+    //   loginInput.value,
+    //   passwordInput.value
+    // );
 
-    const user = userCredential.user;
+    const user = await registerUser(loginInput.value, passwordInput.value);
 
     await setDoc(doc(db, "users", user.uid), {
       login: loginInput.value,

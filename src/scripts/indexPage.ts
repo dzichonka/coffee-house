@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await import("./modules/burger.ts");
   await import("./utils/headerLinks.ts");
   (await import("./utils/addCartIcon.ts")).addCartIcon();
+  (await import("./utils/addSignOutIcon.ts")).addSignOutIcon();
   await import("./utils/toggleTheme.ts");
   await import("./modules/slider.ts");
 });

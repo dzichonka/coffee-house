@@ -2,6 +2,7 @@ import { fetcher } from "../../utils/fetcher";
 import { useCartState } from "../../state/cartState";
 import { refreshTotal } from "./refreshTotal";
 import { disabledConfirm } from "./disabledConfirm";
+import { addCartIcon } from "@/scripts/utils/addCartIcon";
 
 const { getCart, getTotalPriceNew, getTotalPriceOld, clear } = useCartState();
 
@@ -45,7 +46,7 @@ export const handleConfim = async () => {
     {
       method: "POST",
       body: oder,
-    },
+    }
   );
 
   if (error) {
@@ -60,6 +61,7 @@ export const handleConfim = async () => {
               Thank you for your order! Our manager will contact you shortly.
             </h3>`;
     if (errorDiv) errorDiv.classList.add("hidden");
+    addCartIcon();
     refreshTotal();
     disabledConfirm();
   }

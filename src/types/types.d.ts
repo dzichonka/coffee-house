@@ -50,13 +50,15 @@ interface OrderResponse {
 }
 
 interface User {
-  id: number;
+  uid: string;
   login: string;
   city: string;
   street: string;
   houseNumber: number;
   paymentMethod: string;
   createdAt: string;
+  orders?: Order[];
+  //[key: string]: string | number | undefined;
 }
 
 interface LoginPayload {

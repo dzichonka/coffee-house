@@ -84,14 +84,7 @@ loginButton.addEventListener("click", async (e) => {
     const token = await user.getIdToken();
 
     setToken(token);
-    window.location.href = "index";
-
-    // localStorage.setItem(
-    //   "user",
-    //   JSON.stringify({ email: user.email, uid: user.uid })
-    // );
-
-    window.location.href = "index.html";
+    window.location.href = "cart";
   } catch (error: any) {
     console.error("Login error:", error);
 
