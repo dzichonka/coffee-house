@@ -33,6 +33,19 @@ function closeModal() {
   modal?.classList.add("hidden");
   document.body.style.overflow = "auto";
 
+  setItem({
+    productId: 0,
+    name: "",
+    sizeKey: "",
+    sizePrice: "0",
+    sizeDiscount: "0",
+    addKeys: [],
+    addPrice: "0",
+    addDiscounts: "0",
+    totalPrice: 0,
+    totalDiscount: 0,
+  });
+
   if (cleanupAddListeners) cleanupAddListeners();
   if (cleanupSizeListeners) cleanupSizeListeners();
 }

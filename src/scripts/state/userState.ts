@@ -1,3 +1,5 @@
+import { logoutUser } from "../api/auth";
+
 type UserState = {
   token: string | null;
 };
@@ -14,6 +16,7 @@ export function useUserState() {
   }
 
   function getToken() {
+    if (!(state.token || sessionStorage.getItem("token"))) logoutUser();
     return state.token || sessionStorage.getItem("token");
   }
 

@@ -16,6 +16,10 @@
   }
 
   .logo {
+    svg path:first-of-type {
+      fill: var(--text-accent);
+    }
+
     svg path:not(:first-of-type) {
       fill: var(--text-dark);
     }

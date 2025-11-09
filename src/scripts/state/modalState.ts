@@ -67,7 +67,7 @@ function addAdditive(addObj: {
 function removeAdditive(
   name: string,
   price: string,
-  discountPrice?: string,
+  discountPrice?: string
 ): void {
   if (!state.addKeys.includes(name)) return;
   state.addKeys = state.addKeys.filter((n) => n !== name);

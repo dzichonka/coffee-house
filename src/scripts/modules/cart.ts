@@ -50,6 +50,11 @@ onAuthStateChanged(auth, async (user) => {
       return;
     }
 
+    const userName = document.createElement("div");
+    userName.classList.add("cart-row");
+    userName.innerHTML = `<h3>Name:</h3>
+                      <h3>${userData.login}</h3>`;
+
     const address = document.createElement("div");
     address.classList.add("cart-row");
     address.innerHTML = `<h3>Address:</h3>
@@ -60,7 +65,7 @@ onAuthStateChanged(auth, async (user) => {
     payment.innerHTML = `<h3>Pay by:</h3>
                       <h3>${userData.paymentMethod.charAt(0).toUpperCase() + userData.paymentMethod.slice(1)}</h3>`;
 
-    userInfoDiv.append(address, payment);
+    userInfoDiv.append(userName, address, payment);
 
     const confirmBtn = document.createElement("button");
     confirmBtn.classList.add("btn");
