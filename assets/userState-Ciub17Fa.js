@@ -1,0 +1,2 @@
+import{l as i}from"./auth-DGodpPl6.js";const e={token:null};function g(){function n(t){e.token=t,t?sessionStorage.setItem("token",t):sessionStorage.removeItem("token")}function o(){return e.token||sessionStorage.getItem("token")||i(),e.token||sessionStorage.getItem("token")}function s(){return!!o()}function r(){e.token=null,sessionStorage.removeItem("token")}return{getToken:o,setToken:n,isLoggedIn:s,clearToken:r}}export{g as u};
+//# sourceMappingURL=userState-Ciub17Fa.js.map
