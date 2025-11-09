@@ -34,6 +34,7 @@ interface Product {
 
 interface Item {
   productId: number;
+  name: string;
   size: string;
   additives: string[];
   quantity: number;

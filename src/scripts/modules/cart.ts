@@ -1,19 +1,13 @@
 import { removeItem } from "../components/Cart/removeItem";
-//import { useUserState } from "../state/userState";
-//import { fetcher } from "../utils/fetcher";
 import { renderCart } from "../components/Cart/renderCart";
 import { handleConfim } from "../components/Cart/hendleConfirm";
 import { disabledConfirm } from "../components/Cart/disabledConfirm";
-// import { doc, getDoc } from "firebase/firestore";
-// import { auth, db } from "@/firebase";
 import { loadUserData } from "../api/user";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
 import { useCartState } from "@/scripts/state/cartState";
 
 const { getTotalPriceOld, getTotalPriceNew, getCart } = useCartState();
-
-//const { isLoggedIn, getToken } = useUserState();
 
 const buttonsDiv: HTMLDivElement | null = document.querySelector(".buttons");
 const userInfoDiv: HTMLDivElement | null =
@@ -29,12 +23,15 @@ const price = getTotalPriceOld() - getTotalPriceNew();
 
 const cart: CartItem[] = getCart();
 
-const items: Item[] = cart.map(({ productId, size, additives, quantity }) => ({
-  productId,
-  size,
-  additives,
-  quantity,
-}));
+const items: Item[] = cart.map(
+  ({ productId, name, size, additives, quantity }) => ({
+    productId,
+    name,
+    size,
+    additives,
+    quantity,
+  })
+);
 
 const order: Order = {
   items,
