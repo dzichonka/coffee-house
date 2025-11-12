@@ -9,6 +9,18 @@
     margin: 0;
   }
 
+  h3 {
+    @media (width <= 450px) {
+      font-size: 16px;
+    }
+  }
+
+  p {
+    @media (width <= 450px) {
+      font-size: 12px;
+    }
+  }
+
   .message {
     margin: 0 auto;
     text-align: center;
@@ -38,6 +50,10 @@
       width: 100px;
       height: 100px;
       overflow: hidden;
+
+      @media (width <= 600px) {
+        display: none;
+      }
     }
 
     &_info {
@@ -67,6 +83,22 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+
+    & h3 {
+      text-align: right;
+
+      @media (width <= 768px) {
+        max-width: 250px;
+      }
+
+      @media (width <= 450px) {
+        max-width: 150px;
+      }
+    }
+
+    @media (width <= 768px) {
+      padding-left: 0;
+    }
   }
 
   .buttons {

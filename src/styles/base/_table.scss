@@ -1,0 +1,33 @@
+table {
+  overflow: hidden;
+  border-spacing: 0;
+  max-width: 100%;
+  border: solid 1px var(--background-backdrop);
+  border-radius: 16px;
+}
+
+thead {
+  font-size: 24px;
+}
+
+th {
+  padding: 10px 20px;
+  font-weight: 600;
+  background-color: var(--background-backdrop);
+  color: var(--text-light);
+}
+
+tr {
+  background-color: var(--background-body);
+  color: var(--text-dark);
+
+  &:nth-child(even) {
+    background-color: var(--background-backdrop);
+    color: var(--text-light);
+  }
+}
+
+td {
+  padding: 10px 20px;
+  text-align: center;
+}

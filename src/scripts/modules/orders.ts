@@ -2,9 +2,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { loadUserData } from "@/scripts/api/user";
 import { auth } from "@/firebase";
 
-const wrapper: HTMLDivElement | null = document.querySelector("#orders-list");
+const wrapper: HTMLTableElement | null = document.querySelector("#orders-list");
 
-if (!(wrapper instanceof HTMLDivElement)) {
+if (!(wrapper instanceof HTMLTableElement)) {
   throw new Error("No orders elements found");
 }
 
@@ -14,42 +14,37 @@ export const getOrders = async () => {
       const userData = await loadUserData();
 
       if (!userData) {
-        console.error("No user data found in Firestore");
+        wrapper.innerHTML = "No user data found";
         return;
       }
       const orders = userData.orders;
 
       if (!orders) {
-        console.error("No orders found in user data");
+        wrapper.innerHTML = "No orders found";
         return;
       }
 
-      const header = document.createElement("div");
-      header.classList.add("order");
-      header.innerHTML = `
-          <div>#</div>
-          <div>Date of order</div>
-          <div>Items</div>
-          <div>Price</div>
-          `;
+      const header = document.createElement("thead");
+      header.innerHTML = `<tr><th>#</th><th>Date</th><th>Items</th><th>Price</th></tr>`;
 
-      wrapper.append(header);
+      const body = document.createElement("tbody");
+
+      wrapper.append(header, body);
 
       orders.map((order: Order, index) => {
-        const orderDiv = document.createElement("div");
-        orderDiv.classList.add("order");
+        const orderDiv = document.createElement("tr");
         orderDiv.innerHTML = `
-          <div>${index + 1}</div>
-          <div>${order.createdAt?.slice(0, 10)}</div>
-          <div>${order.items
+          <td>${index + 1}</td>
+          <td>${order.createdAt?.slice(0, 10)}</td>
+          <td>${order.items
             .map((item) => {
               return `<p>${item.name} x ${item.quantity}</p>`;
             })
-            .join("")}</div>
-          <div>$${order.totalPrice.toFixed(2)}</div>
+            .join("")}</td>
+          <td>$${order.totalPrice.toFixed(2)}</td>
           `;
 
-        wrapper.append(orderDiv);
+        body.append(orderDiv);
       });
     }
   });

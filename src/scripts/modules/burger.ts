@@ -30,7 +30,7 @@ burgerMenu?.addEventListener("click", (e) => {
 
   if (!(target instanceof Element)) return;
 
-  const link = target.closest("a");
+  const link = target.closest("a, button");
 
   if (!link) return;
 
