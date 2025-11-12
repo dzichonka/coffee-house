@@ -4,13 +4,10 @@ import {
   validateConfirmPassword,
   validateSelect,
   validateHouseNumber,
-} from "../utils/validation";
-//import { fetcher } from "../utils/fetcher";
-
-//import { createUserWithEmailAndPassword } from "firebase/auth";
+} from "@/scripts/utils/validation";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase";
-import { registerUser } from "../api/auth";
+import { registerUser } from "@/scripts/api/auth";
 
 const form: HTMLFormElement | null =
   document.querySelector("#registration-form");
@@ -159,56 +156,7 @@ registrationButton.addEventListener("click", async (e) => {
   if (form.querySelector(".alert-error")) {
     form.querySelector(".alert-error")?.remove();
   }
-
-  // const payload: RegistrationResponse = {
-  //   login: loginInput.value,
-  //   password: passwordInput.value,
-  //   confirmPassword: confirmPasswordInput.value,
-  //   city: citySelect.value,
-  //   street: streetSelect.value,
-  //   houseNumber: Number(houseNumberInput.value),
-  //   paymentMethod:
-  //     String(
-  //       Array.from(paymentMethodRadios).find((radio) => radio.checked)?.value,
-  //     ) || "",
-  // };
-
-  // const { data: res, error } = await fetcher<
-  //   {
-  //     data: RegistrationResponse;
-  //     message?: string;
-  //     error?: string;
-  //   },
-  //   LoginPayload
-  // >(
-  //   "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/auth/register",
-  //   "#loader",
-  //   {
-  //     method: "POST",
-  //     body: payload,
-  //   },
-  // );
-  // const alert = document.createElement("div");
-  // alert.className = "alert-error";
-  // if (error) {
-  //   alert.textContent = `Incorrect login or password`;
-  //   form.append(alert);
-  // }
-  // if (res) {
-  //   alert.textContent = `Registration successful! You can now sign in.`;
-  //   form.append(alert);
-
-  //   setTimeout(() => {
-  //     window.location.href = "/login";
-  //   }, 3000);
-  // }
   try {
-    // const userCredential = await createUserWithEmailAndPassword(
-    //   auth,
-    //   loginInput.value,
-    //   passwordInput.value
-    // );
-
     const user = await registerUser(loginInput.value, passwordInput.value);
 
     await setDoc(doc(db, "users", user.uid), {

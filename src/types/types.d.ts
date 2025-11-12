@@ -60,7 +60,6 @@ interface User {
   paymentMethod: string;
   createdAt: string;
   orders?: Order[];
-  //[key: string]: string | number | undefined;
 }
 
 interface LoginPayload {

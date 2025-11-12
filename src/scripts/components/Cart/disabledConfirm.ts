@@ -1,4 +1,4 @@
-import { useCartState } from "../../state/cartState";
+import { useCartState } from "@/scripts/state/cartState";
 
 const { getTotalCount } = useCartState();
 

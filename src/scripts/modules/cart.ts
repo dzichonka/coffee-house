@@ -1,8 +1,8 @@
-import { removeItem } from "../components/Cart/removeItem";
-import { renderCart } from "../components/Cart/renderCart";
-import { handleConfim } from "../components/Cart/hendleConfirm";
-import { disabledConfirm } from "../components/Cart/disabledConfirm";
-import { loadUserData } from "../api/user";
+import { removeItem } from "@/scripts/components/Cart/removeItem";
+import { renderCart } from "@/scripts/components/Cart/renderCart";
+import { handleConfim } from "@/scripts/components/Cart/hendleConfirm";
+import { disabledConfirm } from "@/scripts/components/Cart/disabledConfirm";
+import { loadUserData } from "@/scripts/api/user";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
 import { useCartState } from "@/scripts/state/cartState";

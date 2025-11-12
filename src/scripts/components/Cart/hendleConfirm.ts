@@ -1,5 +1,4 @@
-//import { fetcher } from "../../utils/fetcher";
-import { useCartState } from "../../state/cartState";
+import { useCartState } from "@/scripts/state/cartState";
 import { refreshTotal } from "./refreshTotal";
 import { disabledConfirm } from "./disabledConfirm";
 import { addCartIcon } from "@/scripts/utils/addCartIcon";

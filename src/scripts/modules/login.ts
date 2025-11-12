@@ -1,6 +1,5 @@
-//import { fetcher } from "../utils/fetcher";
-import { useUserState } from "../state/userState";
-import { validateEmail, validatePassword } from "../utils/validation";
+import { useUserState } from "@/scripts/state/userState";
+import { validateEmail, validatePassword } from "@/scripts/utils/validation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase";
 
@@ -101,35 +100,4 @@ loginButton.addEventListener("click", async (e) => {
 
     form.append(alert);
   }
-  // const payload = {
-  //   login: loginInput.value,
-  //   password: passwordInput.value,
-  // };
-
-  // const { data: res, error } = await fetcher<
-  //   {
-  //     data: LoginResponse;
-  //     message?: string;
-  //     error?: string;
-  //   },
-  //   LoginPayload
-  // >(
-  //   "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/auth/login",
-  //   "#loader",
-  //   {
-  //     method: "POST",
-  //     body: payload,
-  //   }
-  // );
-
-  // if (error) {
-  //   const alert = document.createElement("div");
-  //   alert.className = "alert-error";
-  //   alert.textContent = `Incorrect login or password`;
-  //   form.append(alert);
-  // }
-  // if (res && res.data) {
-  //   setToken(res.data.access_token);
-  //   window.location.href = "index";
-  // }
 });

@@ -12,6 +12,7 @@
   --color-success: #0dbb75;
   --color-error: #f43649;
   --color-placeholder: #a1a8b3;
+  --font-family: "Montserrat", sans-serif;
 }
 
 body.light {
@@ -26,6 +27,11 @@ body.light {
   --color-success: #0dbb42;
   --color-error: #f44336;
   --color-placeholder: #a1a8b3;
+  --font-family: "Inter", sans-serif;
+}
+
+body {
+  transition: all 0.7s ease;
 }
 
 .hidden {
@@ -36,7 +42,7 @@ body.light {
   box-sizing: border-box;
   margin: 0;
   scroll-behavior: smooth;
-  font-family: $font-family;
+  font-family: var(--font-family);
   font-weight: 600;
 }
 
@@ -75,7 +81,7 @@ h2 {
   span {
     color: var(--text-accent);
     font-weight: 600;
-    font-style: oblique 8deg;
+    font-style: oblique;
   }
 }
 

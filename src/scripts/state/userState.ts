@@ -1,4 +1,4 @@
-import { logoutUser } from "../api/auth";
+import { logoutUser } from "@/scripts/api/auth";
 
 type UserState = {
   token: string | null;

@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { loadUserData } from "../api/user";
+import { loadUserData } from "@/scripts/api/user";
 import { auth } from "@/firebase";
 
 const wrapper: HTMLDivElement | null = document.querySelector("#orders-list");
@@ -47,7 +47,6 @@ export const getOrders = async () => {
             })
             .join("")}</div>
           <div>$${order.totalPrice.toFixed(2)}</div>
-
           `;
 
         wrapper.append(orderDiv);

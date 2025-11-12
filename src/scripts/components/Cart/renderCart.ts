@@ -1,6 +1,6 @@
-import { useCartState } from "../../state/cartState";
-import { useUserState } from "../../state/userState";
-import { addCartIcon } from "../../utils/addCartIcon";
+import { useCartState } from "@/scripts/state/cartState";
+import { useUserState } from "@/scripts/state/userState";
+import { addCartIcon } from "@/scripts/utils/addCartIcon";
 import { refreshTotal } from "./refreshTotal";
 
 const { isLoggedIn } = useUserState();
@@ -32,7 +32,7 @@ export function renderCart(removeFn: (e: Event) => void) {
 
       const img = document.createElement("img");
       img.classList.add("cart-item_img");
-      img.src = `/images/menu/${item.productId}.png`;
+      img.src = `images/menu/${item.productId}.png`;
       img.alt = item.name;
 
       const infoDiv = document.createElement("div");
@@ -68,16 +68,11 @@ export function renderCart(removeFn: (e: Event) => void) {
         const priceNew = document.createElement("h3");
         priceNew.textContent = `$${(item.priceOld - item.priceNew).toFixed(2)}`;
 
-        // totalPriceOldDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
-        // totalPriceNewDiv.textContent = `$${(getTotalPriceOld() - getTotalPriceNew()).toFixed(2)}`;
-
         priceDiv.append(priceOld, priceNew);
       } else {
         const priceNew = document.createElement("h3");
         priceNew.classList.add("price__new");
         priceNew.textContent = `$${item.priceOld.toFixed(2)}`;
-
-        //totalPriceNewDiv.textContent = `$${getTotalPriceOld().toFixed(2)}`;
 
         priceDiv.append(priceNew);
       }

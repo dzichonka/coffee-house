@@ -1,5 +1,5 @@
-import { useCartState } from "../../state/cartState";
-import { useUserState } from "../../state/userState";
+import { useCartState } from "@/scripts/state/cartState";
+import { useUserState } from "@/scripts/state/userState";
 
 const { isLoggedIn } = useUserState();
 

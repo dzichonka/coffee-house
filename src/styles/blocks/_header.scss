@@ -1,5 +1,5 @@
 .header {
-  height: 60px;
+  min-height: 60px;
   margin: 20px 0;
   position: relative;
 
@@ -9,10 +9,6 @@
     justify-content: flex-start;
     flex-direction: row;
     gap: 32px;
-
-    @media (width <= 768px) {
-      flex-direction: column;
-    }
   }
 
   .logo {
@@ -24,7 +20,7 @@
       fill: var(--text-dark);
     }
 
-    @media (width <= 768px) {
+    @media (width <= 975px) {
       &__nav {
         display: none;
       }
@@ -45,7 +41,7 @@
       gap: 40px;
     }
 
-    @media (width <= 768px) {
+    @media (width <= 975px) {
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -82,7 +78,7 @@
   .header-burger {
     display: none;
 
-    @media (width <= 768px) {
+    @media (width <= 975px) {
       display: flex;
       flex-direction: row;
       align-items: center;
