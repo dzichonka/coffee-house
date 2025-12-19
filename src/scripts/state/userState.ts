@@ -1,3 +1,5 @@
+import { logoutUser } from "@/scripts/api/auth";
+
 type UserState = {
   token: string | null;
 };
@@ -14,6 +16,7 @@ export function useUserState() {
   }
 
   function getToken() {
+    if (!(state.token || sessionStorage.getItem("token"))) logoutUser();
     return state.token || sessionStorage.getItem("token");
   }
 
@@ -21,9 +24,15 @@ export function useUserState() {
     return !!getToken();
   }
 
+  function clearToken() {
+    state.token = null;
+    sessionStorage.removeItem("token");
+  }
+
   return {
     getToken,
     setToken,
     isLoggedIn,
+    clearToken,
   };
 }

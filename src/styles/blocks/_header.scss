@@ -1,7 +1,5 @@
-@use "../base/variables" as *;
-
 .header {
-  height: 60px;
+  min-height: 60px;
   margin: 20px 0;
   position: relative;
 
@@ -11,14 +9,18 @@
     justify-content: flex-start;
     flex-direction: row;
     gap: 32px;
-
-    @media (width <= 768px) {
-      flex-direction: column;
-    }
   }
 
   .logo {
-    @media (width <= 768px) {
+    svg path:first-of-type {
+      fill: var(--text-accent);
+    }
+
+    svg path:not(:first-of-type) {
+      fill: var(--text-dark);
+    }
+
+    @media (width <= 975px) {
       &__nav {
         display: none;
       }
@@ -39,7 +41,7 @@
       gap: 40px;
     }
 
-    @media (width <= 768px) {
+    @media (width <= 975px) {
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -53,7 +55,7 @@
       right: -100%;
       font-size: 32px;
       line-height: 125%;
-      background: $text-light;
+      background: var(--background-body);
       transition: 0.5s all;
 
       &-list {
@@ -76,7 +78,7 @@
   .header-burger {
     display: none;
 
-    @media (width <= 768px) {
+    @media (width <= 975px) {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -94,13 +96,13 @@
     cursor: pointer;
     gap: 8px;
     border-radius: 100px;
-    border: 1px solid $border-dark;
+    border: 1px solid var(--border-dark);
 
     span {
       display: block;
       width: 16px;
       height: 1.5px;
-      background: $text-dark;
+      background: var(--text-dark);
       transition: 0.5s all;
     }
 

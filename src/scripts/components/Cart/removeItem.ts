@@ -1,6 +1,5 @@
-import { useCartState } from "../../state/cartState";
-import { renderCart } from "../../components/Cart/renderCart";
-import { refreshTotal } from "./refreshTotal";
+import { useCartState } from "@/scripts/state/cartState";
+import { renderCart } from "@/scripts/components/Cart/renderCart";
 import { disabledConfirm } from "./disabledConfirm";
 
 const { getCart, setCart } = useCartState();

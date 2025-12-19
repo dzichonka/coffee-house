@@ -1,8 +1,7 @@
 import { displayModal } from "./modal";
 import { isCategoryType } from "@/types/typeGuards";
-import { fetcher } from "../utils/fetcher";
-import { useUserState } from "../state/userState";
-
+import { fetcher } from "@/scripts/utils/fetcher";
+import { useUserState } from "@/scripts/state/userState";
 const { isLoggedIn } = useUserState();
 
 const wrapper: HTMLDivElement | null = document.querySelector("#cards");

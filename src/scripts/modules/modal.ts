@@ -1,12 +1,12 @@
-import { fetcher } from "../utils/fetcher";
-import { renderSizeButtons } from "../components/SizeButtons/renderSizeButtons";
-import { renderAdditivesButtons } from "../components/AdditivesButtons/renderAdditivesButtons";
-import { initSizeButtonsListeners } from "../components/SizeButtons/initSizeButtonsListeners";
-import { initAdditivesButtonsListeners } from "../components/AdditivesButtons/initAdditivesButtonsListeners";
-import { useUserState } from "../state/userState";
-import { useModalState } from "../state/modalState";
-import { useCartState } from "../state/cartState";
-import { addCartIcon } from "../utils/addCartIcon";
+import { fetcher } from "@/scripts/utils/fetcher";
+import { renderSizeButtons } from "@/scripts/components/SizeButtons/renderSizeButtons";
+import { renderAdditivesButtons } from "@/scripts/components/AdditivesButtons/renderAdditivesButtons";
+import { initSizeButtonsListeners } from "@/scripts/components/SizeButtons/initSizeButtonsListeners";
+import { initAdditivesButtonsListeners } from "@/scripts/components/AdditivesButtons/initAdditivesButtonsListeners";
+import { useUserState } from "@/scripts/state/userState";
+import { useModalState } from "@/scripts/state/modalState";
+import { useCartState } from "@/scripts/state/cartState";
+import { addCartIcon } from "@/scripts/utils/addCartIcon";
 
 const { isLoggedIn } = useUserState();
 
@@ -32,6 +32,19 @@ let cleanupSizeListeners: (() => void) | null = null;
 function closeModal() {
   modal?.classList.add("hidden");
   document.body.style.overflow = "auto";
+
+  setItem({
+    productId: 0,
+    name: "",
+    sizeKey: "",
+    sizePrice: "0",
+    sizeDiscount: "0",
+    addKeys: [],
+    addPrice: "0",
+    addDiscounts: "0",
+    totalPrice: 0,
+    totalDiscount: 0,
+  });
 
   if (cleanupAddListeners) cleanupAddListeners();
   if (cleanupSizeListeners) cleanupSizeListeners();

@@ -1,9 +1,6 @@
-@use "../base/variables" as *;
-@use "../base/fonts" as *;
-
 .modal {
   z-index: 99;
-  background: $background-backdrop;
+  background: var(--background-backdrop);
   position: fixed;
   top: 0;
   left: 0;
@@ -14,8 +11,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 100px;
-  color: $text-dark;
-  font-family: $font-family;
+  color: var(--text-dark);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -33,7 +29,7 @@
     max-width: 800px;
     border-radius: 40px;
     padding: 16px;
-    background: $text-light;
+    background: var(--background-body);
   }
 
   .wrapper {
@@ -104,12 +100,16 @@
     justify-content: flex-start;
     flex-direction: row;
     gap: 8px;
-    border-top: 1px solid $border-light;
+    border-top: 1px solid var(--border-light);
     padding: 12px 0;
 
     svg {
       min-width: 16px;
       height: 16px;
+
+      path {
+        stroke: var(--text-dark);
+      }
     }
 
     p {
@@ -124,6 +124,9 @@
   }
 
   .btn-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 44px;
     height: 44px;
     position: absolute;
@@ -131,14 +134,22 @@
     right: -16px;
     cursor: pointer;
     padding: 0;
-    border: none;
+    border: 1px solid var(--text-light);
     border-radius: 50%;
-    background: transparent;
+    background-color: transparent;
     transition: all 0.5s ease;
+
+    svg > path {
+      stroke: var(--text-light);
+    }
 
     @media (hover: hover) {
       &:hover {
-        background-color: $text-dark;
+        background-color: var(--text-light);
+
+        svg > path {
+          stroke: var(--text-dark);
+        }
       }
     }
   }

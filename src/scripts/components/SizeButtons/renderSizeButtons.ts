@@ -21,7 +21,7 @@ export function renderSizeButtons(product: Product): void {
     button.setAttribute("data-price", sizeData.price ?? "0");
     button.setAttribute(
       "data-discount",
-      sizeData.discountPrice || sizeData.price || "0"
+      sizeData.discountPrice || sizeData.price || "0",
     );
     button.setAttribute("data-size-key", sizeData.size);
 

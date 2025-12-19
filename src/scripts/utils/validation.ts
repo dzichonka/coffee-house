@@ -9,6 +9,13 @@ export function validateLogin(value: string): string | null {
   return null;
 }
 
+export function validateEmail(value: string): string | null {
+  if (!value) return "Email is required";
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(value)) return "Please enter a valid email address";
+  return null;
+}
+
 export function validatePassword(value: string): string | null {
   if (value.length < 6) return "Password must be at least 6 characters";
   if (!/[!@#$%^&*(),.?":{}|<>]/.test(value))

@@ -1,6 +1,7 @@
-import { fetcher } from "../utils/fetcher";
-import { useUserState } from "../state/userState";
-import { validateLogin, validatePassword } from "../utils/validation";
+import { useUserState } from "@/scripts/state/userState";
+import { validateEmail, validatePassword } from "@/scripts/utils/validation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase";
 
 const { setToken } = useUserState();
 
@@ -25,7 +26,7 @@ loginButton.disabled = true;
 
 function handleValidation(
   input: HTMLInputElement,
-  validateFn: (value: string) => string | null,
+  validateFn: (value: string) => string | null
 ) {
   const errorSpan = input.nextElementSibling;
 
@@ -56,12 +57,12 @@ function handleValidation(
 
 function updateButtonState() {
   if (!loginInput || !passwordInput || !loginButton) return;
-  const loginError = validateLogin(loginInput.value);
+  const loginError = validateEmail(loginInput.value);
   const passwordError = validatePassword(passwordInput.value);
   loginButton.disabled = !!loginError || !!passwordError;
 }
 
-handleValidation(loginInput, validateLogin);
+handleValidation(loginInput, validateEmail);
 handleValidation(passwordInput, validatePassword);
 
 loginButton.addEventListener("click", async (e) => {
@@ -70,36 +71,33 @@ loginButton.addEventListener("click", async (e) => {
     form.querySelector(".alert-error")?.remove();
   }
   if (!loginInput || !passwordInput) return;
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      loginInput.value,
+      passwordInput.value
+    );
 
-  const payload = {
-    login: loginInput.value,
-    password: passwordInput.value,
-  };
+    const user = userCredential.user;
 
-  const { data: res, error } = await fetcher<
-    {
-      data: LoginResponse;
-      message?: string;
-      error?: string;
-    },
-    LoginPayload
-  >(
-    "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/auth/login",
-    "#loader",
-    {
-      method: "POST",
-      body: payload,
-    },
-  );
+    const token = await user.getIdToken();
 
-  if (error) {
+    setToken(token);
+    window.location.href = "cart";
+  } catch (error: any) {
+    console.error("Login error:", error);
+
     const alert = document.createElement("div");
     alert.className = "alert-error";
-    alert.textContent = `Incorrect login or password`;
+
+    if (error.code === "auth/user-not-found") {
+      alert.textContent = "User not found";
+    } else if (error.code === "auth/wrong-password") {
+      alert.textContent = "Incorrect password";
+    } else {
+      alert.textContent = "Login failed. Please try again.";
+    }
+
     form.append(alert);
-  }
-  if (res && res.data) {
-    setToken(res.data.access_token);
-    window.location.href = "index";
   }
 });

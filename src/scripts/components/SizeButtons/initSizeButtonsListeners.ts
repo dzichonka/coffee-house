@@ -1,4 +1,4 @@
-import { useModalState } from "../../state/modalState";
+import { useModalState } from "@/scripts/state/modalState";
 
 const { setSize } = useModalState();
 

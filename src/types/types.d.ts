@@ -34,6 +34,7 @@ interface Product {
 
 interface Item {
   productId: number;
+  name: string;
   size: string;
   additives: string[];
   quantity: number;
@@ -42,6 +43,7 @@ interface Item {
 interface Order {
   items: Item[];
   totalPrice: number;
+  createdAt?: string;
 }
 
 interface OrderResponse {
@@ -50,13 +52,14 @@ interface OrderResponse {
 }
 
 interface User {
-  id: number;
+  uid: string;
   login: string;
   city: string;
   street: string;
   houseNumber: number;
   paymentMethod: string;
   createdAt: string;
+  orders?: Order[];
 }
 
 interface LoginPayload {
