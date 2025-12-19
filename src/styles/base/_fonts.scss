@@ -1,0 +1,21 @@
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Crafty+Girls&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css";
+
+@font-face {
+  font-family: Inter;
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: oblique 0deg 0deg;
+  src: url("/fonts/Inter.var.woff2?v=3.19") format("woff2");
+}
+
+$font-inter: "Inter", sans-serif;
+$font-montserrat: "Montserrat", sans-serif;
+$font-roboto: "Roboto", sans-serif;
+$font-crafty: "Crafty Girls", sans-serif;
+$font-comic: "Comic Relief", sans-serif;
+$font-amesome: "Font Awesome 6 Free";

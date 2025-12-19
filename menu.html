@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee House "Resource"</title>
+    <meta
+      name="description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:title" content="Coffee House" />
+    <meta
+      property="og:description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://coffee-house-rs-school.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
+    />
+    <script type="module" src="/src/scripts/menuPage.ts"></script>
+  </head>
+  <body class="dark">
+    <div id="app">
+      <div id="modal" class="modal hidden"></div>
+
+      <div class="container">
+        <header id="header" class="header"></header>
+        <main>
+          <section id="menu" class="menu">
+            <h2>
+              Behind each of our cups hides an <span>amazing surprise</span>
+            </h2>
+            <div class="tabs">
+              <button class="tab tab-category active" data-tab="coffee">
+                <span class="sign">
+                  <img src="icons/tabs/coffee-tab.png" alt="coffee icon"
+                /></span>
+                <span>Coffee</span>
+              </button>
+              <button class="tab tab-category" data-tab="tea">
+                <span class="sign">
+                  <img src="icons/tabs/tea-tab.png" alt="tea icon"
+                /></span>
+                <span>Tea</span>
+              </button>
+              <button class="tab tab-category" data-tab="dessert">
+                <span class="sign">
+                  <img src="icons/tabs/dessert-tab.png" alt="dessert icon"
+                /></span>
+                <span>Dessert</span>
+              </button>
+            </div>
+            <div id="error" class="error">
+              <h3>Something went wrong</h3>
+              <h3>Please, try again</h3>
+            </div>
+            <div class="wrapper">
+              <div id="loader" class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+            </div>
+            <div class="cards" id="cards"></div>
+            <button id="refresh" class="btn-circle refresh hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewbox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M21.8883 13.5C21.1645 18.3113 17.013 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C16.1006 2 19.6248 4.46819 21.1679 8"
+                  stroke="#403F3D"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3"
+                  stroke="#403F3D"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </section>
+        </main>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+  </body>
+</html>

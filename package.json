@@ -1,0 +1,55 @@
+{
+  "name": "coffee-house",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "stylelint": "stylelint \"**/*.{css,scss}\""
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "npm run format:check"
+    ],
+    "*.{css,scss}": [
+      "npm run stylelint"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.33.0",
+    "gh-pages": "^6.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
+    "prettier": "^3.6.2",
+    "sass-embedded": "^1.89.2",
+    "stylelint": "^16.21.1",
+    "stylelint-config-clean-order": "^7.0.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "stylelint-scss": "^6.12.1",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.25.0",
+    "vite": "^7.1.7"
+  },
+  "dependencies": {
+    "firebase": "^12.5.0",
+    "modern-normalize": "^3.0.1"
+  }
+}

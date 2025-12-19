@@ -1,0 +1,135 @@
+@use "./fonts" as *;
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 40px;
+
+  &-items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 4px;
+
+  &-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--text-dark);
+  }
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 0 12px;
+  width: 400px;
+  height: 56px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  background-color: transparent;
+  color: var(--text-dark);
+
+  &__small {
+    width: 260px;
+  }
+
+  &::placeholder {
+    opacity: none;
+    color: var(--color-placeholder);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.invalid {
+    border-color: var(--color-error);
+    background-image: url("/icons/input/error.svg");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  &.valid {
+    border-color: var(--color-success);
+    background-image: url("/icons/input/success.svg");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+}
+
+.error-message {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  color: var(--color-error);
+  font-weight: 400;
+  font-size: 14px;
+  display: none;
+  line-height: 100%;
+
+  &.active {
+    display: block;
+  }
+}
+
+.pay-option {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  position: relative;
+
+  input[type="radio"] {
+    appearance: none;
+    position: absolute;
+  }
+
+  .custom-radio {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--background-container);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: inline-block;
+    position: relative;
+  }
+
+  input[type="radio"]:checked + .custom-radio {
+    background-color: var(--background-container);
+  }
+
+  input[type="radio"]:checked + .custom-radio::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-light);
+    border-radius: 50%;
+  }
+}
+
+select {
+  appearance: none;
+}

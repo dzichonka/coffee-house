@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee House "Resource"</title>
+    <meta
+      name="description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:title" content="Coffee House" />
+    <meta
+      property="og:description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://coffee-house-rs-school.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
+    />
+    <script type="module" src="/src/scripts/indexPage.ts"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <header id="header" class="header"></header>
+        <main>
+          <section id="enjoy" class="enjoy">
+            <video
+              class="video"
+              autoplay
+              muted
+              loop
+              playsinline
+              poster="images/enjoy/hero.jpg"
+            >
+              <source src="/video/hero.mp4" type="video/mp4" />
+              <img src="images/enjoy/hero.jpg" alt="Hero image" />
+            </video>
+            <div class="offer">
+              <h2><span>Enjoy</span> premium coffee at our charming cafe</h2>
+              <h3 class="description">
+                With its inviting atmosphere and delicious coffee options, the
+                Coffee House Resource is a popular destination for coffee lovers
+                and those seeking a warm and inviting space to enjoy their
+                favorite beverage.
+              </h3>
+              <a href="menu" class="btn-menu">
+                <span>Menu</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14.166 9.76667V11.6667C14.166 14.8883 11.5543 17.5 8.33268 17.5C5.11102 17.5 2.49935 14.8883 2.49935 11.6667V9.76667C2.49935 9.4353 2.76798 9.16667 3.09935 9.16667H13.566C13.8974 9.16667 14.166 9.4353 14.166 9.76667Z"
+                    stroke="#403F3D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9.99935 7.49996C9.99935 6.66663 10.5946 5.83329 11.7851 5.83329C13.1 5.83329 14.166 4.7673 14.166 3.45234V2.91663"
+                    stroke="#403F3D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M6.66732 7.5V7.08333C6.66732 5.70262 7.78661 4.58333 9.16732 4.58333C10.0878 4.58333 10.834 3.83714 10.834 2.91667V2.5"
+                    stroke="#403F3D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M13.334 9.16663H15.4173C16.5679 9.16663 17.5007 10.0994 17.5007 11.25C17.5007 12.4006 16.5679 13.3333 15.4173 13.3333H14.1673"
+                    stroke="#403F3D"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </section>
+          <section id="favourites" class="favourites">
+            <h2>Choose your <span>favorite</span> coffee</h2>
+
+            <div class="wrapper">
+              <div id="loader" class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div id="error" class="error">
+                <h3>Something went wrong</h3>
+                <h3>Please, refresh the page</h3>
+                <button id="refresh" class="btn-circle refresh">
+                  Refresh Data
+                </button>
+              </div>
+              <div class="slider">
+                <button class="prev btn-circle">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.5 7H1M1 7L7 1M1 7L7 13"
+                      stroke="#403F3D"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <div class="slider-wrapper"></div>
+                <button class="next btn-circle">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 7H13.5M13.5 7L7.5 1M13.5 7L7.5 13"
+                      stroke="#403F3D"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="dots"></div>
+            </div>
+          </section>
+          <section id="about" class="about">
+            <h2>
+              Resource is <span>the perfect and cozy place</span> where you can
+              enjoy a variety of hot beverages, relax, catch up with friends, or
+              get some work done.
+            </h2>
+            <div class="gallery">
+              <div class="gallery_column gallery_column__first">
+                <div class="gallery_img gallery_img__square">
+                  <img
+                    src="images/about/about-1.jpg"
+                    alt="gallery about photo 1"
+                  />
+                </div>
+                <div class="gallery_img gallery_img__rectangle">
+                  <img
+                    src="images/about/about-2.jpg"
+                    alt="gallery about photo 2"
+                  />
+                </div>
+              </div>
+              <div class="gallery_column gallery_column__second">
+                <div class="gallery_img gallery_img__rectangle">
+                  <img
+                    src="images/about/about-3.jpg"
+                    alt="gallery about photo 3"
+                  />
+                </div>
+                <div class="gallery_img gallery_img__square">
+                  <img
+                    src="images/about/about-4.jpg"
+                    alt="gallery about photo 4"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="mobile" class="mobile">
+            <div class="mobile_wrapper">
+              <div class="mobile_column mobile_main">
+                <h2><span>Download</span> our apps to start ordering</h2>
+                <p>
+                  Download the Resource app today and experience the comfort of
+                  ordering your favorite coffee from wherever you are
+                </p>
+                <div class="mobile_apps">
+                  <a href="#" target="_blank" class="app-button">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="36"
+                      height="36"
+                      viewbox="0 0 36 36"
+                      fill="none"
+                    >
+                      <path
+                        d="M26.7073 18.6307C26.6704 14.6324 30.065 12.6872 30.2203 12.5966C28.2977 9.86366 25.3178 9.49026 24.2707 9.46048C21.7679 9.20369 19.3403 10.9206 18.0654 10.9206C16.765 10.9206 14.8017 9.48529 12.6858 9.52747C9.96293 9.56841 7.41566 11.1055 6.0186 13.4923C3.13542 18.359 5.28572 25.5108 8.04802 29.4446C9.42981 31.3712 11.0444 33.5223 13.1578 33.4466C15.2254 33.3635 15.9978 32.1614 18.4929 32.1614C20.9651 32.1614 21.6903 33.4466 23.8457 33.3983C26.0647 33.3635 27.4618 31.463 28.7952 29.519C30.392 27.3108 31.0333 25.1362 31.0588 25.0245C31.0066 25.0071 26.7493 23.4229 26.7073 18.6307Z"
+                        fill="#403F3D"
+                      />
+                      <path
+                        d="M22.6357 6.87268C23.7477 5.51675 24.5086 3.67205 24.2974 1.80005C22.6879 1.86952 20.675 2.88554 19.5159 4.21169C18.4903 5.38029 17.5742 7.29571 17.8109 9.097C19.6189 9.2285 21.4753 8.20752 22.6357 6.87268Z"
+                        fill="#403F3D"
+                      />
+                    </svg>
+
+                    <div class="app-button_descr">
+                      <div class="app-button_available">Available on the</div>
+                      <div class="app-button_platform">App Store</div>
+                    </div>
+                  </a>
+                  <a href="#" target="_blank" class="app-button">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="36"
+                      height="36"
+                      viewbox="0 0 36 36"
+                      fill="none"
+                    >
+                      <path
+                        d="M3.7558 3.20297C3.39335 3.57289 3.18359 4.14884 3.18359 4.89471V31.4994C3.18359 32.2453 3.39335 32.8212 3.7558 33.1911L3.84525 33.2723L19.1359 18.37V18.0181L3.84525 3.11575L3.7558 3.20297Z"
+                        fill="#403F3D"
+                      />
+                      <path
+                        d="M26.0776 23.34L20.9863 18.37V18.0181L26.0837 13.0482L26.1979 13.1128L32.2345 16.4617C33.9573 17.4121 33.9573 18.976 32.2345 19.9324L26.1979 23.2753L26.0776 23.34Z"
+                        fill="#403F3D"
+                      />
+                      <path
+                        d="M25.2733 24.2007L20.0617 19.1195L4.68164 34.1166C5.25384 34.7031 6.18695 34.7737 7.24807 34.1873L25.2733 24.2007Z"
+                        fill="#403F3D"
+                      />
+                      <path
+                        d="M25.2733 12.1876L7.24807 2.20103C6.18695 1.62058 5.25384 1.69125 4.68164 2.27772L20.0617 17.2688L25.2733 12.1876Z"
+                        fill="#403F3D"
+                      />
+                    </svg>
+
+                    <div class="app-button_descr">
+                      <div class="app-button_available">Available on</div>
+                      <div class="app-button_platform">Google Play</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="mobile_column mobile_column_img">
+                <img
+                  src="images/mobile/mobiles.png"
+                  alt="mobile"
+                  class="mobile_img"
+                />
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+  </body>
+</html>

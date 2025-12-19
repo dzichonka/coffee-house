@@ -1,0 +1,38 @@
+{
+  "Grodno": [
+    "Savieckaya",
+    "Ozheshko",
+    "Zamkavaya",
+    "Kalinouskaga",
+    "Kirova",
+    "Dzerzhinskaga",
+    "Horkaha",
+    "Popovicha",
+    "Budzenaha",
+    "Belusha"
+  ],
+  "Warsaw": [
+    "Aleje Jerozolimskie",
+    "Nowy Swiat",
+    "Marszalkowska",
+    "Krakowskie Przedmiescie",
+    "Pulawska",
+    "Zwirki i Wigury",
+    "Targowa",
+    "Grojecka",
+    "Tamka",
+    "Swietokrzyska"
+  ],
+  "San Francisco": [
+    "Market Street",
+    "Lombard Street",
+    "Mission Street",
+    "Van Ness Avenue",
+    "Castro Street",
+    "Haight Street",
+    "Folsom Street",
+    "Union Street",
+    "Embarcadero",
+    "California Street"
+  ]
+}

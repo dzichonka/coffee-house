@@ -1,0 +1,64 @@
+.enjoy {
+  border-radius: 40px;
+  position: relative;
+  max-width: 1360px;
+  height: 644px;
+  overflow: hidden;
+
+  @media (width <= 380px) {
+    height: 552px;
+  }
+
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+  }
+
+  .offer {
+    color: var(--text-light);
+    position: absolute;
+    top: 0;
+    left: 100px;
+    z-index: 2;
+    max-width: 530px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+
+    @media (width <= 1200px) {
+      left: 60px;
+    }
+
+    @media (width <= 767px) {
+      left: 0;
+      top: 0;
+      max-width: 100%;
+      min-height: 100%;
+      padding: 60px 16px;
+    }
+
+    h2 {
+      font-size: 72px;
+      line-height: 105%;
+      color: var(--text-light);
+
+      @media (width <= 767px) {
+        font-size: 42px;
+        line-height: 115%;
+        margin: 0;
+      }
+    }
+
+    .description {
+      color: var(--text-light);
+    }
+  }
+}

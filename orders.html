@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee House "Resource"</title>
+    <meta
+      name="description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:title" content="Coffee House" />
+    <meta
+      property="og:description"
+      content="The Coffee House project involves creating a responsive website with two pages, incorporating interactivity to enhance user engagement. "
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://coffee-house-rs-school.netlify.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://coffee-house-rs-school.netlify.app//icons/logo.svg"
+    />
+    <script type="module" src="/src/scripts/ordersPage.ts"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <header id="header" class="header"></header>
+        <main>
+          <section id="orders" class="orders">
+            <h2>Orders</h2>
+            <div id="loader" class="loader">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <h3 id="error" class="hidden">
+              Something went wrong. Please, try again
+            </h3>
+            <div class="wrapper">
+              <div id="loader" class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div id="error" class="error">
+                <h3>Something went wrong</h3>
+                <h3>Please, refresh the page</h3>
+                <button id="refresh" class="btn-circle refresh">
+                  Refresh Data
+                </button>
+              </div>
+            </div>
+            <table id="orders-list" class="orders-list"></table>
+          </section>
+        </main>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+  </body>
+</html>

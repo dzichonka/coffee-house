@@ -1,0 +1,355 @@
+@use "./fonts" as *;
+
+:root {
+  --text-dark: #90d7e5;
+  --text-light: #5b9fae;
+  --text-accent: #d00844;
+  --background-body: #1b3338;
+  --background-container: rgb(213 247 255);
+  --background-backdrop: rgb(0 0 0 / 35%);
+  --border-light: #233c41;
+  --border-dark: #83adb6;
+  --color-success: #0dbb75;
+  --color-error: #f43649;
+  --color-placeholder: #a1a8b3;
+  --font-family: "Montserrat", sans-serif;
+}
+
+body.light {
+  --text-dark: #403f3d;
+  --text-light: #e1d4c9;
+  --text-accent: #b0907a;
+  --background-body: #e1d4c9;
+  --background-container: #665f55;
+  --background-backdrop: rgb(64 63 61 / 80%);
+  --border-light: #c1b6ad;
+  --border-dark: #665f55;
+  --color-success: #0dbb42;
+  --color-error: #f44336;
+  --color-placeholder: #a1a8b3;
+  --font-family: "Inter", sans-serif;
+}
+
+body {
+  transition: all 0.7s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  scroll-behavior: smooth;
+  font-family: var(--font-family);
+  font-weight: 600;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--background-body);
+  color: var(--text-dark);
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  @media (width <= 380px) {
+    padding: 0 16px;
+  }
+}
+
+h2 {
+  margin-top: 100px;
+  color: var(--text-dark);
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 125%;
+  text-align: left;
+
+  @media (width <= 380px) {
+    font-size: 32px;
+  }
+
+  span {
+    color: var(--text-accent);
+    font-weight: 600;
+    font-style: oblique;
+  }
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 125%;
+}
+
+p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  span {
+    font-weight: 400;
+  }
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  border: 1px solid var(--background-container);
+  padding: 10px 76px;
+  width: fit-content;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text-dark);
+  background-color: transparent;
+  transition: all 0.5s ease;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: var(--background-container);
+      color: var(--text-light);
+    }
+  }
+}
+
+.btn-icon {
+  width: fit-content;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  padding: 5px;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: var(--text-dark);
+  background-color: transparent;
+  transition: all 0.5s ease;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      scale: 1.2;
+    }
+  }
+}
+
+.btn-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0;
+  width: 200px;
+  height: 64px;
+  padding: 20px 78px;
+  border: none;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text-dark);
+  background-color: var(--text-light);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.5s ease-out;
+
+    path {
+      stroke: var(--text-dark);
+    }
+  }
+
+  @media (hover: hover) {
+    gap: 8px;
+    cursor: pointer;
+
+    span {
+      transition: all 0.5s ease-out;
+    }
+
+    &:hover:not(:disabled) {
+      svg {
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 4px;
+  border-bottom: 2px solid transparent;
+  width: fit-content;
+  line-height: 125%;
+  color: var(--text-dark);
+  background-color: transparent;
+  outline: none;
+  text-decoration: none;
+
+  &.disabled {
+    cursor: default;
+    border-bottom: 2px solid var(--text-dark);
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover:not(.disabled) {
+      border-bottom: 2px solid var(--text-dark);
+    }
+  }
+
+  @media (width <= 768px) {
+    gap: 16px;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.btn-circle {
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 1px solid var(--background-container);
+  background-color: transparent;
+  color: var(--background-container);
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+  transition: all 0.5s ease;
+
+  svg > path {
+    stroke: var(--background-container);
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--background-container);
+      color: var(--text-light);
+
+      svg > path {
+        stroke: var(--text-light);
+      }
+    }
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-dark);
+  border-radius: 100px;
+  height: 46px;
+  padding: 8px 16px 8px 8px;
+
+  .sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background: var(--border-light);
+    color: var(--text-dark);
+    padding: 3px 7px;
+    overflow: hidden;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  &.active {
+    background: var(--background-container);
+    border: 1px solid var(--background-container);
+    color: var(--text-light);
+
+    .sign {
+      background: var(--text-light);
+    }
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover {
+      transition: all 0.5s ease;
+      background: var(--background-container);
+      border: 1px solid var(--background-container);
+      color: var(--text-light);
+
+      .sign {
+        background: var(--text-light);
+      }
+    }
+  }
+}

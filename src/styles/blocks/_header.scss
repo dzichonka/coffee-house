@@ -1,0 +1,123 @@
+.header {
+  min-height: 60px;
+  margin: 20px 0;
+  position: relative;
+
+  .nav__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .logo {
+    svg path:first-of-type {
+      fill: var(--text-accent);
+    }
+
+    svg path:not(:first-of-type) {
+      fill: var(--text-dark);
+    }
+
+    @media (width <= 975px) {
+      &__nav {
+        display: none;
+      }
+    }
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    &-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 40px;
+    }
+
+    @media (width <= 975px) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      gap: 100px;
+      padding-top: 60px;
+      z-index: 9;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      right: -100%;
+      font-size: 32px;
+      line-height: 125%;
+      background: var(--background-body);
+      transition: 0.5s all;
+
+      &-list {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 60px;
+      }
+
+      &.open {
+        top: 80px;
+        right: 0;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  .header-burger {
+    display: none;
+
+    @media (width <= 975px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .burger {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    border-radius: 100px;
+    border: 1px solid var(--border-dark);
+
+    span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--text-dark);
+      transition: 0.5s all;
+    }
+
+    &.open {
+      z-index: 10;
+
+      span {
+        &:nth-child(1) {
+          transform: translateY(5px) rotate(-45deg);
+        }
+
+        &:nth-child(2) {
+          transform: translateY(-5px) rotate(45deg);
+        }
+      }
+    }
+  }
+}
